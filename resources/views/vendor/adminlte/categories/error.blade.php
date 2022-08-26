@@ -15,7 +15,7 @@
         </center>
         </br>
         <center>
-        <a  href="/categories/categories"><button><i class="fa fa-arrow-left"></i> Regresar </button>
+        <a  href="{{ url('/categories/categories')}}"><button><i class="fa fa-arrow-left"></i> Regresar </button>
         </center>
       </div>
   </div>

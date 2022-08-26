@@ -17,7 +17,7 @@
 											<div class="row">
 												<div class="col-sm-12">
 												
-												 <form role="form" action ="/users/update/{{$iduser}}" method="get">
+												 <form role="form" action ="{{ url('/users/update')}}/{{$iduser}}" method="get">
 													<table  id="permisos" class="display" cellspacing="0" width="100%">
 							                            <thead>
 							                            <button   class="btn btn-sm btn-default pull-right " type="submit">Actualizar Permisos</button>

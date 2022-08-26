@@ -15,7 +15,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action = "/tours/tours/attr/{{$tours->id}}" method = "post">
+            <form role="form" action = "{{ url('/tours/tours/attr')}}/{{$tours->id}}" method = "post">
             {{ csrf_field() }}	
              
                 <div class="form-group col-sm-6">
@@ -35,7 +35,7 @@
 
               <div class="box-footer">
              
-                <a href="/tours/tours"> <button class="btn btn-primary pull-right">Seguir Sin Guardar</button></a>
+                <a href="{{ url('/tours/tours')}}"> <button class="btn btn-primary pull-right">Seguir Sin Guardar</button></a>
               </div>
                      
         </div>

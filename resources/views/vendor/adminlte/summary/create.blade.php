@@ -9,7 +9,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form id="search-form" role="form" action = "/summary/save" method = "post"  enctype="multipart/form-data">
+            <form id="search-form" role="form" action = "{{ url('/summary/save')}}" method = "post"  enctype="multipart/form-data">
             {{ csrf_field() }}	
 
 <div  id="modal" class="modal" >

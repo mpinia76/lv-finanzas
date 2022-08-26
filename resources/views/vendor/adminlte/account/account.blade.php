@@ -16,7 +16,7 @@
 									<div class="box-header with-border">
 										<i class="fa fa-bank"></i><h3 class="box-title"><b>Cuentas</b></h3>
 									 	
-									 	<a class="btn btn-primary " style="float: right;" href="/account/create"><i class="fa fa-plus"></i> Nuevo </a>
+									 	<a class="btn btn-primary " style="float: right;" href="{{ url('/account/create')}}"><i class="fa fa-plus"></i> Nuevo </a>
 									</div>
 									
 									<div class="box-body responsive-table">
@@ -44,12 +44,12 @@
 															    	<td>{{ $accounts->type }}</td>
 															        <td>
 																	
-														            <form role="form" action = "/account/eliminar/{{ $accounts->id }}" method="post"  enctype="multipart/form-data">
+														            <form role="form" action = "{{ url('/account/eliminar')}}/{{ $accounts->id }}" method="post"  enctype="multipart/form-data">
 														                {{method_field('DELETE')}}
 														                {{ csrf_field() }}
 
-														            <a class="btn btn-sm btn-default"  href="/account/detalle/{{ $accounts->id }}"><i class="fa fa fa-eye"></i></a>     
-														            <a class="btn btn-sm btn-default" href="/account/edit/{{ $accounts->id }}"><i class="fa fa-edit"></i></a>
+														            <a class="btn btn-sm btn-default"  href="{{ url('/account/detalle')}}/{{ $accounts->id }}"><i class="fa fa fa-eye"></i></a>
+														            <a class="btn btn-sm btn-default" href="{{ url('/account/edit')}}/{{ $accounts->id }}"><i class="fa fa-edit"></i></a>
 														            <button onclick='if(confirmDel() == false){return false;}' class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash"></i></button></a>
 														          </form>
 

@@ -36,7 +36,7 @@
             <center><label  class="form-control" >Ir al pantalla de login</label></center>
 
         <div class="input-group-btn">
-            <a href="/login"><button type="button" class="btn"><i class="fa fa-arrow-right text-muted"></i></button></a>
+            <a href="{{ url('/login')}}"><button type="button" class="btn"><i class="fa fa-arrow-right text-muted"></i></button></a>
         </div>
     </div>
         </div>

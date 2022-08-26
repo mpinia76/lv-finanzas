@@ -18,7 +18,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <div class="load">
-    <div class="in"><img width="20%" src="/img/hourglass.svg"></div>
+    <div class="in"><img width="20%" src="{{ url('/img/hourglass.svg') }}"></div>
 </div>
     <script>
         //See https://laracasts.com/discuss/channels/vue/use-trans-in-vuejs

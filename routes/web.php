@@ -56,7 +56,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('categories/create', function ()    {
 		return view('vendor.adminlte.categories.create');
 	});
-	Route::post('categories/save','categoriesController@save');
+	Route::post('categories/save','categoriesController@save')->name('categories.save');
+
+
 	//editar categories
 	Route::get('categories/edit', function ()    {
 		return view('vendor.adminlte.categories.edit');

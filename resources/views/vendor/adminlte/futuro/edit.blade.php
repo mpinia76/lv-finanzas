@@ -8,9 +8,9 @@
 
           @if($data->attached)
         
-              <a href="/attached/edit/{{$data->attached->id}}" class="btn btn-primary  waves-effect waves-light" style="float: right;"><i class="fa fa-paperclip"></i>  Editar Adjunto</a>
+              <a href="{{ url('/attached/edit')}}/{{$data->attached->id}}" class="btn btn-primary  waves-effect waves-light" style="float: right;"><i class="fa fa-paperclip"></i>  Editar Adjunto</a>
          @else
-          <a href="/attached/create/{{$data->id}}" class="btn btn-primary  waves-effect waves-light" style="float: right;"><i class="fa fa-paperclip"></i>  Agregar Adjunto</a>
+          <a href="{{ url('/attached/create')}}/{{$data->id}}" class="btn btn-primary  waves-effect waves-light" style="float: right;"><i class="fa fa-paperclip"></i>  Agregar Adjunto</a>
 
          @endif
 
@@ -18,7 +18,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form id="search-form" role="form" action = "/future/editar/{{$data->id}}" method="post"  enctype="multipart/form-data">
+            <form id="search-form" role="form" action = "{{ url('/future/editar')}}/{{$data->id}}" method="post"  enctype="multipart/form-data">
 <div  id="modal" class="modal" >
   <div class="modal-dialog">
     <!-- Modal content-->

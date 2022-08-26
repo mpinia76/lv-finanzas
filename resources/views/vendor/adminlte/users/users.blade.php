@@ -52,9 +52,9 @@
 
 															                  <ul class="dropdown-menu" role="menu">
 															                   @if($users->status==1)
-																					<li><a href="/users/desactivar/{{$users->id}}">Desactivar</a></li>
+																					<li><a href="{{ url('/users/desactivar')}}/{{$users->id}}">Desactivar</a></li>
 															                   @else
-																					<li><a href="/users/activar/{{$users->id}}">Activar</a></li>
+																					<li><a href="{{ url('/users/activar')}}/{{$users->id}}">Activar</a></li>
 															                   @endif
 																                   
 																                    
@@ -67,11 +67,11 @@
 													                 <td>
 													                 @if($log==1)
 														                 @if($users->level!=1)
-														                 <form role="form" action = "/users/eliminar/{{ $users->id }}" method="post"  enctype="multipart/form-data">
+														                 <form role="form" action = "{{ url('/users/eliminar')}}/{{ $users->id }}" method="post"  enctype="multipart/form-data">
 								                                          			{{method_field('DELETE')}}
 								                                          			{{ csrf_field() }}
 
-								                                          		<a class="btn btn-sm btn-default"  href="/permisos/ver/{{ $users->id }}"><i class=" fa fa-cog"></i></a> 
+								                                          		<a class="btn btn-sm btn-default"  href="{{ url('/permisos/ver')}}/{{ $users->id }}"><i class=" fa fa-cog"></i></a>
 								                                          			<button  onclick='if(confirmDel() == false){return false;}' class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash"></i></button>
 								                                          </form>
 								                                          @endif

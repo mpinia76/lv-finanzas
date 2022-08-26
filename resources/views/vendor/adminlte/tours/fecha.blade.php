@@ -289,7 +289,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 																		@endif
 																	</small></td>
 															    	@endif
-															        <td>{{ number_format($summarys->amount, 2, '.', ',') }} {{$divisa->value}}</td>
+															        <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, '.', ',') }} </td>
 															        <td>{{ number_format( $summarys->tax, 2, '.', ',') }}</td>
 															        <td>{{ $summarys->concept }}</td>
 															        <td>{{ $summarys->name_account }}</td>
@@ -304,18 +304,18 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 																				$id=$summarys->id;
 																			 ?>
 															        	@endif
-																 		<form role="form" action = "/summary/<?php echo $elimina ?>/<?php echo $id ?>" method="post"  enctype="multipart/form-data">
+																 		<form role="form" action = "{{ url('/summary')}}/<?php echo $elimina ?>/<?php echo $id ?>" method="post"  enctype="multipart/form-data">
 							                                          			{{method_field('DELETE')}}
 							                                          			{{ csrf_field() }}
-							                                          		<a class="btn btn-sm btn-default"  href="/detalle/detalle/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a> 
+							                                          		<a class="btn btn-sm btn-default"  href="{{ url('/detalle/detalle')}}/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a>
 																			@if($summarys->attached)
-							                                          		 <a class="btn btn-sm btn-default" target="_blank" href="/download/{{$summarys->attached->id}}"><i class="fa fa-paperclip"></i></a>
+							                                          		 <a class="btn btn-sm btn-default" target="_blank" href="{{ url('/download')}}/{{$summarys->attached->id}}"><i class="fa fa-paperclip"></i></a>
 																			@endif
 
 							                                       			@if($summarys->id_transfer!="")
-																				<a class="btn btn-sm btn-default" href="/transfer/edit/{{ $summarys->id_transfer }}"><i class="fa fa-edit"></i></a>
+																				<a class="btn btn-sm btn-default" href="{{ url('/transfer/edit')}}/{{ $summarys->id_transfer }}"><i class="fa fa-edit"></i></a>
 																        	@else
-																				<a class="btn btn-sm btn-default" href="/summary/edit/{{ $summarys->id }}"><i class="fa fa-edit"></i></a>
+																				<a class="btn btn-sm btn-default" href="{{ url('/summary/edit')}}/{{ $summarys->id }}"><i class="fa fa-edit"></i></a>
 																        	@endif
 							                                      			
 							                                      			<button  onclick='if(confirmDel() == false){return false;}' class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash"></i></button>
@@ -373,11 +373,11 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 			          	</span>
 		    	</div>
 			</div>
-			<a  target="_blank" href="/pdf<?php echo $url."&tax"  ?>" class="btn btn-block btn-social btn-google">
+			<a  target="_blank" href="{{ url('/pdf')}}<?php echo $url."&tax"  ?>" class="btn btn-block btn-social btn-google">
                 <i class="fa fa-file-pdf-o"></i> Reporte Detallado 
               </a>
 
-              <a  target="_blank" href="/pdf<?php echo $url  ?>" class="btn btn-block btn-social btn-google">
+              <a  target="_blank" href="{{ url('/pdf')}}<?php echo $url  ?>" class="btn btn-block btn-social btn-google">
                 <i class="fa fa-file-pdf-o"></i> Reporte Sin tax
               </a>
 		</div>

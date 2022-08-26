@@ -9,7 +9,7 @@
             </div >
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action = "/transfer/save" method = "post">
+            <form role="form" action = "{{ url('/transfer/save')}}" method = "post">
            
              
           

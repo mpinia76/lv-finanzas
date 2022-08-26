@@ -17,7 +17,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Abonos</span>
               </br>
-              <a href="/summary/create?type=add">Añadir Depositos</a>
+              <a href="{{ url('/summary/create?type=add')}}">Añadir Depositos</a>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -31,7 +31,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Retiros</span>
               </br>
-             <a href="/summary/create?type=out">Añadir Retiros</a>
+             <a href="{{ url('/summary/create?type=out')}}">Añadir Retiros</a>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -45,7 +45,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Abonos</span>
               </br>
-              <span class="info-box-number">{{ number_format($add, 2, ',', '.') }} {{$divisa->value}}</span>
+              <span class="info-box-number">{{$divisa->value}}{{ number_format($add, 2, ',', '.') }} </span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -59,7 +59,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Retiros</span>
               </br>
-              <span class="info-box-number">{{ number_format($out, 2, ',', '.') }}  {{$divisa->value}}</span>
+              <span class="info-box-number">{{$divisa->value}}{{ number_format($out, 2, ',', '.') }}  </span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -129,7 +129,7 @@
 															    	<td>{{ $summarys->name }}</td>
 															    	<td>{{ $summarys->type}}</td>
 															    	<td>{{ $summarys->number }}</td>
-															    	<td><n class="n">{{ number_format($summarys->total , 2, ',', '.') }} </n> {{$divisa->value}}</td>
+															    	<td><n class="n">{{$divisa->value}}{{ number_format($summarys->total , 2, ',', '.') }} </n> </td>
 															    </tr>  
 															    @endforeach
 														</tbody>
@@ -169,7 +169,7 @@
 															    	<td>Salida</td>
 															    	@endif
 															    	
-															        <td>{{ number_format($accounts->amount, 2, ',', '.') }} {{$divisa->value}}</td>
+															        <td>{{$divisa->value}}{{ number_format($accounts->amount, 2, ',', '.') }} </td>
 															        <td>{{ $accounts->tax }}</td>
 															        <td>{{ $accounts->name_account }}</td>
 															        <td>{{ $accounts->name_categories }}</td>

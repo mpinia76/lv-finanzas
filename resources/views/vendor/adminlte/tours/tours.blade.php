@@ -13,7 +13,7 @@
                   <div class="box-header with-border">
                      <i class="fa fa-code-fork"></i><h3 class="box-title"><b>Productos</b></h3>
                     
-                    <a class="btn btn-primary " style="float: right;" href="/tours/create"> <i class="fa fa-plus"></i>Nuevo</a>
+                    <a class="btn btn-primary " style="float: right;" href="{{ url('/tours/create')}}"> <i class="fa fa-plus"></i>Nuevo</a>
                   </div>
                   
                   <div class="box-body responsive-table">
@@ -42,12 +42,12 @@
                                       <td>
                                     
                                  
-                                      <form role="form" action = "/tours/eliminar/{{ $tur->id }}" method="post"  enctype="multipart/form-data">
+                                      <form role="form" action = "{{ url('/tours/eliminar')}}/{{ $tur->id }}" method="post"  enctype="multipart/form-data">
                                             {{method_field('DELETE')}}
                                             {{ csrf_field() }}
                                         
-                                        <a class="btn btn-sm btn-default" href="/tours/ver/{{ $tur->id }}"><i class="fa fa-eye"></i></a>
-                                        <a class="btn btn-sm btn-default" href="/tours/edit/{{ $tur->id }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-sm btn-default" href="{{ url('/tours/ver')}}/{{ $tur->id }}"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-sm btn-default" href="{{ url('/tours/edit')}}/{{ $tur->id }}"><i class="fa fa-edit"></i></a>
 
                                         <button onclick='if(confirmDel() == false){return false;}' class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash"></i></button></a>
                                       </form>

@@ -20,7 +20,7 @@
                 </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action = "/attached/editar/{{$data->id}}" method="post"  enctype="multipart/form-data">
+            <form role="form" action = "{{ url('/attached/editar')}}/{{$data->id}}" method="post"  enctype="multipart/form-data">
             {{method_field('PUT')}}
              {{ csrf_field() }}
            

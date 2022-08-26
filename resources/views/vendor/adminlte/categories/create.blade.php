@@ -7,7 +7,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action = "/categories/save" method = "post">
+            <form role="form" action = "{{ route('categories.save') }}" method = "post">
             {{ csrf_field() }}	
               <div class="box-body">
                 <div class="form-group">

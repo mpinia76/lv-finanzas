@@ -19,7 +19,7 @@
 |
 */
 
-require __DIR__.'/../../laravel_pesos/bootstrap/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ require __DIR__.'/../../laravel_pesos/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../../laravel_pesos/bootstrap/app.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
 $app->bind('path.public', function() {
     return __DIR__;
 }); 

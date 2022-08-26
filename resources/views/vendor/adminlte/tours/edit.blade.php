@@ -18,7 +18,7 @@
           
             <!-- /.box-header -->
             <!-- form start -->
-    <form role="form" action = "/tours/editar/{{$data->id}}" method="post">
+    <form role="form" action = "{{ url('/tours/editar')}}/{{$data->id}}" method="post">
                 {{method_field('PUT')}}
                 {{ csrf_field() }}
            
@@ -57,7 +57,7 @@
                     <div class="col-md-1">  
                       <label for="exampleInputPassword1">&nbsp; </label>
                       <div class="form-group">
-                        <a onclick='if(confirmDel() == false){return false;}' href="/tours/eliminarattr/{{$data1s->id}}"><i class="fa fa-trash"></i></a> 
+                        <a onclick='if(confirmDel() == false){return false;}' href="{{ url('/tours/eliminarattr')}}/{{$data1s->id}}"><i class="fa fa-trash"></i></a>
                       </div>
                     </div>
               @endforeach

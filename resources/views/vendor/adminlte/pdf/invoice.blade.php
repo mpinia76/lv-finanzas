@@ -255,7 +255,7 @@ if (isset($_GET['id_attr_tours'])) {
                 <td class="total">{{ $summarys->name_account }}</td>
                 <td>{{ $summarys->name_categories }}</td>
                 <td>{{ number_format( $summarys->tax, 2, '.', ',') }}</td>
-                <td>{{ number_format($summarys->amount, 2, '.', ',') }} {{$divisa->value}}</td>
+                <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, '.', ',') }} </td>
             </tr>
         @endforeach
         </tbody>
@@ -276,7 +276,7 @@ if (isset($_GET['id_attr_tours'])) {
         <tr>
             <td colspan="9" class="grand total"></td>
             <td colspan="" class="grand total">Balance
-                : {{ number_format($totalfinal, 2, '.', ',') }} {{$divisa->value}}</td>
+                : {{$divisa->value}}{{ number_format($totalfinal, 2, '.', ',') }} </td>
         </tr>
     </table>
     <?php

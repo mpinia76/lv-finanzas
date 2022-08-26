@@ -104,7 +104,7 @@
          <!--aqui va la url de a variable-->
 
         
-         <a href="/download/{{$data->attached->id}}" target="_blank" class="">
+         <a href="{{ url('/download')}}/{{$data->attached->id}}" target="_blank" class="">
          	<p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">Descargar Adjunto.
          	<i class="fa fa-paperclip pull-right"></i>
           </p></a>

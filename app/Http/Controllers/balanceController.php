@@ -43,6 +43,7 @@ class balanceController extends Controller
     public function index(Request $request)
     {
 
+
         $year = $request->input('year');
         $tipo = $request->input('tipo');
         $start = $request->input('start');
@@ -51,7 +52,7 @@ class balanceController extends Controller
         if($year && !$start && !$finish && !$categorias){
 
 
-            $tipo= 'add';$tipo = $request->input('tipo');
+            $tipo = $request->input('tipo');
 
 
             $start = Carbon::parse($start);
@@ -102,7 +103,7 @@ class balanceController extends Controller
 
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo]);
+                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo,'yearSelected'=>$year]);
                 }
                 else {
                     $data = DB::table('summary')
@@ -146,7 +147,7 @@ class balanceController extends Controller
 
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet, 'tipom'=>$tipo, 'filter'=>false]);
+                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet, 'tipom'=>$tipo, 'filter'=>false,'yearSelected'=>$year]);
                 }
             }else{
                 return view('vendor.adminlte.balance',['summary'=>null]);
@@ -209,7 +210,7 @@ class balanceController extends Controller
 
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true]);
+                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'start'=>$start,'finish'=>$finish,'yearSelected'=>$year]);
                 }
                 else {
                     $summary = array();
@@ -218,7 +219,7 @@ class balanceController extends Controller
                     $data = array();
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true]);
+                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'yearSelected'=>$year]);
                 }
             }else{
                 return view('vendor.adminlte.balance',['summary'=>null]);

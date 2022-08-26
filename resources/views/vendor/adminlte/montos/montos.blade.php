@@ -37,9 +37,9 @@
 															    	<td>{{ $summarys->name }}</td>
 															    	<td>{{ $summarys->type}}</td>
 															    	<td>{{ $summarys->number }}</td>
-															    	<td><n class="n">{{ number_format($summarys->total, 2, '.', ',') }}</n> {{$divisa->value}}
+															    	<td><n class="n">{{$divisa->value}}{{ number_format($summarys->total, 2, '.', ',') }}</n>
 															    	 </td>
-															    	 <td><center><a class="btn btn-sm btn-default"  href="/account/detalle/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a></center></td>
+															    	 <td><center><a class="btn btn-sm btn-default"  href="{{ url('/account/detalle')}}/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a></center></td>
 															    </tr>  
 															    @endforeach
 														</tbody>

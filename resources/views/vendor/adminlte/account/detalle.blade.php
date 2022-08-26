@@ -19,7 +19,7 @@
 									 
 									</div>
 									<div class="col-sm-12 add_top_10">
-										<form action="/account/detalle/{{$id}}" method = "get">
+										<form action="{{ url('/account/detalle')}}/{{$id}}" method = "get">
 										
 											<div class="form-group col-sm-5">
 												<input type="date" name="start" placeholder="Fecha Inicio" class="form-control">
@@ -70,22 +70,22 @@
 															    	@else
 															    	<td>Retiro <small class="label pull-right bg-red"><i class="fa fa-sort-desc"></i></small></td>
 															    	@endif
-															        <td>{{ number_format($summarys->amount, 2, '.', ',') }} {{$divisa->value}}</td>
+															        <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, '.', ',') }} </td>
 															        <td>{{ number_format($summarys->tax, 2, '.', ',') }} </td>
 															        <td>{{ $summarys->concept }}</td>
 															       
 															        <td>{{ $summarys->name_categories }}</td>
 															        <td>
-																 		<form role="form" action = "/summary/eliminar/{{ $summarys->id }}" method="post"  enctype="multipart/form-data">
+																 		<form role="form" action = "{{ url('/summary/eliminar')}}/{{ $summarys->id }}" method="post"  enctype="multipart/form-data">
 							                                          			{{method_field('DELETE')}}
 							                                          			{{ csrf_field() }}
-							                                          		<a class="btn btn-sm btn-default"  href="/detalle/detalle/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a> 
+							                                          		<a class="btn btn-sm btn-default"  href="{{ url('/detalle/detalle')}}/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a>
 																			@if($summarys->attached)
-							                                          		 <a class="btn btn-sm btn-default" target="_blank" href="/download/{{$summarys->attached->id}}"><i class="fa fa-paperclip"></i></a>
+							                                          		 <a class="btn btn-sm btn-default" target="_blank" href="{{ url('/download')}}/{{$summarys->attached->id}}"><i class="fa fa-paperclip"></i></a>
 																			@endif
 
 							                                       			
-							                                      			<a class="btn btn-sm btn-default" href="/summary/edit/{{ $summarys->id }}"><i class="fa fa-edit"></i></a>
+							                                      			<a class="btn btn-sm btn-default" href="{{ url('/summary/edit')}}/{{ $summarys->id }}"><i class="fa fa-edit"></i></a>
 							                                      			<button  onclick='if(confirmDel() == false){return false;}' class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash"></i></button>
 						                                      			</form>
 															        </td>

@@ -19,7 +19,7 @@
 									 
 									</div>
 									
-								<form action="/bitacora/bitacora" method = "get">
+								<form action="{{ url('/bitacora/bitacora')}}" method = "get">
 										<div class="col-sm-12 add_top_10">
 										
 											<div class="form-group col-sm-6">

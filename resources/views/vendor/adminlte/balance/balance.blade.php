@@ -14,7 +14,7 @@
 
                                         {{--<a class="btn btn-primary " style="float: right;" href="/categories/create"> <i class="fa fa-plus"></i>Nuevo</a>--}}
                                     </div>
-                                    <form action="/balance/balance" method = "get">
+                                    <form action="{{ url('/balance/balance')}}" method = "get">
                                         <div class="col-sm-12 add_top_10">
                                             <div class="col-sm-8 " style="border-right: solid 1px #8d8d8d">
                                                 <h5>Filtrar por subcategorias</h5>
@@ -22,20 +22,20 @@
                                                     <select class="form-control"  type="text" name="categoria" >
                                                         <option value="">Categorias</option>
                                                         @foreach ($categories as $datas)
-                                                            <option value="{{ $datas->id }}">{{ $datas->name }}</option>
+                                                            <option value="{{ $datas->id }}" <?php echo ((isset($cateselet->id))&&($cateselet->id==$datas->id))?'SELECTED':'';  ?>>{{ $datas->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-sm-3">
-                                                    <input type="date" name="start"   placeholder="Fecha Inicio" class="form-control">
+                                                    <input type="date" name="start"   placeholder="Fecha Inicio" class="form-control" value="<?php echo (isset($start))?$start:''; ?>">
                                                 </div>
                                                 <div class="form-group col-sm-3">
-                                                    <input type="date" name="finish" placeholder="Fecha Final"  class="form-control">
+                                                    <input type="date" name="finish" placeholder="Fecha Final"  class="form-control" value="<?php echo (isset($finish))?$finish:''; ?>">
                                                 </div>
                                                 <div class="form-group col-sm-3">
                                                     <select class="form-control"  type="text" name="tipo" >
-                                                        <option selected value="out">Retiros</option>
-                                                        <option value="add">Ingresos</option>
+                                                        <option <?php echo ($tipom=='out')?'SELECTED':'';?> value="out">Retiros</option>
+                                                        <option <?php echo ($tipom=='add')?'SELECTED':'';?> value="add">Ingresos</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -43,11 +43,14 @@
                                                 <h5>Categorias Anuales</h5>
                                                 <div class="form-group col-sm-6">
                                                     <select class="form-control"  type="text" name="year" >
-                                                        <option value="2019">2020</option>
-                                                        <option selected value="2019">2019</option>
-                                                        <option value="2018">2018</option>
-                                                        <option value="2017">2017</option>
-                                                        <option value="2016">2016</option>
+                                                        <?php
+
+                                                        $yearActual = '2022';
+                                                        for($i = $yearActual; $i >= 2016; $i--){
+                                                        ?>
+                                                        <option <?php echo ($yearSelected==$i)?'SELECTED':'';?> value="{{$i}}">{{$i}}</option>
+
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                                 <div class="col-sm-4 add_top_1  ">

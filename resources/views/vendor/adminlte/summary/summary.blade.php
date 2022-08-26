@@ -101,10 +101,10 @@
                                         <i class="fa fa-bar-chart"></i>
                                         <h3 class="box-title"><b>Movimientos</b></h3>
 
-                                        <a class="btn btn-primary pull-right " href="/summary/create"> <i
+                                        <a class="btn btn-primary pull-right " href="{{ url('/summary/create')}}"> <i
                                                     class="fa fa-plus"></i> Nuevo</a>
                                     </div>
-                                    <form action="/summary/summary" method="get">
+                                    <form action="{{ url('/summary/summary')}}" method="get">
                                         <div class="col-sm-12 add_top_10">
 
                                             <div class="form-group col-sm-6">
@@ -273,7 +273,7 @@
                                                                         </small>
                                                                     </td>
                                                                 @endif
-                                                                <td>{{ number_format($summarys->amount, 2, '.', ',') }} {{$divisa->value}}</td>
+                                                                <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, '.', ',') }} </td>
                                                                 <td>{{ number_format( $summarys->tax, 2, '.', ',') }}</td>
                                                                 <td>{{ $summarys->concept }}</td>
                                                                 <td>{{ $summarys->name_account }}</td>
@@ -289,27 +289,27 @@
                                                                         ?>
                                                                     @endif
                                                                     <form role="form"
-                                                                          action="/summary/<?php echo $elimina ?>/<?php echo $id ?>"
+                                                                          action="{{ url('/summary')}}/<?php echo $elimina ?>/<?php echo $id ?>"
                                                                           method="post" enctype="multipart/form-data">
                                                                         {{method_field('DELETE')}}
                                                                         {{ csrf_field() }}
                                                                         <a class="btn btn-sm btn-default"
-                                                                           href="/detalle/detalle/{{ $summarys->id }}"><i
+                                                                           href="{{ url('/detalle/detalle')}}/{{ $summarys->id }}"><i
                                                                                     class="fa fa fa-eye"></i></a>
                                                                         @if($summarys->attached)
                                                                             <a class="btn btn-sm btn-default"
                                                                                target="_blank"
-                                                                               href="/download/{{$summarys->attached->id}}"><i
+                                                                               href="{{ url('/download')}}/{{$summarys->attached->id}}"><i
                                                                                         class="fa fa-paperclip"></i></a>
                                                                         @endif
 
                                                                         @if($summarys->id_transfer!="")
                                                                             <a class="btn btn-sm btn-default"
-                                                                               href="/transfer/edit/{{ $summarys->id_transfer }}"><i
+                                                                               href="{{ url('/transfer/edit')}}/{{ $summarys->id_transfer }}"><i
                                                                                         class="fa fa-edit"></i></a>
                                                                         @else
                                                                             <a class="btn btn-sm btn-default"
-                                                                               href="/summary/edit/{{ $summarys->id }}"><i
+                                                                               href="{{ url('/summary/edit')}}/{{ $summarys->id }}"><i
                                                                                         class="fa fa-edit"></i></a>
                                                                         @endif
 
@@ -371,10 +371,10 @@
 			          	</span>
                 </div>
             </div>
-            <a target="_blank" href="/pdf<?php echo $url . "&tax"  ?>" class="btn btn-block btn-social btn-google">
+            <a target="_blank" href="{{ url('/pdf')}}<?php echo $url . "&tax"  ?>" class="btn btn-block btn-social btn-google">
                 <i class="fa fa-file-pdf-o"></i> Reporte Detallado
             </a>
-            <a target="_blank" href="/pdf<?php echo $url  ?>" class="btn btn-block btn-social btn-google">
+            <a target="_blank" href="{{ url('/pdf')}}<?php echo $url  ?>" class="btn btn-block btn-social btn-google">
                 <i class="fa fa-file-pdf-o"></i> Reporte Sin tax
             </a>
         </div>

@@ -7,7 +7,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action = "/attached/save" method = "post" enctype="multipart/form-data">
+            <form role="form" action = "{{ url('/attached/save')}}" method = "post" enctype="multipart/form-data">
             {{ csrf_field() }}	
               <div class="box-body">
                 <div class="form-group">

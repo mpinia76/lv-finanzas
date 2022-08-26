@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo" style="background-color: #011123!important">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><img width="60%" src="/img/logomini.png"> </span>
+        <span class="logo-mini"><img width="60%" src="{{ url('/img/logomini.png') }}"> </span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b><img width="60%" src="/img/logo.png"> </span>
+        <span class="logo-lg"><b><img width="60%" src="{{ url('/img/logo.png') }}"> </span>
     </a>
 
     <!-- Header Navbar -->
@@ -22,7 +22,7 @@
                
         <li>
             <a href="https://www.heavydeveloper.me/" target="_blank" class="dropdown-toggle">
-               <img style="float: right;" width="40px" src="/img/espana.png">
+               <img style="float: right;" width="40px" src="{{ url('/img/espana.png') }}">
             
             </a>    
         </li>

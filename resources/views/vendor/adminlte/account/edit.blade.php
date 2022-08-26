@@ -11,14 +11,14 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action = "/account/editar/{{$data->id}}" method="post">
+            <form role="form" action = "{{ url('/account/editar')}}/{{$data->id}}" method="post">
             {{method_field('PUT')}}
              {{ csrf_field() }}
            
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre del banco</label>
-                  <input type="text" required maxlength="200" name="name" value="{{$data->name}}" class="form-control" placeholder="Nombre del banco">
+                  <label for="exampleInputEmail1">Nombre</label>
+                  <input type="text" required maxlength="200" name="name" value="{{$data->name}}" class="form-control" placeholder="Nombre">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Número de cuenta</label>

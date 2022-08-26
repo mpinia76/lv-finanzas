@@ -11,12 +11,12 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action = "/account/save" method = "post">
+            <form role="form" action = "{{ url('/account/save')}}" method = "post">
             {{ csrf_field() }}	
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre del banco</label>
-                  <input type="text" name="name" required maxlength="200"  class="form-control" placeholder="Nombre del banco">
+                  <label for="exampleInputEmail1">Nombre</label>
+                  <input type="text" name="name" required maxlength="200"  class="form-control" placeholder="Nombre">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Numero de cuenta</label>

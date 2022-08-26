@@ -9,7 +9,7 @@
             </div >
             <!-- /.box-header -->
             <!-- form start -->
-           <form id="search-form" role="form" action = "/transfer/editar/{{$add->id_transfer}}" method="post"  enctype="multipart/form-data">
+           <form id="search-form" role="form" action = "{{ url('/transfer/editar')}}/{{$add->id_transfer}}" method="post"  enctype="multipart/form-data">
             {{method_field('PUT')}}
              {{ csrf_field() }}
            

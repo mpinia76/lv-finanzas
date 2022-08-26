@@ -13,7 +13,7 @@
                   <div class="box-header with-border">
                      <i class="fa fa-code-fork"></i><h3 class="box-title"><b>Categorias</b></h3>
                     
-                    <a class="btn btn-primary " style="float: right;" href="/categories/create"> <i class="fa fa-plus"></i>Nuevo</a>
+                    <a class="btn btn-primary " style="float: right;" href="{{ url('/categories/create')}}"> <i class="fa fa-plus"></i>Nuevo</a>
                   </div>
                   
                   <div class="box-body responsive-table">
@@ -49,10 +49,10 @@
                                     
                                     
                                     @if($categoriess->id !==1 )
-                                      <form role="form" action = "/categories/eliminar/{{ $categoriess->id }}" method="post"  enctype="multipart/form-data">
+                                      <form role="form" action = "{{ url('/categories/eliminar')}}/{{ $categoriess->id }}" method="post"  enctype="multipart/form-data">
                                             {{method_field('DELETE')}}
                                             {{ csrf_field() }}
-                                        <a class="btn btn-sm btn-default" href="/categories/edit/{{ $categoriess->id }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-sm btn-default" href="{{ url('/categories/edit')}}/{{ $categoriess->id }}"><i class="fa fa-edit"></i></a>
                                         <button onclick='if(confirmDel() == false){return false;}' class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash"></i></button></a>
                                       </form>
                                     @endif

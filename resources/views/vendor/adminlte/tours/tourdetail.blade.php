@@ -131,14 +131,14 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 															    	?>
 																	@endif	
 															    	<td>{{$fecha}}</td>
-															    	<td>{{ number_format( $tur->price, 2, '.', ',') }} {{$divisa->value}}</td>
+															    	<td>{{$divisa->value}}{{ number_format( $tur->price, 2, '.', ',') }} </td>
 															    	
-															    	<td>{{number_format($tur->totale, 2, '.', ',')}} {{$divisa->value}}</td>
-															    	<td>{{number_format($tur->totals, 2, '.', ',') }} {{$divisa->value}}</td>
-															        <td>{{number_format($tur->totalf, 2, '.', ',') }} {{$divisa->value}}
+															    	<td>{{$divisa->value}}{{number_format($tur->totale, 2, '.', ',')}} </td>
+															    	<td>{{number_format($tur->totals, 2, '.', ',') }} </td>
+															        <td>{{$divisa->value}}{{number_format($tur->totalf, 2, '.', ',') }}
 															        </td>
 															        <td>
-															        	 <a class="btn btn-sm btn-default" href="/tours/fecha/{{ $tur->id }}"><i class="fa fa-eye"></i></a>
+															        	 <a class="btn btn-sm btn-default" href="{{ url('/tours/fecha')}}/{{ $tur->id }}"><i class="fa fa-eye"></i></a>
 															        </td>
 															   
 															    </tr>  
