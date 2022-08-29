@@ -65,7 +65,7 @@
 											</div>
 											<div class="col-sm-3 add_top_1">
 														<select class="form-control"  type="text" name="actividad" >
-															<option value="" >Activida</option>
+															<option value="" >Actividad</option>
 															<option value="cuentas">Cuentas</option>
 															<option value="movimiento">Movimientos</option>
 															<option value="categorias">Categorias</option>
@@ -117,8 +117,11 @@
 															    	<td><small class="label  bg-red"><i class="fa fa-sort-desc"></i></small> Retiro </td>
 															    	@elseif($bitacoras->type=="update")
 															    	<td><small class="label alert-warning"><i class="fa fa-edit"></i></small> Editado </td>
-															    	@else
-															       <td><small class="label  bg-red"><i class="fa fa-trash"></i></small> ELiminado</td>
+
+																		@elseif($bitacoras->type=="transfer")
+																			<td><small class="label alert-warning"><i class="fa fa-money"></i></small> Transferencia </td>
+																		@else
+															       <td><small class="label  bg-red"><i class="fa fa-trash"></i></small> Eliminado</td>
 															       	@endif
 															   		<td>{{ $bitacoras->activity }}</td>
 															        <td>

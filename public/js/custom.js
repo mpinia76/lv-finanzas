@@ -273,7 +273,7 @@ $(function () {
 			            </div>\
 			            <div class="form-group col-sm-6">\
 			            <label for="exampleInputPassword1">precio</label>\
-			            <input required maxlength="200" name="price[]" type="text"   data-mask="000,000,000,000,000.00" data-mask-reverse="true"    class="form-control"  placeholder="Precio">\
+			            <input required maxlength="200" name="price[]" type="text"   data-mask="000.000.000.000.000,00" data-mask-reverse="true"    class="form-control"  placeholder="Precio">\
 			            <input type="hidden" value="0" name="id[]">\
 			            </div>');
 			$('input[type="date"]').attr('type','date1');
@@ -494,14 +494,6 @@ $("#amount").change(function(){
 }
 
 
-$.get('/tours/tours/select').done(function(res){
-		$('#toursresult').html('');
-		var i;
-		for(i in res){
-			$('#toursresult').append('<li><a href="/tours/ver/'+res[i].id+'">'+res[i].name+'</a></li>');
-		}
-		
 
-});	
   
 });

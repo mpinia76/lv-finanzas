@@ -79,7 +79,7 @@
 
                     
                   <?php  $num1=$out->amount.'.00'  ?>
-                     <input id="amount" autofocus="autofocus" required value="<?php echo $num1 ?>"  name="amount" type="text"   data-mask="000,000,000,000,000.00" max="" data-mask-reverse="true"    class="form-control"  placeholder="Monto">
+                     <input id="amount" autofocus="autofocus" required value="<?php echo $num1 ?>"  name="amount" type="text"   data-mask="000.000.000.000.000,00" max="" data-mask-reverse="true"    class="form-control"  placeholder="Monto">
 
               
                   </div>

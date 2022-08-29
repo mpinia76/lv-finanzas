@@ -48,7 +48,7 @@
                                                         $yearActual = '2022';
                                                         for($i = $yearActual; $i >= 2016; $i--){
                                                         ?>
-                                                        <option <?php echo ($yearSelected==$i)?'SELECTED':'';?> value="{{$i}}">{{$i}}</option>
+                                                        <option <?php echo ((isset($yearSelected))&&($yearSelected==$i))?'SELECTED':'';?> value="{{$i}}">{{$i}}</option>
 
                                                         <?php } ?>
                                                     </select>
@@ -158,7 +158,7 @@
                                                                                                 @endif
                                                                                             @endif
                                                                                         @endforeach
-                                                                                        <?php echo number_format($sum, 2, '.', ',');?>
+                                                                                        <?php echo number_format($sum, 2, ',', '.');?>
                                                                                     </td>
                                                                                 @else
                                                                                     <td>
@@ -184,7 +184,7 @@
                                                                                                 @endif
                                                                                             @endif
                                                                                         @endforeach
-                                                                                        <?php echo number_format($sum, 2, '.', ',');?>
+                                                                                        <?php echo number_format($sum, 2, ',', '.');?>
                                                                                     </td>
                                                                                 @else
                                                                                     <td>
@@ -213,7 +213,7 @@
                                                                                             @endforeach
                                                                                         @endif
                                                                                     @endforeach
-                                                                                    <?php echo number_format($sum, 2, '.', ',');?>
+                                                                                    <?php echo number_format($sum, 2, ',', '.');?>
                                                                                 @endif
 
 
@@ -232,7 +232,7 @@
                                                                                         @endforeach
                                                                                     @endif
                                                                                 @endforeach
-                                                                                 <?php echo number_format($sum, 2, '.', ',');?>
+                                                                                 <?php echo number_format($sum, 2, ',', '.');?>
                                                                                 @endif
                                                                                 {{--@foreach ($timeline as  $valor)--}}
                                                                                     {{--{{$valor->id}}--}}
@@ -259,7 +259,7 @@
                                                                                         @endif
                                                                                     @endif
                                                                                 @endforeach
-                                                                                <?php echo number_format($sum, 2, '.', ',') ;?>
+                                                                                <?php echo number_format($sum, 2, ',', '.') ;?>
                                                                             </td>
                                                                         @else
                                                                             <td>
@@ -267,7 +267,7 @@
                                                                             </td>
                                                                         @endif
                                                                     @endforeach
-                                                                    <td>  <?php echo  number_format($totall, 2, '.', ',')  ?></td>
+                                                                    <td>  <?php echo  number_format($totall, 2, ',', '.')  ?></td>
                                                                 </tr>
                                                                 @endif
                                                             </tbody>

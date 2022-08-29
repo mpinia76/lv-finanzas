@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Numero de cuenta</label>
-                  <input name="number" type="number" required maxlength="200"  class="form-control"  placeholder="Numero de cuenta">
+                  <input name="number" type="text" required maxlength="200"  class="form-control"  placeholder="Numero de cuenta">
                 </div>
                 <div class="form-group">
                 	<label for="exampleInputPassword1">Tipo de Cuenta</label>

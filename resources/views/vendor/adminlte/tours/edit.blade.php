@@ -51,7 +51,7 @@
                       <label for="exampleInputPassword1">Precio </label>
                        <div class="form-group">
                       <?php  $num1=$data1s->price.'.00'  ?>
-                        <input type="text"  step="any" required maxlength="200"  data-mask="000,000,000,000,000.00" data-mask-reverse="true" step="0.01"  name="price[]"  value="<?php echo $num1 ?>" class="form-control" placeholder="Precio">
+                        <input type="text"  step="any" required maxlength="200"  data-mask="000.000.000.000.000,00" data-mask-reverse="true" step="0.01"  name="price[]"  value="<?php echo $num1 ?>" class="form-control" placeholder="Precio">
                       </div>
                     </div>
                     <div class="col-md-1">  

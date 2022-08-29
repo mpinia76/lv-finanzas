@@ -79,14 +79,14 @@
                   <label for="exampleInputEmail1">Monto</label>
                 
                   <?php  $num1=$data->amount.'.00'  ?>
-                  <input type="text"  step="any" required maxlength="200"  data-mask="000,000,000,000,000.00" data-mask-reverse="true" step="0.01"  name="amount"  value="<?php echo $num1 ?>" class="form-control" placeholder="Monto del Movimiento">
+                  <input type="text"  step="any" required maxlength="200"  data-mask="000.000.000.000.000,00" data-mask-reverse="true" step="0.01"  name="amount"  value="<?php echo $num1 ?>" class="form-control" placeholder="Monto del Movimiento">
                  
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Impuesto</label>
                   
                   <?php  $num=$data->tax.'.00'  ?>
-                  <input type="text" maxlength="200" name="tax" value="<?php echo $num ?>"  data-mask="000,000,000,000,000.00"    data-mask-reverse="true" class="form-control" placeholder="Impuesto">
+                  <input type="text" maxlength="200" name="tax" value="<?php echo $num ?>"  data-mask="000.000.000.000.000,00"    data-mask-reverse="true" class="form-control" placeholder="Impuesto">
                 
                   
                 </div>

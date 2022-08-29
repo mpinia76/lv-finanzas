@@ -37,7 +37,7 @@
 															    	<td>{{ $summarys->name }}</td>
 															    	<td>{{ $summarys->type}}</td>
 															    	<td>{{ $summarys->number }}</td>
-															    	<td><n class="n">{{$divisa->value}}{{ number_format($summarys->total, 2, '.', ',') }}</n>
+															    	<td><n class="n">{{$divisa->value}}{{ number_format($summarys->total, 2, ',', '.') }}</n>
 															    	 </td>
 															    	 <td><center><a class="btn btn-sm btn-default"  href="{{ url('/account/detalle')}}/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a></center></td>
 															    </tr>  
@@ -60,7 +60,7 @@
 
 									<div class="small-box box">
 							            <div class="inner">
-							              <h3>{{ number_format($totalfinal, 2, '.', ',') }}</h3>
+							              <h3>{{ number_format($totalfinal, 2, ',', '.') }}</h3>
 							              <p>{{$divisa->value}}</p>
 							            </div>
 							            <div class="icon">
@@ -77,20 +77,20 @@
 						          <div class="box box-widget widget-user-2">
 						       
 						            <div class="widget-user-header bg-aqua">
-						              <p><i class="fa fa-plus"></i> Abonos Futuros: {{ number_format($futuro->totale, 2, '.', ',') }} {{$divisa->value}}</p>
+						              <p><i class="fa fa-plus"></i> Abonos Futuros: {{ number_format($futuro->totale, 2, ',', '.') }} {{$divisa->value}}</p>
 						              
 						            </div>
 						            <div class="widget-user-header bg-red">
-						              <p> - Retiros Futuros: {{ number_format($futuro->totals, 2, '.', ',') }} {{$divisa->value}}</p>
+						              <p> - Retiros Futuros: {{ number_format($futuro->totals, 2, ',', '.') }} {{$divisa->value}}</p>
 						              <h5 class="widget-user-desc"></h5>
 						            </div>
 						            <div class="box-footer no-padding">
 						              <ul class="nav nav-stacked">
 						                <li><a href="#">Total Movimientos Futuros 
 										@if($futuro->totalf>0)
-											<span class="pull-right badge bg-blue"> {{ number_format($futuro->totalf, 2, '.', ',') }} {{$divisa->value}}</span></a></li>
+											<span class="pull-right badge bg-blue"> {{ number_format($futuro->totalf, 2, ',', '.') }} {{$divisa->value}}</span></a></li>
 										@else
-											<span class="pull-right badge bg-red">{{ number_format($futuro->totalf, 2, '.', ',') }} {{$divisa->value}} </span></a></li>
+											<span class="pull-right badge bg-red">{{ number_format($futuro->totalf, 2, ',', '.') }} {{$divisa->value}} </span></a></li>
 										@endif
 						                
 						              </ul>
@@ -105,19 +105,19 @@
 			<div class="box-footer no-padding">
 			              <ul class="nav nav-stacked">
 			              @if($liquidez->totalm1>0)
-			 <li><a href="#">Liquides 1 Mes <span class="pull-right badge bg-aqua">{{ number_format($liquidez->totalm1, 2, '.', ',') }} {{$divisa->value}}</span></a></li>
+			 <li><a href="#">Liquides 1 Mes <span class="pull-right badge bg-aqua">{{ number_format($liquidez->totalm1, 2, ',', '.') }} {{$divisa->value}}</span></a></li>
 			              @else
-			<li><a href="#">Liquides 1 Mes <span class="pull-right badge bg-red">{{ number_format($liquidez->totalm1, 2, '.', ',') }} {{$divisa->value}}</span></a></li>
+			<li><a href="#">Liquides 1 Mes <span class="pull-right badge bg-red">{{ number_format($liquidez->totalm1, 2, ',', '.') }} {{$divisa->value}}</span></a></li>
 			              @endif
 			              @if($liquidez->totalm3>0)
-			<li><a href="#">Liquides 3 Meses <span class="pull-right badge bg-aqua">{{ number_format($liquidez->totalm3, 2, '.', ',') }} {{$divisa->value}}</span></a></li>
+			<li><a href="#">Liquides 3 Meses <span class="pull-right badge bg-aqua">{{ number_format($liquidez->totalm3, 2, ',', '.') }} {{$divisa->value}}</span></a></li>
 			              @else
-			 <li><a href="#">Liquides 3 Meses <span class="pull-right badge bg-red">{{ number_format($liquidez->totalm3, 2, '.', ',') }} {{$divisa->value}}</span></a></li>             
+			 <li><a href="#">Liquides 3 Meses <span class="pull-right badge bg-red">{{ number_format($liquidez->totalm3, 2, ',', '.') }} {{$divisa->value}}</span></a></li>
 			              @endif
 			              @if($liquidez->totalm6>0)
-			 <li><a href="#">Liquides 6 Meses <span class="pull-right badge bg-aqua">{{ number_format($liquidez->totalm6, 2, '.', ',') }} {{$divisa->value}}</span></a></li>
+			 <li><a href="#">Liquides 6 Meses <span class="pull-right badge bg-aqua">{{ number_format($liquidez->totalm6, 2, ',', '.') }} {{$divisa->value}}</span></a></li>
 			              @else
-			  <li><a href="#">Liquides 6 Meses <span class="pull-right badge bg-red">{{ number_format($liquidez->totalm6, 2, '.', ',') }} {{$divisa->value}}</span></a></li>             
+			  <li><a href="#">Liquides 6 Meses <span class="pull-right badge bg-red">{{ number_format($liquidez->totalm6, 2, ',', '.') }} {{$divisa->value}}</span></a></li>
 			              @endif
 			               
 			              </ul>

@@ -10,7 +10,8 @@
      <link href="{{ asset('/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
      <link href="{{ asset('/css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/custom.css') }}" rel="stylesheet" type="text/css" />
-
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

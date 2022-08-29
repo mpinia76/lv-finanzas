@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Número de cuenta</label>
-                  <input name="number" required maxlength="200" type="number" value="{{$data->number}}"  class="form-control"  placeholder="Numero de cuenta">
+                  <input name="number" required maxlength="200" type="text" value="{{$data->number}}"  class="form-control"  placeholder="Numero de cuenta">
                 </div>
                 <div class="form-group">
                 	<label  for="exampleInputPassword1">Tipo de Cuenta</label>

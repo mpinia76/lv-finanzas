@@ -65,7 +65,7 @@
                   <div class="form-group">
 
                     <label for="exampleInputPassword1">Monto</label>
-                    <input id="amount" autofocus="autofocus" required  name="amount" type="text"   data-mask="000,000,000,000,000.00" max="" data-mask-reverse="true"    class="form-control"  placeholder="Monto">
+                    <input id="amount" autofocus="autofocus" required  name="amount" type="text"   data-mask="000.000.000.000.000,00" max="" data-mask-reverse="true"    class="form-control"  placeholder="Monto">
                   </div>
                    
 

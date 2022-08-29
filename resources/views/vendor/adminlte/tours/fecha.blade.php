@@ -289,8 +289,8 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 																		@endif
 																	</small></td>
 															    	@endif
-															        <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, '.', ',') }} </td>
-															        <td>{{ number_format( $summarys->tax, 2, '.', ',') }}</td>
+															        <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, ',', '.') }} </td>
+															        <td>{{ number_format( $summarys->tax, 2, ',', '.') }}</td>
 															        <td>{{ $summarys->concept }}</td>
 															        <td>{{ $summarys->name_account }}</td>
 															        <td>{{ $summarys->name_categories }}</td>
@@ -341,7 +341,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 		<div class="col-md-3 col-sm-6 col-xs-12 "> 
 			<div class="small-box box">
 	            <div class="inner">
-		          <h1> {{ number_format($totalfinal, 2, '.', ',') }}</h1>
+		          <h1> {{ number_format($totalfinal, 2, ',', '.') }}</h1>
 					
 		              <p>{{$divisa->value}}</p>
 	            </div>
@@ -360,7 +360,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 			    <span class="info-box-icon"><i class="fa fa-credit-card-alt"></i></span>
 			    <div class="info-box-content">
 			      <span class="info-box-text">Balance de Impuestos</span>
-			      <span class="info-box-number" style="color: darkgreen;" >+ {{ number_format($totalfinaliva, 2, '.', ',') }}</span>
+			      <span class="info-box-number" style="color: darkgreen;" >+ {{ number_format($totalfinaliva, 2, ',', '.') }}</span>
 
 				      	<div class="progress">
 				        	<div class="progress-bar" style="width: 0%">
@@ -368,7 +368,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 				        	</div>
 				      	</div>
 			          	<span class="progress-description" >No deducibles:
-			          		<span style="color: red;"> {{ number_format($totalfinalivae, 2, '.', ',') }}</span>
+			          		<span style="color: red;"> {{ number_format($totalfinalivae, 2, ',', '.') }}</span>
 			            	
 			          	</span>
 		    	</div>
@@ -384,7 +384,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 		<div class="col-md-4">
           <div class="box ">
             <div class="box-header with-border" style="background-color: deepskyblue;">
-              <h3 class="box-title" >Total Abonos: {{ number_format($movimientosa->totale, 2, '.', ',') }} {{$divisa->value}}</h3>
+              <h3 class="box-title" >Total Abonos: {{ number_format($movimientosa->totale, 2, ',', '.') }} {{$divisa->value}}</h3>
 
               <div class="box-tools pull-right">
                
@@ -393,7 +393,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
             </div>
             <!-- /.box-header -->
             <div class="box-body"  style="display: block; background-color: #dd4b39; color: #fff;">
-              Total Retiros: {{ number_format($movimientosa->totals, 2, '.', ',') }} {{$divisa->value}}
+              Total Retiros: {{ number_format($movimientosa->totals, 2, ',', '.') }} {{$divisa->value}}
             </div>
             <!-- /.box-body -->
           </div>

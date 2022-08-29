@@ -273,8 +273,8 @@
                                                                         </small>
                                                                     </td>
                                                                 @endif
-                                                                <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, '.', ',') }} </td>
-                                                                <td>{{ number_format( $summarys->tax, 2, '.', ',') }}</td>
+                                                                <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, ',', '.') }} </td>
+                                                                <td>{{ number_format( $summarys->tax, 2, ',', '.') }}</td>
                                                                 <td>{{ $summarys->concept }}</td>
                                                                 <td>{{ $summarys->name_account }}</td>
                                                                 <td>{{ $summarys->name_categories }}</td>
@@ -339,7 +339,7 @@
         <div class="col-md-3 col-sm-6 col-xs-12 ">
             <div class="small-box box">
                 <div class="inner">
-                    <h1> {{ number_format($totalfinal, 2, '.', ',') }}</h1>
+                    <h1> {{ number_format($totalfinal, 2, ',', '.') }}</h1>
 
                     <p>{{$divisa->value}}</p>
                 </div>
@@ -359,7 +359,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Balance de Impuestos</span>
                     <span class="info-box-number"
-                          style="color: darkgreen;">+ {{ number_format($totalfinaliva, 2, '.', ',') }}</span>
+                          style="color: darkgreen;">+ {{ number_format($totalfinaliva, 2, ',', '.') }}</span>
 
                     <div class="progress">
                         <div class="progress-bar" style="width: 0%">
@@ -367,7 +367,7 @@
                         </div>
                     </div>
                     <span class="progress-description">No deducibles:
-			          		<span style="color: red;"> {{ number_format($totalfinalivae, 2, '.', ',') }}</span>
+			          		<span style="color: red;"> {{ number_format($totalfinalivae, 2, ',', '.') }}</span>
 			          	</span>
                 </div>
             </div>

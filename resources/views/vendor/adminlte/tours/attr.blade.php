@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="exampleInputPassword1">Precio</label>
-                  <input required maxlength="200" name="price[]" type="text"   data-mask="000,000,000,000,000.00" data-mask-reverse="true"    class="form-control"  placeholder="Precio">
+                  <input required maxlength="200" name="price[]" type="text"   data-mask="000.000.000.000.000,00" data-mask-reverse="true"    class="form-control"  placeholder="Precio">
                 </div>
                <div class="box-body" id="list_attr2">
               </div>

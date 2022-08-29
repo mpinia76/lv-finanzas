@@ -277,8 +277,11 @@ class summaryController extends Controller
     $hoy=date('Y-m-d H:m:s',strtotime('today'));
     $log = Auth::id();
  
-    $str = str_replace(",", "", $request->amount);
-    $iva = str_replace(",", "", $request->tax);
+    $str = str_replace(".", "", $request->amount);
+    $iva = str_replace(".", "", $request->tax);
+
+      $str = str_replace(",", ".", $str);
+      $iva = str_replace(",", ".", $iva);
 
 
     if($request->created_at > $hoy){
@@ -367,10 +370,13 @@ class summaryController extends Controller
     $summary->created_at = $request->created_at;
     $summary->concept = $request->concept;
     $summary->type = $request->type;
-    $str = str_replace(",", "", $request->amount);
+    $str = str_replace(".", "", $request->amount);
+    $str = str_replace(",", ".", $str);
+
     // $str2 = str_replace(",", ".", $str);
     $summary->amount = $str;
-    $iva = str_replace(",", "", $request->tax);
+    $iva = str_replace(".", "", $request->tax);
+    $iva = str_replace(",", ".", $iva);
     $summary->tax  = $iva;
     $summary->factura  = $request->factura;
     $summary->account_id  = $request->account_id  ;

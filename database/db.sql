@@ -18,12 +18,16 @@ CREATE TABLE IF NOT EXISTS `account` (
     `number` varchar(100) DEFAULT NULL,
     `type` enum('corriente','ahorro') DEFAULT 'ahorro',
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla lv_finanzas.account: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
 INSERT INTO `account` (`id`, `name`, `number`, `type`) VALUES
-    (33, 'Marcos Nación', '21700301128159', 'ahorro');
+                                                           (33, 'Marcos Nación', '21700301128159', 'ahorro'),
+                                                           (34, 'Majo Nación', '21700301576620', 'ahorro'),
+                                                           (35, 'Marcos BAPRO Caja de Ahorro', '5209-517085/0', 'ahorro'),
+                                                           (36, 'Mercado Pago Marcos', '-', 'ahorro'),
+                                                           (37, 'Marcos BAPRO Cta. Cte.', '5209-51867/3', 'corriente');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 
 -- Volcando estructura para tabla lv_finanzas.attached
@@ -70,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `attr_values` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=219 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla lv_finanzas.attr_values: ~115 rows (aproximadamente)
+-- Volcando datos para la tabla lv_finanzas.attr_values: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `attr_values` DISABLE KEYS */;
 /*!40000 ALTER TABLE `attr_values` ENABLE KEYS */;
 
@@ -83,30 +87,11 @@ CREATE TABLE IF NOT EXISTS `bitacora` (
     `activity` varchar(150) NOT NULL,
     `id_activity` int(11) DEFAULT NULL,
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla lv_finanzas.bitacora: ~26 rows (aproximadamente)
+-- Volcando datos para la tabla lv_finanzas.bitacora: ~50 rows (aproximadamente)
 /*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
 INSERT INTO `bitacora` (`id`, `created_date`, `type`, `id_user`, `activity`, `id_activity`) VALUES
-                                                                                                (1, '2019-10-27 00:10:00', 'delete', 10, 'tours', 51),
-                                                                                                (2, '2019-10-27 00:10:00', 'delete', 10, 'tours', 53),
-                                                                                                (3, '2019-10-27 00:10:00', 'delete', 10, 'tours', 37),
-                                                                                                (4, '2019-10-27 00:10:00', 'delete', 10, 'tours', 25),
-                                                                                                (5, '2019-10-27 00:10:00', 'delete', 10, 'tours', 21),
-                                                                                                (6, '2019-10-27 00:10:00', 'delete', 10, 'tours', 60),
-                                                                                                (7, '2019-10-27 00:10:00', 'delete', 10, 'tours', 59),
-                                                                                                (8, '2019-10-27 00:10:00', 'delete', 10, 'tours', 58),
-                                                                                                (9, '2019-10-27 00:10:00', 'delete', 10, 'tours', 57),
-                                                                                                (10, '2019-10-27 00:10:00', 'delete', 10, 'tours', 56),
-                                                                                                (11, '2019-10-27 00:10:00', 'delete', 10, 'tours', 55),
-                                                                                                (12, '2019-10-27 00:10:00', 'delete', 10, 'tours', 54),
-                                                                                                (13, '2019-10-27 00:10:00', 'delete', 10, 'tours', 52),
-                                                                                                (14, '2019-10-27 00:10:00', 'delete', 10, 'tours', 50),
-                                                                                                (15, '2019-12-08 00:12:00', 'delete', 1, 'categorias', 44),
-                                                                                                (16, '2019-12-08 00:12:00', 'delete', 1, 'categorias', 42),
-                                                                                                (17, '2019-12-08 00:12:00', 'add', 1, 'movimiento', 1),
-                                                                                                (18, '2019-12-08 00:12:00', 'delete', 1, 'usuario', 10),
-                                                                                                (19, '2019-12-08 00:12:00', 'delete', 1, 'usuario', 18),
                                                                                                 (20, '2022-08-25 00:08:00', 'add', 1, 'categorias', 74),
                                                                                                 (21, '2022-08-26 00:08:00', 'delete', 1, 'cuentas', 32),
                                                                                                 (22, '2022-08-26 00:08:00', 'delete', 1, 'cuentas', 31),
@@ -149,7 +134,61 @@ INSERT INTO `bitacora` (`id`, `created_date`, `type`, `id_user`, `activity`, `id
                                                                                                 (59, '2022-08-26 00:08:00', 'delete', 1, 'categorias', 45),
                                                                                                 (60, '2022-08-26 00:08:00', 'add', 1, 'categorias', 75),
                                                                                                 (61, '2022-08-26 00:08:00', 'add', 1, 'categorias', 76),
-                                                                                                (62, '2022-08-26 00:08:00', 'out', 1, 'movimiento', 2);
+                                                                                                (62, '2022-08-26 00:08:00', 'out', 1, 'movimiento', 2),
+                                                                                                (63, '2022-08-26 00:08:00', 'add', 1, 'categorias', 77),
+                                                                                                (64, '2022-08-26 00:08:00', 'add', 1, 'movimiento', 3),
+                                                                                                (65, '2022-08-26 00:08:00', 'delete', 1, 'tours', 12),
+                                                                                                (66, '2022-08-26 00:08:00', 'delete', 1, 'tours', 14),
+                                                                                                (67, '2022-08-26 00:08:00', 'delete', 1, 'tours', 17),
+                                                                                                (68, '2022-08-26 00:08:00', 'delete', 1, 'tours', 18),
+                                                                                                (69, '2022-08-29 00:08:00', 'add', 1, 'cuentas', 34),
+                                                                                                (70, '2022-08-29 00:08:00', 'add', 1, 'cuentas', 35),
+                                                                                                (71, '2022-08-29 00:08:00', 'add', 1, 'cuentas', 36),
+                                                                                                (72, '2022-08-29 00:08:00', 'add', 1, 'cuentas', 37),
+                                                                                                (73, '2022-08-29 00:08:00', 'transfer', 1, 'transferencia', 4),
+                                                                                                (74, '2022-08-29 00:08:00', 'transfer', 1, 'transferencia', 5),
+                                                                                                (75, '2022-08-29 00:08:00', 'delete', 1, 'movimiento', 1),
+                                                                                                (76, '2022-08-29 00:08:00', 'delete', 1, 'movimiento', 3),
+                                                                                                (77, '2022-08-29 00:08:00', 'delete', 1, 'movimiento', 2),
+                                                                                                (78, '2022-08-29 00:08:00', 'add', 1, 'categorias', 78),
+                                                                                                (79, '2022-08-29 00:08:00', 'add', 1, 'movimiento', 6),
+                                                                                                (80, '2022-08-29 00:08:00', 'add', 1, 'categorias', 79),
+                                                                                                (81, '2022-08-29 00:08:00', 'add', 1, 'movimiento', 7),
+                                                                                                (82, '2022-08-29 00:08:00', 'add', 1, 'categorias', 80),
+                                                                                                (83, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 8),
+                                                                                                (84, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 9),
+                                                                                                (85, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 10),
+                                                                                                (86, '2022-08-29 00:08:00', 'add', 1, 'movimiento', 11),
+                                                                                                (87, '2022-08-29 00:08:00', 'add', 1, 'categorias', 81),
+                                                                                                (88, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 12),
+                                                                                                (89, '2022-08-29 00:08:00', 'add', 1, 'categorias', 82),
+                                                                                                (90, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 13),
+                                                                                                (91, '2022-08-29 00:08:00', 'add', 1, 'categorias', 83),
+                                                                                                (92, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 14),
+                                                                                                (93, '2022-08-29 00:08:00', 'add', 1, 'categorias', 84),
+                                                                                                (94, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 15),
+                                                                                                (95, '2022-08-29 00:08:00', 'add', 1, 'categorias', 85),
+                                                                                                (96, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 16),
+                                                                                                (97, '2022-08-29 00:08:00', 'add', 1, 'categorias', 86),
+                                                                                                (98, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 17),
+                                                                                                (99, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 18),
+                                                                                                (100, '2022-08-29 00:08:00', 'add', 1, 'categorias', 87),
+                                                                                                (101, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 19),
+                                                                                                (102, '2022-08-29 00:08:00', 'add', 1, 'categorias', 88),
+                                                                                                (103, '2022-08-29 00:08:00', 'add', 1, 'movimiento', 20),
+                                                                                                (104, '2022-08-29 00:08:00', 'add', 1, 'categorias', 89),
+                                                                                                (105, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 21),
+                                                                                                (106, '2022-08-29 00:08:00', 'add', 1, 'categorias', 90),
+                                                                                                (107, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 22),
+                                                                                                (108, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 23),
+                                                                                                (109, '2022-08-29 00:08:00', 'add', 1, 'categorias', 91),
+                                                                                                (110, '2022-08-29 00:08:00', 'add', 1, 'categorias', 92),
+                                                                                                (111, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 24),
+                                                                                                (112, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 25),
+                                                                                                (113, '2022-08-29 00:08:00', 'add', 1, 'categorias', 93),
+                                                                                                (114, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 26),
+                                                                                                (115, '2022-08-29 00:08:00', 'add', 1, 'categorias', 94),
+                                                                                                (116, '2022-08-29 00:08:00', 'out', 1, 'movimiento', 27);
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 
 -- Volcando estructura para tabla lv_finanzas.categories
@@ -159,14 +198,32 @@ CREATE TABLE IF NOT EXISTS `categories` (
     `description` text DEFAULT NULL,
     `type` enum('add','out') NOT NULL,
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla lv_finanzas.categories: ~30 rows (aproximadamente)
+-- Volcando datos para la tabla lv_finanzas.categories: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `name`, `description`, `type`) VALUES
                                                                    (1, 'transferencia', 'transferencia', 'add'),
                                                                    (75, 'Varios', 'gastos varios', 'out'),
-                                                                   (76, 'Extracción', 'Extracción cajero', 'out');
+                                                                   (76, 'Extracción', 'Extracción cajero', 'out'),
+                                                                   (77, 'Sueldo UNLP Marcos', 'Sueldo UNLP Marcos', 'add'),
+                                                                   (78, 'Saldo inicial', 'Deposito del saldo inicial', 'add'),
+                                                                   (79, 'Transferencia recibida', 'Transferencia recibida por terceros', 'add'),
+                                                                   (80, 'NACION SEGUROS SA BNA', 'Seguros del Banco Nación', 'out'),
+                                                                   (81, 'Vial 1', 'Impuesto vial de La Clemencia', 'out'),
+                                                                   (82, 'Vial 2', 'Impuesto vial de La Clemencia', 'out'),
+                                                                   (83, 'VISA Vieja', 'Tarjeta VISA de mi vieja', 'out'),
+                                                                   (84, 'Agua 501', 'Agua de calle 501', 'out'),
+                                                                   (85, 'Naranja Majo', 'Trajeta Naranja de Majo', 'out'),
+                                                                   (86, 'Compra de dólares', 'Compra de dólares', 'out'),
+                                                                   (87, 'Transferencia enviada', 'Transferencia enviada', 'out'),
+                                                                   (88, 'Contrasiento', 'Contrasiento', 'add'),
+                                                                   (89, 'IMPUESTO PAIS', 'IMPUESTO PAIS', 'out'),
+                                                                   (90, 'RG4815 PERCE.OP.MON.EXT.', 'RG4815 PERCE.OP.MON.EXT.', 'out'),
+                                                                   (91, 'COMISION PAQUETES', 'COMISION PAQUETES', 'out'),
+                                                                   (92, 'I.V.A. BASE', 'I.V.A. BASE', 'out'),
+                                                                   (93, 'GRAVAMEN IB PERCEP. BA', 'GRAVAMEN IB PERCEP. BA', 'out'),
+                                                                   (94, 'Cuota Crédito (Energía Solar Campo)', 'Cuota de Crédito para la compra de equipo de energía solar para la clemencia', 'out');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Volcando estructura para tabla lv_finanzas.migrations
@@ -248,12 +305,33 @@ CREATE TABLE IF NOT EXISTS `summary` (
     KEY `fk_summary_categories1_idx` (`categories_id`),
     CONSTRAINT `fk_summary_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
     CONSTRAINT `fk_summary_categories1` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-    ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla lv_finanzas.summary: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla lv_finanzas.summary: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `summary` DISABLE KEYS */;
 INSERT INTO `summary` (`id`, `created_at`, `concept`, `type`, `amount`, `tax`, `account_id`, `categories_id`, `factura`, `id_attr`, `id_transfer`, `tours_id`, `id_attr_tours`, `id_autor`, `future`) VALUES
-    (2, '2022-08-26 00:00:00', 'retiro dinero', 'out', 10000, 0, 33, 76, NULL, NULL, NULL, NULL, NULL, 1, '1');
+                                                                                                                                                                                                          (6, '2020-08-08 00:00:00', 'Saldo inicial', 'add', 47325.35, 0, 33, 78, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (7, '2020-08-08 00:00:00', 'Elba Burone compra de productos Mientras tanto', 'add', 1520, 0, 33, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (8, '2021-01-04 00:00:00', 'Pago de Seguros Nación', 'out', 19.7, 0, 33, 80, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (9, '2021-01-04 00:00:00', 'Pago de Seguros Nación', 'out', 65, 0, 33, 80, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (10, '2021-01-04 00:00:00', 'Pago de Seguros Nación', 'out', 95.01, 0, 33, 80, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (11, '2021-01-04 00:00:00', 'Transferencia de Arístegui para pagar VISA, OSDE, Viales, etc.', 'add', 110000, 0, 33, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (12, '2021-01-04 00:00:00', 'Pago de impuesto vial 1 de La Clemencia', 'out', 11627.83, 0, 33, 81, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (13, '2021-01-04 00:00:00', 'Pago de impuesto vial 2 de La Clemencia', 'out', 23775.8, 0, 33, 82, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (14, '2021-01-04 00:00:00', 'Pago de Tarjeta VISA de mi vieja', 'out', 24563.05, 0, 33, 83, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (15, '2021-01-04 00:00:00', 'Pago de agua de 501', 'out', 1262.63, 0, 33, 84, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (16, '2021-01-04 00:00:00', 'Pago de trajeta Naranja de Majo', 'out', 846.03, 0, 33, 85, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (17, '2021-01-04 00:00:00', 'Compra de dólares', 'out', 29436, 0, 33, 86, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (18, '2021-01-04 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 33, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (19, '2021-01-04 00:00:00', 'Transferencia a Paola (mamá de Felipe)', 'out', 500, 0, 33, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (20, '2021-01-04 00:00:00', 'Contrasiento por error en compra de dólares', 'add', 29436, 0, 33, 88, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (21, '2021-01-04 00:00:00', 'Impuesto país por compra de dólares', 'out', 5352, 0, 33, 89, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (22, '2021-01-04 00:00:00', 'RG4815 PERCE.OP.MON.EXT. (Compra de dólares)', 'out', 6244, 0, 33, 90, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (23, '2021-01-04 00:00:00', 'Compra de dólares', 'out', 17840, 0, 33, 86, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (24, '2021-01-04 00:00:00', 'Comisión en paquetes del Banco Nación', 'out', 974.08, 0, 33, 91, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (25, '2021-01-04 00:00:00', 'I.V.A. BASE en Banco Nación', 'out', 204.56, 0, 33, 92, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (26, '2021-01-04 00:00:00', 'GRAVAMEN IB PERCEP. BA', 'out', 0.97, 0, 33, 93, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (27, '2021-01-04 00:00:00', 'Débito cuota del préstamo para la compra de equipo de energía solar', 'out', 8733.73, 0, 33, 94, NULL, NULL, NULL, NULL, NULL, 1, '1');
 /*!40000 ALTER TABLE `summary` ENABLE KEYS */;
 
 -- Volcando estructura para tabla lv_finanzas.tours
@@ -264,13 +342,8 @@ CREATE TABLE IF NOT EXISTS `tours` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla lv_finanzas.tours: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla lv_finanzas.tours: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `tours` DISABLE KEYS */;
-INSERT INTO `tours` (`id`, `name`, `description`) VALUES
-                                                      (12, 'Exploración Perú', 'Tour Exploración Perú'),
-                                                      (14, 'Mega Tour de Verano', '26 días, 15 ciudades y 10 Países por Europa'),
-                                                      (17, 'Invierno en Europa', '17 días, 9 ciudades y 6 Países por Europa'),
-                                                      (18, 'Oktoberfest', '17 días, 6 ciudades y países por Europa');
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 
 -- Volcando estructura para tabla lv_finanzas.tours_attr
@@ -282,20 +355,8 @@ CREATE TABLE IF NOT EXISTS `tours_attr` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla lv_finanzas.tours_attr: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla lv_finanzas.tours_attr: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tours_attr` DISABLE KEYS */;
-INSERT INTO `tours_attr` (`id`, `date`, `price`, `id_tours`) VALUES
-                                                                 (32, '2017-10-19 00:00:00', 1, 12),
-                                                                 (34, '2018-07-02 00:00:00', 1, 14),
-                                                                 (38, '2017-09-20 00:00:00', 1, 18),
-                                                                 (79, '2018-07-09 00:00:00', 1, 14),
-                                                                 (80, '2017-09-25 00:00:00', 1, 18),
-                                                                 (96, '2018-09-20 00:00:00', 1, 18),
-                                                                 (97, '2018-10-19 00:00:00', 1, 12),
-                                                                 (98, '2017-12-14 00:00:00', 1, 17),
-                                                                 (99, '2018-12-17 00:00:00', 1, 17),
-                                                                 (127, '2018-12-18 00:00:00', 1, 17),
-                                                                 (128, '2018-09-25 00:00:00', 1, 18);
 /*!40000 ALTER TABLE `tours_attr` ENABLE KEYS */;
 
 -- Volcando estructura para tabla lv_finanzas.transfer
@@ -304,7 +365,7 @@ CREATE TABLE IF NOT EXISTS `transfer` (
     `id_add` int(11) NOT NULL COMMENT 'id de entrada',
     `id_out` int(11) NOT NULL COMMENT 'id de salida',
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla lv_finanzas.transfer: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `transfer` DISABLE KEYS */;
@@ -327,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Volcando datos para la tabla lv_finanzas.users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `level`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-    (1, 'admin', 'admin@admin.com', '$2y$10$ylEQm2Mx4dfq/tgQRJUo7eikP3cls0bxvpevRUzUQTapy5pDxcw.i', 1, 1, 'C7Uy0wjsgjyfi53Mrk3Qa2m7cGGCDSFjaRb2fKyqW4U89hyOFMDp1obPgh2s', '2018-01-23 05:16:47', '2018-01-23 05:16:47');
+    (1, 'admin', 'admin@admin.com', '$2y$10$ylEQm2Mx4dfq/tgQRJUo7eikP3cls0bxvpevRUzUQTapy5pDxcw.i', 1, 1, 'mFnRyYPcs2ev9jFIcFviC6ecEhAbn1BjdiabhqdSTgRiYZnwFAOaFtlYPrll', '2018-01-23 05:16:47', '2018-01-23 05:16:47');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

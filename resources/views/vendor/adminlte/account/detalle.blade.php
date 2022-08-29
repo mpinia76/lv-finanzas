@@ -70,8 +70,8 @@
 															    	@else
 															    	<td>Retiro <small class="label pull-right bg-red"><i class="fa fa-sort-desc"></i></small></td>
 															    	@endif
-															        <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, '.', ',') }} </td>
-															        <td>{{ number_format($summarys->tax, 2, '.', ',') }} </td>
+															        <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, ',', '.') }} </td>
+															        <td>{{ number_format($summarys->tax, 2, ',', '.') }} </td>
 															        <td>{{ $summarys->concept }}</td>
 															       
 															        <td>{{ $summarys->name_categories }}</td>
@@ -109,7 +109,7 @@
 
 									<div class="small-box box">
 							            <div class="inner">
-							              <h3>{{ number_format($totalf, 2, '.', ',') }}</h3>
+							              <h3>{{ number_format($totalf, 2, ',', '.') }}</h3>
 
 							              <p>{{$divisa->value}}</p>
 							            </div>

@@ -1,5 +1,6 @@
 @extends('adminlte::layouts.app')
 
+
 @section('main-content')
 
 
@@ -82,11 +83,11 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Monto</label>
-                  <input required maxlength="200" name="amount" type="text"   data-mask="000,000,000,000,000.00" data-mask-reverse="true"    class="form-control"  placeholder="Monto">
+                  <input required maxlength="200" name="amount" type="text"   data-mask="000.000.000.000.000,00" data-mask-reverse="true"    class="form-control"  placeholder="Monto">
                 </div>
                 <div class="form-group">
                   	<label for="exampleInputPassword1">Impuesto</label>
-                  	<input required maxlength="200" name="tax" type="text" data-mask-reverse="true"   class="form-control" data-mask="000,000,000,000,000.00"  placeholder="Impuesto">  
+                  	<input required maxlength="200" name="tax" type="text" data-mask-reverse="true"   class="form-control" data-mask="000.000.000.000.000,00"  placeholder="Impuesto">
                 </div>
                  <div class="form-group">
                   <label for="exampleInputPassword1">N° Ref</label>
@@ -95,7 +96,7 @@
                 <div class="form-group">
                 	<label for="exampleInputPassword1">Categorias</label>
 						 
-                	<select required class="form-control" name="categories_id" id="categorie_select">
+                	<select required class="form-control js-example-basic-single" name="categories_id" id="categorie_select">
                   <option class="" value="">Seleccione Categoria</option>
                 	@foreach ($data2 as $datas2)	
 
@@ -112,25 +113,13 @@
                 	</select>
 	                
 		        </div>
-             <div class="form-group">
-                  <label for="exampleInputPassword1">Productos</label>
-             
-                  <select  class="form-control" name="tours_id" id="tours_select">
-                  <option class="" value="">No Aplica</option>
-                  @foreach ($tours as $tour)       
-                    <option class="attr-{{$tour->price}}" value="{{ $tour->id }}">
-                      {{ $tour->name }} 
-                    </option>
-                  @endforeach
-                  </select>
-                  
-            </div>
+
             <div class="form-group hidden" id="res_ajax">
             </div>
 		        <div class="form-group">
                 	<label for="exampleInputPassword1">Cuentas</label>
 						 
-                	<select  required id="origen" class="form-control" name="account_id">
+                	<select  required id="origen" class="form-control js-example-basic-single" name="account_id">
                     <option value="">Seleccione Cuenta</option>
                 	@foreach ($data as $datas)		
                 		<option value="{{ $datas->id }}">
@@ -164,3 +153,4 @@
 	
 
 @endsection
+

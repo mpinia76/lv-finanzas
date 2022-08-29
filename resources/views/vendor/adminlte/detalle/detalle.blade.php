@@ -86,7 +86,7 @@
                <td>No aplica</td>
               @endif
               <td>{{$data->tax}}</td>
-              <td>{{ number_format($data->amount, 2, '.', ',') }}</td>
+              <td>{{ number_format($data->amount, 2, ',', '.') }}</td>
             </tr>
 
             </tbody>
