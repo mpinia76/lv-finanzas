@@ -126,7 +126,7 @@
                                                     <option value="1">Hoy</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-2 add_top_1">
+                                            <div class="col-sm-3 add_top_1">
                                                 <select class="form-control" type="text" name="tipo">
                                                     <option value="">Tipo de movimiento</option>
                                                     <option value="1">Transferencia</option>
@@ -135,14 +135,14 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-2 add_top_1">
-                                                <select class="form-control" type="text" name="cuentas">
+                                                <select class="form-control js-example-basic-single" type="text" name="cuentas">
                                                     <option value="">Cuentas</option>
                                                     @foreach ($data as $datas)
                                                         <option value="{{ $datas->id }}">{{ $datas->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-sm-2 add_top_1">
+                                            {{--<div class="col-sm-2 add_top_1">
                                                 <select class="form-control" name="tf" id="tours_select">
                                                     <option value="">Tours</option>
                                                     @foreach ($tours as $tour)
@@ -174,9 +174,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-2 add_top_1">
-                                                <select class="form-control" name="categoria" id="categorie_select">
+                                            </div> --}}
+                                            <div class="col-sm-3 add_top_1">
+                                                <select class="form-control js-example-basic-single" name="categoria" id="categorie_select">
                                                     <option value="">Categorias</option>
                                                     @foreach ($data2 as $datas2)
                                                         @if($datas2->name!="transferencia")

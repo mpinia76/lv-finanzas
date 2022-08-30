@@ -78,20 +78,22 @@ class categoriesController extends Controller
 		$ids= $request->input('id');
     	$values = $request->input('value_');
 
+        if (!empty($names)){
+            foreach ($names as $n => $v ) {
+                $valores = array(
+                    'name' => $v,
+                    'value' => $values[$n],
+                    'id_categorie' => $id,
+                );
+                if($ids[$n]==0){
+                    attributes::insert($valores);
+                }else{
+                    attributes::where('id',$ids[$n])->update($valores);
+                }
 
-    	foreach ($names as $n => $v ) {
-				    	$valores = array(
-				      			'name' => $v,
-					    		'value' => $values[$n],
-					    		'id_categorie' => $id,
-					    		);
-				    	if($ids[$n]==0){
-				    		attributes::insert($valores);
-				    	}else{
-				    		attributes::where('id',$ids[$n])->update($valores);
-				    	}
-				    
-		}
+            }
+        }
+
 
         $categories = categories::find($id);
         $categories->name = $request->name;

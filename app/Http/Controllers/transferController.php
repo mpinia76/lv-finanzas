@@ -132,7 +132,11 @@ class transferController extends Controller
     $log = Auth::id();
   	$hoy = new Datetime ('now');
 
-     $str = str_replace(",", "", $request->amount);
+      $str = str_replace(".", "", $request->amount);
+
+
+      $str = str_replace(",", ".", $str);
+
 
       $valores_add = summary::insertGetId([
       	'created_at' =>  $request ->created_at,

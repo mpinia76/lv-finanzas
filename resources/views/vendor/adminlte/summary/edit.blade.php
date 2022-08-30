@@ -119,7 +119,7 @@
                 <div class="form-group">
                  <label for="exampleInputEmail1">cuentas</label>
 
-                 <select class="form-control" name="account_id">
+                 <select class="form-control js-example-basic-single" name="account_id">
                  @foreach ($account as $accounts)
                   @if($data->account_id == $accounts->id)
                     <option value="{{$accounts->id}}" selected>
@@ -138,7 +138,7 @@
 
                 <div class="form-group">
                  <label for="exampleInputEmail1">Categoria</label>
-                 <select class="form-control" id="categorie_select" name="categories_id">
+                 <select class="form-control js-example-basic-single" id="categorie_select" name="categories_id">
 
                  @foreach ($categories as $categoriess)
                  @if($data->categories_id == $categoriess->id)
@@ -158,7 +158,7 @@
                      
                   </select>
                 </div>
-                 <div class="form-group">
+                 {{-- <div class="form-group">
                   <label for="exampleInputPassword1">Tours</label>
              
                   <select  class="form-control" name="tours_id" id="tours_select">
@@ -170,7 +170,7 @@
                   @endforeach
                   </select>
                   
-            </div>
+            </div> --}}
                 <div class="form-group">
                   <label for="exampleInputPassword1">Fecha </label>
                   <?php  $datef= date_create($data->created_at); 
