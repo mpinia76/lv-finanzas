@@ -60,7 +60,7 @@ class summaryController extends Controller
         $categorias = $request->input('categoria');
         $subcategorias = $request->input('id_attr');
         $tf = $request->input('tf');
-        $subcatetours = $request->input('id_attr_tours');
+        //$subcatetours = $request->input('id_attr_tours');
 
         $filter=array();      
 
@@ -77,7 +77,7 @@ class summaryController extends Controller
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
           }
         }
-        if(isset($cuentas)) {  
+        if(isset($cuentas)) {
 
           $filter[] = array('account_id','=',$cuentas);
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
@@ -98,13 +98,13 @@ class summaryController extends Controller
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
          
         }
-        if(isset($subcatetours)) {  
+        /*if(isset($subcatetours)) {
           $filter[] = array('id_attr_tours','=',$subcatetours);
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
          
-        }
+        }*/
        
-      
+      //print_r($filter);
 
         if((isset($start)) and (isset($finish))){
 

@@ -115,7 +115,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 																<th>ID</th>
 																<th>Fecha De Salida </th>
 																<th>Precio</th>
-																<th>Total Abonos</th>
+																<th>Total Entradas</th>
 																<th>Total Retiros</th>
 																<th>Balance Actual</th>
 																<th>Opción</th>

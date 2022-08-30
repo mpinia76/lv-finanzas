@@ -130,7 +130,7 @@
                                                 <select class="form-control" type="text" name="tipo">
                                                     <option value="">Tipo de movimiento</option>
                                                     <option value="1">Transferencia</option>
-                                                    <option value="add">Abonos</option>
+                                                    <option value="add">Entradas</option>
                                                     <option value="out">Retiros</option>
                                                 </select>
                                             </div>
@@ -253,7 +253,7 @@
                                                                 @endif
                                                                 <td>{{ $fecha }}</td>
                                                                 @if($summarys->type=="add")
-                                                                    <td>Abono
+                                                                    <td>Entrada
                                                                         <small class="label pull-right bg-primary">
                                                                             @if($summarys->id_transfer!="")
                                                                                 <i class="fa fa-exchange"></i>

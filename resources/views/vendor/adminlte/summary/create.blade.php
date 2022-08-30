@@ -61,7 +61,7 @@
                     </option>
                   @if($type=="add")
                 		<option  value="add"  selected>
-                			Abono
+                			Entrada
                 		</option>
                   @elseif($type=="out")  
                 		<option value="out" selected>
@@ -69,7 +69,7 @@
                 		</option>
                   @else 
                     <option  value="add" >
-                      Abono
+                      Entrada
                     </option>
                     <option  value="out" >
                       Retiro

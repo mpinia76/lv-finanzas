@@ -139,7 +139,7 @@ if (isset($_GET['id_attr_tours'])) {
                 <td><?php if ($tipof == 1) {
                         echo "Transferencia";
                     } elseif ($tipof == "add") {
-                        echo "Abono";
+                        echo "Entrada";
                     } else {
                         echo "Retiro";
                     } ?></td>
@@ -231,7 +231,7 @@ if (isset($_GET['id_attr_tours'])) {
                 @endif
                 <td>{{ $fecha }}</td>
                 @if($summarys->type=="add")
-                    <td class="unit">Abono
+                    <td class="unit">Entrada
                         <small class="label pull-right bg-primary">
                             @if($summarys->id_transfer!="")
                                 <i class="fa fa-exchange"></i>

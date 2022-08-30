@@ -66,7 +66,7 @@
 															    	<td>{{ $fecha }}</td> 
 															    	<!-- <td>{{ $summarys->created_at }}</td> -->
 															    	@if($summarys->type=="add")
-															    	<td>Abono <small class="label pull-right bg-primary"><i class="fa fa-sort-up"></i></small></td>
+															    	<td>Entrada <small class="label pull-right bg-primary"><i class="fa fa-sort-up"></i></small></td>
 															    	@else
 															    	<td>Retiro <small class="label pull-right bg-red"><i class="fa fa-sort-desc"></i></small></td>
 															    	@endif

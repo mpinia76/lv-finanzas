@@ -24,7 +24,7 @@ $(function () {
 		$('#filter_btn').on('click',function(){
 			$('.load').show();
 			$('.wrapper').css('filter','blur(3px)');
-			$.get('/statisjson',{
+			$.get('../public/statisjson',{
 				'start':$('#start').val(),
 				'finish':$('#finish').val()
 			}).done(function(res){
@@ -214,7 +214,7 @@ $(function () {
 		var data_add = [];
 		var data_out = [];
 		var data_labels = [];
-		$.get('/statisjson').done(function(res){
+		$.get('../public/statisjson').done(function(res){
 			var data = {
 				labels: data_labels,
 				//*ADD*//
@@ -318,7 +318,7 @@ $('#closemodal3').click(function() {
 
 $('#tours_select').on('change',function(){
 		var value = $('#tours_select').val();
-		$.get('/tours/attr/'+value).done(function(res){
+		$.get('../public/tours/attr/'+value).done(function(res){
 
 				$('#res_ajax1').html('');
 				if(res.length<1){

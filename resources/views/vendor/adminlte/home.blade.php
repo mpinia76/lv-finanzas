@@ -15,7 +15,7 @@
             <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Abonos</span>
+              <span class="info-box-text">Entradas</span>
               </br>
               <a href="{{ url('/summary/create?type=add')}}">Añadir Depositos</a>
             </div>
@@ -43,7 +43,7 @@
             <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Abonos</span>
+              <span class="info-box-text">Entradas</span>
               </br>
               <span class="info-box-number">{{$divisa->value}}{{ number_format($add, 2, ',', '.') }} </span>
             </div>
@@ -91,7 +91,7 @@
 					</div>
 					<div class="box-body">
 						<canvas id="myChart" class="col-sm-12"></canvas>
-						<center><label>Abonos&nbsp; </label><label class="entrada" >&nbsp;&nbsp;&nbsp;&nbsp; </label> &nbsp;&nbsp;  <label>Retiros &nbsp;</label><label class="salida" > &nbsp;&nbsp;&nbsp;&nbsp;</label></center>
+						<center><label>Entradas&nbsp; </label><label class="entrada" >&nbsp;&nbsp;&nbsp;&nbsp; </label> &nbsp;&nbsp;  <label>Retiros &nbsp;</label><label class="salida" > &nbsp;&nbsp;&nbsp;&nbsp;</label></center>
 					</div>
 				</div>
 			</div>

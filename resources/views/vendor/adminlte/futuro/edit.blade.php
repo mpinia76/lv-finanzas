@@ -54,7 +54,7 @@
                     
                     @if($data->type=='add')
               <option value="add" selected>
-                      Abono
+                      Entrada
                       </option>
                       <option value="out" >
                       Retiro
@@ -65,7 +65,7 @@
                       Retiro
               </option>
               <option value="add" >
-                      Abono
+                      Entrada
                       </option>
                     @endif
                       

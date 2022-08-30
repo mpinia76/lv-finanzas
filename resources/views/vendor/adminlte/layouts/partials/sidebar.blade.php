@@ -41,8 +41,8 @@
             </li>
             <li><a href="{{ url('users/users') }}"><i class='fa fa-user'></i> <span>Usuarios</span></a></li>
             <li><a href="{{ url('transfer/create') }}"><i class='fa fa-money'></i> <span>Transferencia</span></a>
-            <li><a href="{{ url('tours/tours') }}"><i class='fa fa-globe'></i> <span>Productos</span></a></li>
-            {{--<li class="treeview">--}}
+            {{--<li><a href="{{ url('tours/tours') }}"><i class='fa fa-globe'></i> <span>Productos</span></a></li>
+            <li class="treeview">--}}
                 {{--<a href="#"><i class='fa fa-list-ol'></i> <span> Lista de  Productos</span> <i class="fa fa-angle-left pull-right"></i></a>--}}
                 {{--<ul id="toursresult" class="treeview-menu">--}}
                {{----}}

@@ -74,7 +74,7 @@
                                             {{--</div>--}}
                                             {{--<div class="col-sm-2 add_top_1">--}}
                                                 {{--<select class="form-control"  type="text" name="tipo" >--}}
-                                                    {{--<option value="add">Abonos</option>--}}
+                                                    {{--<option value="add">Entradas</option>--}}
                                                     {{--<option value="out">Retiros</option>--}}
                                                 {{--</select>--}}
                                             {{--</div>--}}

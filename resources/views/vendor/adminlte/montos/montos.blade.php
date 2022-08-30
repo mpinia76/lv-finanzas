@@ -77,7 +77,7 @@
 						          <div class="box box-widget widget-user-2">
 						       
 						            <div class="widget-user-header bg-aqua">
-						              <p><i class="fa fa-plus"></i> Abonos Futuros: {{ number_format($futuro->totale, 2, ',', '.') }} {{$divisa->value}}</p>
+						              <p><i class="fa fa-plus"></i> Entradas Futuros: {{ number_format($futuro->totale, 2, ',', '.') }} {{$divisa->value}}</p>
 						              
 						            </div>
 						            <div class="widget-user-header bg-red">

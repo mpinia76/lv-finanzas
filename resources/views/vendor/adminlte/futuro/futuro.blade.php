@@ -130,7 +130,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 													@endif
 											    	<td>{{ $fecha }}</td> 
 											    	@if($alertas->type=="add")
-											    	<td>Abono <small class="label pull-right bg-primary">
+											    	<td>Entrada <small class="label pull-right bg-primary">
 														@if($alertas->id_transfer!="")
 														<i class="fa fa-exchange"></i>
 														@else
@@ -239,7 +239,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 														<select class="form-control"  type="text" name="tipo" >
 															<option value="">Tipo de movimiento</option>
 															<option value="1">Transferencia</option>
-															<option value="add">Abonos</option>
+															<option value="add">Entradas</option>
 															<option value="out">Retiros</option>
 																							
 														</select>
@@ -368,7 +368,7 @@ $url="?start=".$startf."&finish=".$finishf."&dias=".$diasf."&tipo=". $tipof."&cu
 																	@endif
 															    	<td>{{ $fecha }}</td> 
 															    	@if($summarys->type=="add")
-															    	<td>Abono <small class="label pull-right bg-primary">
+															    	<td>Entrada <small class="label pull-right bg-primary">
 																		@if($summarys->id_transfer!="")
 																		<i class="fa fa-exchange"></i>
 																		@else
