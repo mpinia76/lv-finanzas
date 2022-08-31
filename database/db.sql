@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.1.38-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             10.2.0.5599
+-- Versión del servidor:         10.3.16-MariaDB - mariadb.org binary distribution
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             10.2.0.5599
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -11,16 +11,16 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table lv_finanzas.account
+-- Volcando estructura para tabla lv_finanzas.account
 CREATE TABLE IF NOT EXISTS `account` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` text,
+    `name` text DEFAULT NULL,
     `number` varchar(100) DEFAULT NULL,
     `type` enum('corriente','ahorro') DEFAULT 'ahorro',
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.account: ~5 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.account: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
 INSERT INTO `account` (`id`, `name`, `number`, `type`) VALUES
                                                            (33, 'Marcos Nación', '21700301128159 ', 'ahorro'),
@@ -30,17 +30,17 @@ INSERT INTO `account` (`id`, `name`, `number`, `type`) VALUES
                                                            (37, 'Marcos BAPRO Cta. Cte.', '5209-51867/3 ', 'corriente');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.attached
+-- Volcando estructura para tabla lv_finanzas.attached
 CREATE TABLE IF NOT EXISTS `attached` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `path` text,
+    `path` text DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'fecha de edicion',
     `summary_id` int(11) NOT NULL,
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.attached: ~20 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.attached: ~20 rows (aproximadamente)
 /*!40000 ALTER TABLE `attached` DISABLE KEYS */;
 INSERT INTO `attached` (`id`, `path`, `created_at`, `updated_at`, `summary_id`) VALUES
                                                                                     (20, 'attached/xFsrvJgt7CcSk8q41UUfNndJfvuHgcocKiuCkywy.pdf', '2017-07-07 04:07:00', '2017-07-07 04:07:00', 102),
@@ -65,7 +65,7 @@ INSERT INTO `attached` (`id`, `path`, `created_at`, `updated_at`, `summary_id`) 
                                                                                     (39, 'attached/g3y7zUCSH4SjV1dnlqZc9IDgxZRLFlPZ5oYIdMA7.png', '2019-12-07 20:12:00', '2019-12-07 20:12:00', 1);
 /*!40000 ALTER TABLE `attached` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.attr_values
+-- Volcando estructura para tabla lv_finanzas.attr_values
 CREATE TABLE IF NOT EXISTS `attr_values` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` text NOT NULL,
@@ -74,11 +74,11 @@ CREATE TABLE IF NOT EXISTS `attr_values` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.attr_values: ~0 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.attr_values: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `attr_values` DISABLE KEYS */;
 /*!40000 ALTER TABLE `attr_values` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.bitacora
+-- Volcando estructura para tabla lv_finanzas.bitacora
 CREATE TABLE IF NOT EXISTS `bitacora` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `created_date` datetime NOT NULL,
@@ -87,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `bitacora` (
     `activity` varchar(150) NOT NULL,
     `id_activity` int(11) DEFAULT NULL,
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=779 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=978 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.bitacora: ~891 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.bitacora: ~958 rows (aproximadamente)
 /*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
 INSERT INTO `bitacora` (`id`, `created_date`, `type`, `id_user`, `activity`, `id_activity`) VALUES
                                                                                                 (20, '2022-08-25 00:08:00', 'add', 1, 'categorias', 74),
@@ -850,19 +850,218 @@ INSERT INTO `bitacora` (`id`, `created_date`, `type`, `id_user`, `activity`, `id
                                                                                                 (775, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 624),
                                                                                                 (776, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 625),
                                                                                                 (777, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 626),
-                                                                                                (778, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 627);
+                                                                                                (778, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 627),
+                                                                                                (779, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 628),
+                                                                                                (780, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 629),
+                                                                                                (781, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 630),
+                                                                                                (782, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 631),
+                                                                                                (783, '2022-08-31 00:08:00', 'add', 1, 'categorias', 133),
+                                                                                                (784, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 632),
+                                                                                                (785, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 633),
+                                                                                                (786, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 634),
+                                                                                                (787, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 635),
+                                                                                                (788, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 636),
+                                                                                                (789, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 637),
+                                                                                                (790, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 638),
+                                                                                                (791, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 639),
+                                                                                                (792, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 640),
+                                                                                                (793, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 641),
+                                                                                                (794, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 642),
+                                                                                                (795, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 643),
+                                                                                                (796, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 644),
+                                                                                                (797, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 645),
+                                                                                                (798, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 646),
+                                                                                                (799, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 647),
+                                                                                                (800, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 648),
+                                                                                                (801, '2022-08-31 00:08:00', 'add', 1, 'categorias', 134),
+                                                                                                (802, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 649),
+                                                                                                (803, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 650),
+                                                                                                (804, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 651),
+                                                                                                (805, '2022-08-31 00:08:00', 'add', 1, 'categorias', 135),
+                                                                                                (806, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 652),
+                                                                                                (807, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 653),
+                                                                                                (808, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 654),
+                                                                                                (809, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 655),
+                                                                                                (810, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 656),
+                                                                                                (811, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 657),
+                                                                                                (812, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 658),
+                                                                                                (813, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 659),
+                                                                                                (814, '2022-08-31 00:08:00', 'delete', 1, 'movimiento', 659),
+                                                                                                (815, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 660),
+                                                                                                (816, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 661),
+                                                                                                (817, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 662),
+                                                                                                (818, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 663),
+                                                                                                (819, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 664),
+                                                                                                (820, '2022-08-31 00:08:00', 'update', 1, 'movimiento', 663),
+                                                                                                (821, '2022-08-31 00:08:00', 'delete', 1, 'movimiento', 664),
+                                                                                                (822, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 665),
+                                                                                                (823, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 666),
+                                                                                                (824, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 667),
+                                                                                                (825, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 668),
+                                                                                                (826, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 669),
+                                                                                                (827, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 670),
+                                                                                                (828, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 671),
+                                                                                                (829, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 672),
+                                                                                                (830, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 673),
+                                                                                                (831, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 674),
+                                                                                                (832, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 675),
+                                                                                                (833, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 676),
+                                                                                                (834, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 677),
+                                                                                                (835, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 678),
+                                                                                                (836, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 679),
+                                                                                                (837, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 680),
+                                                                                                (838, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 681),
+                                                                                                (839, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 682),
+                                                                                                (840, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 683),
+                                                                                                (841, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 684),
+                                                                                                (842, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 685),
+                                                                                                (843, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 686),
+                                                                                                (844, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 687),
+                                                                                                (845, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 688),
+                                                                                                (846, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 689),
+                                                                                                (847, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 690),
+                                                                                                (848, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 691),
+                                                                                                (849, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 692),
+                                                                                                (850, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 693),
+                                                                                                (851, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 694),
+                                                                                                (852, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 695),
+                                                                                                (853, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 696),
+                                                                                                (854, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 697),
+                                                                                                (855, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 698),
+                                                                                                (856, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 699),
+                                                                                                (857, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 700),
+                                                                                                (858, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 701),
+                                                                                                (859, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 702),
+                                                                                                (860, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 703),
+                                                                                                (861, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 704),
+                                                                                                (862, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 705),
+                                                                                                (863, '2022-08-31 00:08:00', 'add', 1, 'categorias', 136),
+                                                                                                (864, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 706),
+                                                                                                (865, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 707),
+                                                                                                (866, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 708),
+                                                                                                (867, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 709),
+                                                                                                (868, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 710),
+                                                                                                (869, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 711),
+                                                                                                (870, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 712),
+                                                                                                (871, '2022-08-31 00:08:00', 'update', 1, 'movimiento', 712),
+                                                                                                (872, '2022-08-31 00:08:00', 'update', 1, 'movimiento', 711),
+                                                                                                (873, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 713),
+                                                                                                (874, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 714),
+                                                                                                (875, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 715),
+                                                                                                (876, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 716),
+                                                                                                (877, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 717),
+                                                                                                (878, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 718),
+                                                                                                (879, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 719),
+                                                                                                (880, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 720),
+                                                                                                (881, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 721),
+                                                                                                (882, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 722),
+                                                                                                (883, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 723),
+                                                                                                (884, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 724),
+                                                                                                (885, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 725),
+                                                                                                (886, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 726),
+                                                                                                (887, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 727),
+                                                                                                (888, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 728),
+                                                                                                (889, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 729),
+                                                                                                (890, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 730),
+                                                                                                (891, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 731),
+                                                                                                (892, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 732),
+                                                                                                (893, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 733),
+                                                                                                (894, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 734),
+                                                                                                (895, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 735),
+                                                                                                (896, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 736),
+                                                                                                (897, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 737),
+                                                                                                (898, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 738),
+                                                                                                (899, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 739),
+                                                                                                (900, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 740),
+                                                                                                (901, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 741),
+                                                                                                (902, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 742),
+                                                                                                (903, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 743),
+                                                                                                (904, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 744),
+                                                                                                (905, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 745),
+                                                                                                (906, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 746),
+                                                                                                (907, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 747),
+                                                                                                (908, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 748),
+                                                                                                (909, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 749),
+                                                                                                (910, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 750),
+                                                                                                (911, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 751),
+                                                                                                (912, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 752),
+                                                                                                (913, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 753),
+                                                                                                (914, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 754),
+                                                                                                (915, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 755),
+                                                                                                (916, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 756),
+                                                                                                (917, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 757),
+                                                                                                (918, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 758),
+                                                                                                (919, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 759),
+                                                                                                (920, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 760),
+                                                                                                (921, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 761),
+                                                                                                (922, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 762),
+                                                                                                (923, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 763),
+                                                                                                (924, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 764),
+                                                                                                (925, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 765),
+                                                                                                (926, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 766),
+                                                                                                (927, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 767),
+                                                                                                (928, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 768),
+                                                                                                (929, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 769),
+                                                                                                (930, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 770),
+                                                                                                (931, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 771),
+                                                                                                (932, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 772),
+                                                                                                (933, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 773),
+                                                                                                (934, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 774),
+                                                                                                (935, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 775),
+                                                                                                (936, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 776),
+                                                                                                (937, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 777),
+                                                                                                (938, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 778),
+                                                                                                (939, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 779),
+                                                                                                (940, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 780),
+                                                                                                (941, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 781),
+                                                                                                (942, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 782),
+                                                                                                (943, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 783),
+                                                                                                (944, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 784),
+                                                                                                (945, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 785),
+                                                                                                (946, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 786),
+                                                                                                (947, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 787),
+                                                                                                (948, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 788),
+                                                                                                (949, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 789),
+                                                                                                (950, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 790),
+                                                                                                (951, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 791),
+                                                                                                (952, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 792),
+                                                                                                (953, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 793),
+                                                                                                (954, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 794),
+                                                                                                (955, '2022-08-31 00:08:00', 'update', 1, 'movimiento', 402),
+                                                                                                (956, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 795),
+                                                                                                (957, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 796),
+                                                                                                (958, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 797),
+                                                                                                (959, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 798),
+                                                                                                (960, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 799),
+                                                                                                (961, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 800),
+                                                                                                (962, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 801),
+                                                                                                (963, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 802),
+                                                                                                (964, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 803),
+                                                                                                (965, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 804),
+                                                                                                (966, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 805),
+                                                                                                (967, '2022-08-31 00:08:00', 'add', 1, 'movimiento', 806),
+                                                                                                (968, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 807),
+                                                                                                (969, '2022-08-31 00:08:00', 'out', 1, 'movimiento', 808),
+                                                                                                (970, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 809),
+                                                                                                (971, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 810),
+                                                                                                (972, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 811),
+                                                                                                (973, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 812),
+                                                                                                (974, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 813),
+                                                                                                (975, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 814),
+                                                                                                (976, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 815),
+                                                                                                (977, '2022-08-31 00:08:00', 'transfer', 1, 'transferencia', 816);
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.categories
+-- Volcando estructura para tabla lv_finanzas.categories
 CREATE TABLE IF NOT EXISTS `categories` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` text,
-    `description` text,
+    `name` text DEFAULT NULL,
+    `description` text DEFAULT NULL,
     `type` enum('add','out') NOT NULL,
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.categories: ~59 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.categories: ~63 rows (aproximadamente)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `name`, `description`, `type`) VALUES
                                                                    (1, 'transferencia', 'transferencia', 'add'),
@@ -923,10 +1122,14 @@ INSERT INTO `categories` (`id`, `name`, `description`, `type`) VALUES
                                                                    (129, 'RETENCION ARBA', 'RETENCION ARBA', 'out'),
                                                                    (130, 'Cuenta DNI', 'Compra con cuenta DNI', 'out'),
                                                                    (131, 'VISA BAPRO', 'Tarjeta VISA del Banco Provincia', 'out'),
-                                                                   (132, 'LIQUIDACION DE PRESTAMOS', 'LIQUIDACION DE PRESTAMOS', 'out');
+                                                                   (132, 'LIQUIDACION DE PRESTAMOS', 'LIQUIDACION DE PRESTAMOS', 'out'),
+                                                                   (133, 'Cuota Crédito Hipotecario', 'Cuota Crédito Hipotecario - Refacción casa', 'out'),
+                                                                   (134, 'MASTERCARD BAPRO', 'Tarjeta MASTERCARD del Banco Provincia', 'out'),
+                                                                   (135, 'VEP Mirian', 'VEP por cargas sociales de Mirian (empleada doméstica)', 'out'),
+                                                                   (136, 'RECARGA CELULAR', 'RECARGA CELULAR', 'out');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.migrations
+-- Volcando estructura para tabla lv_finanzas.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -934,11 +1137,11 @@ CREATE TABLE IF NOT EXISTS `migrations` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.migrations: ~0 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.migrations: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.permissions
+-- Volcando estructura para tabla lv_finanzas.permissions
 CREATE TABLE IF NOT EXISTS `permissions` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `id_user` int(11) NOT NULL,
@@ -956,7 +1159,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.permissions: ~8 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.permissions: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
 INSERT INTO `permissions` (`id`, `id_user`, `saldo`, `movimientos`, `categoria`, `cuentas`, `usuario`, `transferencia`, `tours`, `m_futuros`, `bitacora`, `adjuntos`, `pdf`) VALUES
                                                                                                                                                                                  (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
@@ -969,7 +1172,7 @@ INSERT INTO `permissions` (`id`, `id_user`, `saldo`, `movimientos`, `categoria`,
                                                                                                                                                                                  (15, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.settings
+-- Volcando estructura para tabla lv_finanzas.settings
 CREATE TABLE IF NOT EXISTS `settings` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(200) NOT NULL,
@@ -977,17 +1180,17 @@ CREATE TABLE IF NOT EXISTS `settings` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.settings: ~1 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.settings: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
     (1, 'divisa', '$');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.summary
+-- Volcando estructura para tabla lv_finanzas.summary
 CREATE TABLE IF NOT EXISTS `summary` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `created_at` timestamp NULL DEFAULT NULL,
-    `concept` text,
+    `concept` text DEFAULT NULL,
     `type` enum('add','out','transfer') DEFAULT NULL,
     `amount` double DEFAULT NULL,
     `tax` double DEFAULT NULL,
@@ -1005,9 +1208,9 @@ CREATE TABLE IF NOT EXISTS `summary` (
     KEY `fk_summary_categories1_idx` (`categories_id`),
     CONSTRAINT `fk_summary_account` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
     CONSTRAINT `fk_summary_categories1` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-    ) ENGINE=InnoDB AUTO_INCREMENT=628 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=817 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.summary: ~577 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.summary: ~787 rows (aproximadamente)
 /*!40000 ALTER TABLE `summary` DISABLE KEYS */;
 INSERT INTO `summary` (`id`, `created_at`, `concept`, `type`, `amount`, `tax`, `account_id`, `categories_id`, `factura`, `id_attr`, `id_transfer`, `tours_id`, `id_attr_tours`, `id_autor`, `future`) VALUES
                                                                                                                                                                                                           (6, '2020-08-08 00:00:00', 'Saldo inicial', 'add', 47325.35, 0, 33, 78, NULL, NULL, NULL, NULL, NULL, 1, '1'),
@@ -1387,7 +1590,7 @@ INSERT INTO `summary` (`id`, `created_at`, `concept`, `type`, `amount`, `tax`, `
                                                                                                                                                                                                           (399, '2021-02-05 00:00:00', 'Extracción de ATM', 'out', 10000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
                                                                                                                                                                                                           (400, '2021-02-08 00:00:00', 'Extracción de ATM', 'out', 10000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
                                                                                                                                                                                                           (401, '2021-02-09 00:00:00', 'Extracción de ATM', 'out', 7000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
-                                                                                                                                                                                                          (402, '2021-01-11 00:00:00', 'COMPRA PEI CDNI 11/02 N:DUMON Y CIA SRL S:000144267285', 'out', 3800, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (402, '2021-02-11 00:00:00', 'COMPRA PEI CDNI 11/02 N:DUMON Y CIA SRL S:000144267285', 'out', 3800, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
                                                                                                                                                                                                           (403, '2021-02-11 00:00:00', 'CDNI 11/02-C.585824 D:23259315689 N:TEDESCO, ALBERTO CIP', 'add', 10000, 0, 35, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
                                                                                                                                                                                                           (404, '2021-02-11 00:00:00', 'RETENCION ARBA', 'out', 20, 0, 35, 129, NULL, NULL, NULL, NULL, NULL, 1, '1'),
                                                                                                                                                                                                           (405, '2021-02-17 00:00:00', 'Extracción de ATM', 'out', 5000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
@@ -1609,10 +1812,197 @@ INSERT INTO `summary` (`id`, `created_at`, `concept`, `type`, `amount`, `tax`, `
                                                                                                                                                                                                           (624, '2021-12-29 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 25-11-2021 HASTA 28-12-2021', 'add', 16.84, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
                                                                                                                                                                                                           (625, '2021-12-29 00:00:00', 'CDNI 29/12-C.961604 D:20365715298 N:BENJAMIN,TENTI', 'out', 10000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
                                                                                                                                                                                                           (626, '2021-12-29 00:00:00', 'Extracción de ATM', 'out', 20000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
-                                                                                                                                                                                                          (627, '2021-12-30 00:00:00', 'CDNI 30/12-C.770562 D:27312374752 N:MARTA SUSANA,BARRAG (Temporada Boca)', 'out', 14000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1');
+                                                                                                                                                                                                          (627, '2021-12-30 00:00:00', 'CDNI 30/12-C.770562 D:27312374752 N:MARTA SUSANA,BARRAG (Temporada Boca)', 'out', 14000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (628, '2022-01-02 00:00:00', 'CDNI 02/01-C.214473 D:27386185846 N:ZARNOWSKI SIBILA PA', 'out', 3940, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (629, '2022-01-03 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.DICIEMBRE 2021', 'add', 118325.98, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (630, '2022-01-03 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.SUMA FIJA NR NB', 'add', 3000, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (631, '2022-01-03 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 19994.16, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (632, '2022-01-03 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 7378.86, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (633, '2022-01-04 00:00:00', 'Extracción de ATM', 'out', 20000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (634, '2022-01-04 00:00:00', 'Débito del cable e internet de casa', 'out', 6909.98, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (635, '2022-01-12 00:00:00', 'CDNI 12/01-C.879230 D:27364844404 N:MARIA SOFIA,VAQUEIR', 'out', 23150, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (636, '2022-01-14 00:00:00', 'COMPRA TARJETA 14/01/22 20:54 COMPR. 000201423839466', 'out', 2760, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (637, '2022-01-15 00:00:00', 'COMPRA PEI CDNI 15/01 N:CHARITO S:000365729810', 'out', 3290, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (638, '2022-01-17 00:00:00', 'COMPRA PEI CDNI 17/01 N:EST SERV YPF S:000366774786', 'out', 2600, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (639, '2022-01-19 00:00:00', 'BENEF PEI-CUENTA DNI/15-01 PRE FIRST DATA CHARITO', 'add', 800, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (640, '2022-01-21 00:00:00', 'CDNI 21/01-C.310145 D:27292384721 N:MORZILLI MELINA', 'out', 1000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (641, '2022-01-21 00:00:00', 'CDNI 21/01-C.310214 D:27297727163 N:GUILLERMINA LAURA,D', 'out', 1000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (642, '2022-01-21 00:00:00', 'BENEF PEI-CUENTA DNI/17-01 PRE FIRST DATA EST SERV YPF', 'add', 780, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (643, '2022-01-22 00:00:00', 'Extracción de ATM', 'out', 20000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (644, '2022-01-27 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 28-12-2021 HASTA 26-01-2022', 'add', 5.89, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (645, '2022-01-27 00:00:00', 'Pago del seguro de la Suran - deuda anterior', 'out', 5520, 0, 35, 125, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (646, '2022-01-31 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 9624.6, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (647, '2022-02-01 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.ENERO 2022', 'add', 121756.83, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (648, '2022-02-01 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 17509.19, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (649, '2022-02-01 00:00:00', 'Débito de la MASTERCARD del Banco Provincia', 'out', 12353.05, 0, 35, 134, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (650, '2022-02-02 00:00:00', 'Pago de agua de 501', 'out', 1262.63, 0, 35, 84, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (651, '2022-02-02 00:00:00', 'Pago de la cuota del colegio Lincoln', 'out', 60200, 0, 35, 128, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (652, '2022-02-02 00:00:00', 'Pago de VEP de Mirian', 'out', 667.08, 0, 35, 135, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (653, '2022-02-03 00:00:00', 'Débito del cable e internet de casa', 'out', 6909.98, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (654, '2022-02-03 00:00:00', 'CDNI 03/02-C.000783 D:23215899519 N:ROBERTO SEBASTIAN,T', 'out', 1550, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (655, '2022-02-04 00:00:00', 'Extracción de ATM', 'out', 20000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (656, '2022-02-05 00:00:00', 'CDNI 05/02-C.804784 D:23215899519 N:ROBERTO SEBASTIAN,T', 'out', 1100, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (657, '2022-02-06 00:00:00', 'COMPRA PEI CDNI 06/02 N:DUMON Y CIA SRL S:000379392364', 'out', 4300, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (658, '2022-02-07 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (660, '2022-02-08 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (661, '2022-02-09 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (662, '2022-02-09 00:00:00', 'Flaca (Racciatti)', 'add', 2000, 0, 35, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (663, '2022-02-10 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (665, '2022-02-11 00:00:00', 'CDNI 11/02-C.548823 D:27273888212 N:MATIAS NICOLAS,DI B', 'out', 9000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (666, '2022-02-14 00:00:00', 'BENEF PEI-CUENTA DNI/06-02 PCO FIRST DAT DUMON Y CIA SRL', 'add', 1000, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (667, '2022-02-15 00:00:00', 'COMPRA TARJETA 15/02/22 19:28 COMPR. 000204622286090', 'out', 1696, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (668, '2022-02-16 00:00:00', 'CDNI 16/02-C.755779 D:20287417528 N:RODRIGO,GALVAN', 'out', 4700, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (669, '2022-02-17 00:00:00', 'COMPRA TARJETA 17/02/22 11:42 COMPR. 000204814803778 - SOLAR DE LA ABADIA', 'out', 150, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (670, '2022-02-18 00:00:00', 'DB.DEBIN 18/02-C.806821 DES:0140000701100000524270', 'out', 890, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (671, '2022-02-18 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (672, '2022-02-21 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (673, '2022-02-23 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (674, '2022-02-24 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 27-01-2022 HASTA 23-02-2022', 'add', 2.66, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (675, '2022-02-24 00:00:00', 'BENEF PEI-CUENTA DNI/18-02 PCO RAYUELA LI RAYUELA LIBROS', 'add', 133.5, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (676, '2022-02-25 00:00:00', 'Arreglo Sillones 2/2', 'out', 27500, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (677, '2022-02-26 00:00:00', 'OMPRA PEI CDNI 26/02 N:YPF PORTAN COMBUSTIB S:000392740955', 'out', 4000, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (678, '2022-02-28 00:00:00', 'CDNI 28/02-C.095137 D:20286711651 N:JUAN IGNACIO,RODRIG', 'out', 11150, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (679, '2022-03-01 00:00:00', 'COMPRA PEI CDNI 01/03 N:DUMON Y CIA SRL S:000394170703', 'out', 2350, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (680, '2022-03-02 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.FEBRERO 2022', 'add', 128618.56, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (681, '2022-03-02 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 9624.6, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (682, '2022-03-04 00:00:00', 'Débito del cable e internet de casa', 'out', 6909.98, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (683, '2022-03-07 00:00:00', 'Débito de la MASTERCARD del Banco Provincia', 'out', 14180.47, 0, 35, 134, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (684, '2022-03-08 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (685, '2022-03-09 00:00:00', 'CDNI 09/03-C.036938 D:20253426447 N:GASTON ALBERTO,PERE', 'out', 2500, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (686, '2022-03-11 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 27284.1, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (687, '2022-03-12 00:00:00', 'COMPRA PEI CDNI 12/03 N:PANADERIAS LA IDEAL S:000403417028', 'out', 3280, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (688, '2022-03-12 00:00:00', 'COMPRA PEI CDNI 12/03 N:GREEN HOUSE S:000403647099', 'out', 3471, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (689, '2022-03-15 00:00:00', 'COMPRA PEI CDNI 15/03 N:MAMUTTIS S:000405459669', 'out', 3385.34, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (690, '2022-03-16 00:00:00', 'BENEF PEI-CUENTA DNI/12-03 DNI FIRST PANADERIAS LA IDEAL', 'add', 984, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (691, '2022-03-16 00:00:00', 'BENEF PEI-CUENTA DNI/12-03 DNI FIRST DATA GREEN HOUSE', 'add', 216, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (692, '2022-03-22 00:00:00', 'CDNI 21/03-C.490526 D:27304372821 N:DORALIA LUCIA,AZPAR', 'out', 700, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (693, '2022-03-22 00:00:00', 'CDNI 21/03-C.824895 D:27215932317 N:MARIA ALEJANDRA,BUL', 'out', 1300, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (694, '2022-03-25 00:00:00', 'Marcos BAPRO Caja de Ahorro - 5209-517085/0 / CDNI 25/03-C.970002 D:23259315689 N:TEDESCO, ALBERTO CIP', 'add', 10000, 0, 35, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (695, '2022-03-29 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 23-02-2022 HASTA 28-03-2022', 'add', 2.06, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (696, '2022-03-29 00:00:00', 'Transferencia - Fede Macchi', 'out', 7000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (697, '2022-03-31 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 9624.6, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (698, '2022-04-01 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.MARZO 2022', 'add', 148251.69, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (699, '2022-04-02 00:00:00', 'COMPRA TARJETA 02/04/22 19:55 COMPR. 000209219938195', 'out', 5301.85, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (700, '2022-04-02 00:00:00', 'Pago del gas de casa', 'out', 996.96, 0, 35, 109, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (701, '2022-04-02 00:00:00', 'Pago de agua de 501', 'out', 1262.63, 0, 35, 84, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (702, '2022-04-03 00:00:00', 'COMPRA CT CDNI 03/04 N:MAMUTTIS S:000417550353 C:20187339473', 'out', 1653.47, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (703, '2022-04-04 00:00:00', 'Débito de la MASTERCARD del Banco Provincia', 'out', 15323.35, 0, 35, 134, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (704, '2022-04-04 00:00:00', 'CDNI 04/04-C.576527 D:20116428564 N:FRIGERIO GUILLERMO', 'out', 590, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (705, '2022-04-04 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (706, '2022-04-05 00:00:00', 'RECARGA CELULAR CLARO NRO. 2216497979', 'out', 200, 0, 35, 136, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (707, '2022-04-05 00:00:00', 'Débito del cable e internet de casa', 'out', 7546.97, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (708, '2022-04-05 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (709, '2022-04-05 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (710, '2022-04-05 00:00:00', 'Extracción de ATM', 'out', 10000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (711, '2022-04-06 00:00:00', 'Extracción de ATM', 'out', 150, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (712, '2022-04-06 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (713, '2022-04-06 00:00:00', 'Extracción de ATM', 'out', 10000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (714, '2022-04-07 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (715, '2022-04-07 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (716, '2022-04-07 00:00:00', 'Extracción de ATM', 'out', 10000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (717, '2022-04-08 00:00:00', 'Compra flaca (María de la Paz Sadi)', 'out', 5090, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (718, '2022-04-11 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 33196.36, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (719, '2022-04-14 00:00:00', 'Racciatti (2 meses)', 'add', 2000, 0, 35, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (720, '2022-04-16 00:00:00', 'COMPRA CT CDNI 16/04 N:CARNICERI S:000427702640 C:20255462882', 'out', 4032, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (721, '2022-04-16 00:00:00', 'COMPRA CT CDNI 16/04 N:CHARITO S:000428325851 C:30716243288', 'out', 1699.5, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (722, '2022-04-17 00:00:00', 'COMPRA TARJETA 17/04/22 14:51 COMPR. 000210714702669', 'out', 3900, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (723, '2022-04-19 00:00:00', 'COMPRA TARJETA 19/04/22 22:33 COMPR. 000210922059491 - CARNICERIA OTARAN', 'out', 2195, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (724, '2022-04-24 00:00:00', 'COMPRA CT CDNI 24/04 N:PANADERIA S:000433321764 C:20254760464', 'out', 2590, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (725, '2022-04-27 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 28-03-2022 HASTA 26-04-2022', 'add', 2.55, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (726, '2022-04-29 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (727, '2022-05-02 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 9624.6, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (728, '2022-05-02 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.ABRIL 2022', 'add', 148251.69, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (729, '2022-05-02 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 30872.82, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (730, '2022-05-02 00:00:00', 'Débito de la MASTERCARD del Banco Provincia', 'out', 14722.91, 0, 35, 134, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (731, '2022-05-03 00:00:00', 'Pago de la cuota del colegio Lincoln', 'out', 70120, 0, 35, 128, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (732, '2022-05-04 00:00:00', 'Débito del cable e internet de casa', 'out', 7846.99, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (733, '2022-05-05 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (734, '2022-05-05 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (735, '2022-05-13 00:00:00', 'Pago del gas de casa', 'out', 1144.55, 0, 35, 109, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (736, '2022-05-14 00:00:00', 'CDNI 14/05-C.514880 D:27287696510 N:MARIA LAURA,SIMIELE', 'out', 4200, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (737, '2022-05-17 00:00:00', 'CDNI 17/05-C.051409 D:27242762962 N:ACOSTA ELIDA MAR (Camiseta Matheu)', 'out', 1800, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (738, '2022-05-26 00:00:00', 'RECARGA 26/05 - S.945115', 'out', 700, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (739, '2022-05-27 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 26-04-2022 HASTA 26-05-2022', 'add', 2, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (740, '2022-05-27 00:00:00', 'CDNI 27/05-C.636533 D:27351799388 N:MARIA AGUSTINA,OCHO', 'out', 10000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (741, '2022-05-28 00:00:00', 'COMPRA CT CDNI 28/05 N:PORTSAID S:000459232570 C:27231506638', 'out', 8700, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (742, '2022-05-31 00:00:00', 'RECARGA 31/05 - S.173083', 'out', 700, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (743, '2022-05-31 00:00:00', 'BENEF PEI-CUENTA DNI/28-05 DNI FIRST DATA PORTSAID', 'add', 1200, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (744, '2022-06-01 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.MAYO 2022', 'add', 148226.69, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (745, '2022-06-01 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 9624.6, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (746, '2022-06-01 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 51974.03, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (747, '2022-06-01 00:00:00', 'Débito de la MASTERCARD del Banco Provincia', 'out', 12938.4, 0, 35, 134, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (748, '2022-06-02 00:00:00', 'Pago de la cuota del colegio Lincoln', 'out', 75935, 0, 35, 128, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (749, '2022-06-03 00:00:00', 'CDNI 03/06-C.010597 D:27260225907 N:CEPEDA ALEJANDRA IN', 'out', 1000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (750, '2022-06-03 00:00:00', 'CDNI 03/06-C.291831 D:27293077474 N:MARIA DE LA PAZ,SAD', 'out', 6000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (751, '2022-06-03 00:00:00', 'Débito del cable e internet de casa', 'out', 7796.99, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (752, '2022-06-04 00:00:00', 'COMPRA CT CDNI 04/06 N:PANADERIA S:000464237094 C:20254760464', 'out', 2750, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (753, '2022-06-08 00:00:00', 'BENEF PEI-CUENTA DNI/04-06 DNI FIRST PANADERIAS LA IDEAL', 'add', 825, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (754, '2022-06-16 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (755, '2022-06-18 00:00:00', 'COMPRA TARJETA 18/06/22 18:21 COMPR. 000216921019290 - LI CHAO', 'out', 5800, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (756, '2022-06-21 00:00:00', 'CDNI 21/06-C.704915 D:27306216738 N:CLAUDIA MARCELA,CAS', 'out', 1000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (757, '2022-06-27 00:00:00', 'Natura flaca', 'out', 1530, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (758, '2022-06-28 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 26-05-2022 HASTA 27-06-2022', 'add', 0.76, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (759, '2022-06-30 00:00:00', 'CDNI 30/06-C.914394 D:27260225907 N:CEPEDA ALEJANDRA IN', 'out', 1000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (760, '2022-07-01 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.JUNIO 1ER SAC', 'add', 256800.15, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (761, '2022-07-01 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 9624.6, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (762, '2022-07-04 00:00:00', 'Débito de la MASTERCARD del Banco Provincia', 'out', 12714.12, 0, 35, 134, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (763, '2022-07-04 00:00:00', 'Pago de agua de 501', 'out', 1262.63, 0, 35, 84, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (764, '2022-07-04 00:00:00', 'Pago de la cuota del colegio Lincoln', 'out', 76165, 0, 35, 128, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (765, '2022-07-05 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (766, '2022-07-06 00:00:00', '3 meses - WEB Racciatti', 'add', 3000, 0, 35, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (767, '2022-07-06 00:00:00', 'COMPRA CT CDNI 06/07 N:MAMUTTIS S:000491814962 C:20187339473', 'out', 7089.42, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (768, '2022-07-06 00:00:00', 'Débito del cable e internet de casa', 'out', 8839.99, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (769, '2022-07-07 00:00:00', 'Ñato (Iorio)', 'out', 4100, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (770, '2022-07-08 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 84194.37, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (771, '2022-07-09 00:00:00', 'COMPRA CT CDNI 09/07 N:PANADERIA S:000495176645 C:20254760464', 'out', 3390, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (772, '2022-07-13 00:00:00', 'BENEF PEI-CUENTA DNI/09-07 DNI FIRST PANADERIAS LA IDEAL', 'add', 800, 0, 35, 126, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (773, '2022-07-13 00:00:00', 'Mamuttis', 'out', 1924.6, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (774, '2022-07-15 00:00:00', 'CDNI 15/07-C.549416 D:27260225907 N:CEPEDA ALEJANDRA IN', 'out', 1000, 0, 35, 87, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (775, '2022-07-17 00:00:00', 'Shell', 'out', 2000, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (776, '2022-07-19 00:00:00', 'RECARGA 18/07 - S.718949', 'out', 400, 0, 35, 136, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (777, '2022-07-22 00:00:00', 'COMPRA TARJETA 22/07/22 18:48 COMPR. 000220318444285 - YPF PORTAN COMBUSTIBLE', 'out', 3200.7, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (778, '2022-07-27 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 27-06-2022 HASTA 26-07-2022', 'add', 3.49, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (779, '2022-07-30 00:00:00', 'COMPRA TARJETA 30/07/22 13:13 COMPR. 000221116571031', 'out', 4001.3, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (780, '2022-07-30 00:00:00', 'RECARGA 30/07 - S.184617', 'out', 350, 0, 35, 136, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (781, '2022-07-30 00:00:00', 'RECARGA 30/07 - S.184842', 'out', 110, 0, 35, 136, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (782, '2022-08-01 00:00:00', 'U N L P 7000 819 30546666707 BCO.011 REF.JULIO 2022', 'add', 187108.36, 0, 35, 77, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (783, '2022-08-01 00:00:00', 'Débito de la cuota del Crédito Hipotecario', 'out', 9624.6, 0, 35, 133, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (784, '2022-08-01 00:00:00', 'Débito de la VISA del Banco Provincia', 'out', 66473.88, 0, 35, 131, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (785, '2022-08-01 00:00:00', 'Débito de la MASTERCARD del Banco Provincia', 'out', 12150.76, 0, 35, 134, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (786, '2022-08-02 00:00:00', 'Extracción de ATM', 'out', 15000, 0, 35, 76, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (787, '2022-08-03 00:00:00', 'Débito del cable e internet de casa', 'out', 8839.99, 0, 35, 100, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (788, '2022-08-04 00:00:00', 'COMPRA TARJETA 04/08/22 19:03 COMPR. 000221619776897 - EST DE SERV LA PLATA', 'out', 2999.99, 0, 35, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (789, '2022-08-27 00:00:00', 'Chinos', 'out', 4751.2, 0, 35, 130, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (790, '2022-08-27 00:00:00', 'ACREDIT. INTERESES PERIODO DESDE 26-07-2022 HASTA 26-08-2022', 'add', 1.44, 0, 35, 127, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (791, '2022-08-30 00:00:00', 'Transferencia Recibida', 'add', 2020, NULL, 37, 1, NULL, NULL, 30, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (792, '2022-08-30 00:00:00', 'Transferencia Enviada ', 'out', 2020, NULL, 35, 1, NULL, NULL, 30, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (793, '2022-08-30 00:00:00', 'Recarga celular Santino', 'out', 500, 0, 35, 136, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (794, '2022-08-30 00:00:00', 'Recarga celular Marcos', 'out', 500, 0, 35, 136, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (795, '2021-06-01 00:00:00', 'Depósito por INTERESES CAPITALIZADOS', 'add', 4.49, 0, 34, 111, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (796, '2021-06-01 00:00:00', 'CRED HABERES', 'add', 92836.06, 0, 34, 95, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (797, '2021-06-01 00:00:00', 'CRED HABERES', 'add', 2420, 0, 34, 95, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (798, '2021-06-01 00:00:00', 'Débito cuota del préstamo para la compra de equipo de energía solar', 'out', 8487.39, 0, 34, 94, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (799, '2021-06-01 00:00:00', 'Transferencia Recibida', 'add', 40000, NULL, 33, 1, NULL, NULL, 31, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (800, '2021-06-01 00:00:00', 'Transferencia Enviada ', 'out', 40000, NULL, 34, 1, NULL, NULL, 31, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (801, '2021-06-01 00:00:00', 'Débito COMISION PAQUETES Banco Nación', 'out', 1361.22, 0, 34, 91, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (802, '2021-06-01 00:00:00', 'Débito I.V.A. BASE Banco Nación', 'out', 285.86, 0, 34, 92, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (803, '2021-06-02 00:00:00', 'Transferencia Recibida', 'add', 30000, NULL, 33, 1, NULL, NULL, 32, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (804, '2021-06-02 00:00:00', 'Transferencia Enviada ', 'out', 30000, NULL, 34, 1, NULL, NULL, 32, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (805, '2021-06-08 00:00:00', 'Transferencia Seminario', 'add', 3300, 0, 34, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (806, '2021-06-11 00:00:00', 'CRED DATANET (Profesorado)', 'add', 13000, 0, 34, 79, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (807, '2021-06-11 00:00:00', 'Débito por RECAUDACION ARBA', 'out', 390, 0, 34, 119, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (808, '2021-06-12 00:00:00', 'Chino', 'out', 702, 0, 34, 75, NULL, NULL, NULL, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (809, '2021-06-14 00:00:00', 'Transferencia Recibida', 'add', 20000, NULL, 33, 1, NULL, NULL, 33, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (810, '2021-06-14 00:00:00', 'Transferencia Enviada ', 'out', 20000, NULL, 34, 1, NULL, NULL, 33, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (811, '2021-06-19 00:00:00', 'Transferencia Recibida', 'add', 6000, NULL, 33, 1, NULL, NULL, 34, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (812, '2021-06-19 00:00:00', 'Transferencia Enviada ', 'out', 6000, NULL, 34, 1, NULL, NULL, 34, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (813, '2021-06-26 00:00:00', 'Transferencia Recibida', 'add', 3000, NULL, 33, 1, NULL, NULL, 35, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (814, '2021-06-26 00:00:00', 'Transferencia Enviada ', 'out', 3000, NULL, 34, 1, NULL, NULL, 35, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (815, '2021-06-30 00:00:00', 'Transferencia Recibida', 'add', 8000, NULL, 33, 1, NULL, NULL, 36, NULL, NULL, 1, '1'),
+                                                                                                                                                                                                          (816, '2021-06-30 00:00:00', 'Transferencia Enviada ', 'out', 8000, NULL, 34, 1, NULL, NULL, 36, NULL, NULL, 1, '1');
 /*!40000 ALTER TABLE `summary` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.tours
+-- Volcando estructura para tabla lv_finanzas.tours
 CREATE TABLE IF NOT EXISTS `tours` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(300) NOT NULL,
@@ -1620,11 +2010,11 @@ CREATE TABLE IF NOT EXISTS `tours` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.tours: ~0 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.tours: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tours` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.tours_attr
+-- Volcando estructura para tabla lv_finanzas.tours_attr
 CREATE TABLE IF NOT EXISTS `tours_attr` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `date` datetime NOT NULL,
@@ -1633,19 +2023,19 @@ CREATE TABLE IF NOT EXISTS `tours_attr` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.tours_attr: ~0 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.tours_attr: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tours_attr` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tours_attr` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.transfer
+-- Volcando estructura para tabla lv_finanzas.transfer
 CREATE TABLE IF NOT EXISTS `transfer` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `id_add` int(11) NOT NULL COMMENT ' id de entrada ',
     `id_out` int(11) NOT NULL COMMENT ' id de salida ',
     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+    ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.transfer: ~26 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.transfer: ~33 rows (aproximadamente)
 /*!40000 ALTER TABLE `transfer` DISABLE KEYS */;
 INSERT INTO `transfer` (`id`, `id_add`, `id_out`) VALUES
                                                       (3, 37, 38),
@@ -1673,24 +2063,31 @@ INSERT INTO `transfer` (`id`, `id_add`, `id_out`) VALUES
                                                       (26, 262, 263),
                                                       (27, 281, 282),
                                                       (28, 296, 297),
-                                                      (29, 304, 305);
+                                                      (29, 304, 305),
+                                                      (30, 791, 792),
+                                                      (31, 799, 800),
+                                                      (32, 803, 804),
+                                                      (33, 809, 810),
+                                                      (34, 811, 812),
+                                                      (35, 813, 814),
+                                                      (36, 815, 816);
 /*!40000 ALTER TABLE `transfer` ENABLE KEYS */;
 
--- Dumping structure for table lv_finanzas.users
+-- Volcando estructura para tabla lv_finanzas.users
 CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
     `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
     `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    `level` int(1) NOT NULL DEFAULT '0',
-    `status` int(1) NOT NULL DEFAULT '0',
+    `level` int(1) NOT NULL DEFAULT 0,
+    `status` int(1) NOT NULL DEFAULT 0,
     `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table lv_finanzas.users: ~1 rows (approximately)
+-- Volcando datos para la tabla lv_finanzas.users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `level`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
     (1, 'admin', 'admin@admin.com', '$2y$10$ylEQm2Mx4dfq/tgQRJUo7eikP3cls0bxvpevRUzUQTapy5pDxcw.i', 1, 1, 'mFnRyYPcs2ev9jFIcFviC6ecEhAbn1BjdiabhqdSTgRiYZnwFAOaFtlYPrll', '2018-01-23 05:16:47', '2018-01-23 05:16:47');
