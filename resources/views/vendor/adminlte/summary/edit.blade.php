@@ -100,15 +100,15 @@
 
 
 
-                  <input type="text"  step="any" required maxlength="200"  data-mask-reverse="true" step="0.01"  name="amount"  value="<?php echo $data->amount ?>" class="form-control" placeholder="Monto del Movimiento">
-                 
+                  <input type="text"  step="any" required maxlength="200"  data-mask-reverse="true"  data-mask="000.000.000.000.000,00" name="amount"  value="<?php echo $data->amount ?>" class="form-control" placeholder="Monto del Movimiento">
+
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Impuesto</label>
                   
                   
                  
-                  <input type="text" maxlength="200" name="tax" value="<?php echo $data->tax ?>"      data-mask-reverse="true" class="form-control" placeholder="Impuesto">
+                  <input type="text" maxlength="200" name="tax" value="<?php echo $data->tax ?>"      data-mask-reverse="true" data-mask="000.000.000.000.000,00" class="form-control" placeholder="Impuesto">
                 
                   
                 </div>

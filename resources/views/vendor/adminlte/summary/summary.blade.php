@@ -248,7 +248,7 @@
                                                                 <td>{{ $summarys->id }}</td>
                                                                 @if( $summarys->created_at )
                                                                     <?php  $datef = date_create($summarys->created_at);
-                                                                    $fecha = date_format($datef, 'd-m-Y ');
+                                                                    $fecha = date_format($datef, 'Y-m-d ');
                                                                     ?>
                                                                 @endif
                                                                 <td>{{ $fecha }}</td>
