@@ -107,6 +107,7 @@ $(function () {
 			"dom": "<'row'<'col-sm-10 'f><'col-sm-2  hidden-xs'B>>t<'bottom 'p>",
 			//"lengthChange": true,
 			"responsive": false,
+			scrollX: true,
             buttons: [
                 'csvHtml5',
                 {
