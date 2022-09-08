@@ -49,10 +49,12 @@ class balanceController extends Controller
         $start = $request->input('start');
         $finish = $request->input('finish');
         $categorias = $request->input('categoria');
+
+        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
         if($year && !$start && !$finish && !$categorias){
 
 
-            $tipo = $request->input('tipo');
+            //$tipo = $request->input('tipo');
 
 
             $start = Carbon::parse($start);
@@ -61,7 +63,7 @@ class balanceController extends Controller
             $dataTmp = array();
             $r=(new summaryController)->pass($act='categoria');
             if($r>0){
-                $categories = categories::whereNotIn('id', [1])->get();
+                //$categories = categories::whereNotIn('id', [1])->get();
                 if( $categorias) {
                     $categoriaselet = categories::where('id','=',$categorias)->first();
 
@@ -140,7 +142,8 @@ class balanceController extends Controller
                         $dataTmp[$d] = $this->filterData($data,$d);
                     }
                     $summary = array();
-                    $attrs = categories::whereNotIn('id', [1])->get();
+                    $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+
                     $categoriaselet = array();
                     $catesnull= categories::all();
                     $data = array();
@@ -154,6 +157,7 @@ class balanceController extends Controller
             }
 
         } else {
+            //echo 'fecha: '.$request->input('start');
             $start = $request->input('start');
             $finish = $request->input('finish');
             $tipo = $request->input('tipo');
@@ -162,8 +166,25 @@ class balanceController extends Controller
                 $tipo= 'out';
             }
 
-            $start = Carbon::parse($start);
-            $finish =Carbon::parse($finish);
+            $dt = $year;
+
+
+
+
+            if ($start){
+                $start1 = Carbon::parse($start);
+            }
+            else{
+                $start1 =  Carbon::parse( $dt.'-01-01');
+            }
+
+            if ($finish){
+                $finish1 =Carbon::parse($finish);
+            }
+            else{
+                $finish1 = Carbon::parse($dt.'-12-31');
+            }
+
 
             $dataTmp = array();
             $r=(new summaryController)->pass($act='categoria');
@@ -201,11 +222,12 @@ class balanceController extends Controller
                         });
 
 
+                            $listDates = $this->generateDateRange($start1,$finish1);
+                            foreach ($listDates as $d){
+                                $dataTmp[$d] = $this->filterData($data,$d);
+                            }
 
-                        $listDates = $this->generateDateRange($start,$finish);
-                        foreach ($listDates as $d){
-                            $dataTmp[$d] = $this->filterData($data,$d);
-                        }
+
                     }
 
                     return view('vendor.adminlte.balance.balance',
@@ -234,14 +256,14 @@ class balanceController extends Controller
         $categorias = $request->input('categoria');
         $tipo= 'out';
 
-
+        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
         $start = Carbon::parse($start);
         $finish =Carbon::parse($finish);
 
         $dataTmp = array();
         $r=(new summaryController)->pass($act='categoria');
         if($r>0){
-            $categories = categories::whereNotIn('id', [1])->get();
+            //$categories = categories::whereNotIn('id', [1])->get();
             if( $categorias) {
                 $categoriaselet = categories::where('id','=',$categorias)->first();
 
@@ -320,7 +342,7 @@ class balanceController extends Controller
                     $dataTmp[$d] = $this->filterData($data,$d);
                 }
                 $summary = array();
-                $attrs = categories::whereNotIn('id', [1])->get();
+                $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
                 $categoriaselet = array();
                 $catesnull= categories::all();
                 $data = array();
@@ -340,7 +362,7 @@ class balanceController extends Controller
         $categorias = $request->input('categoria');
         $tipo= 'add';
 
-
+        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
         $start = Carbon::parse($start);
         $finish =Carbon::parse($finish);
 
@@ -348,7 +370,7 @@ class balanceController extends Controller
         $r=(new summaryController)->pass($act='categoria');
         if($r>0){
 //            $categories = categories::all();
-            $categories = categories::whereNotIn('id', [1])->get();
+
 
             if( $categorias) {
                 $categoriaselet = categories::where('id','=',$categorias)->first();
@@ -428,7 +450,7 @@ class balanceController extends Controller
                     $dataTmp[$d] = $this->filterData($data,$d);
                 }
                 $summary = array();
-                $attrs = categories::whereNotIn('id', [1])->get();
+                $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
                 $categoriaselet = array();
                 $catesnull= categories::all();
                 $data = array();
