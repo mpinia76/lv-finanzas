@@ -42,7 +42,7 @@ class balanceController extends Controller
 
     public function index(Request $request)
     {
-
+        ini_set('memory_limit', -1);
 
         $year = $request->input('year');
         $tipo = $request->input('tipo');
@@ -251,6 +251,7 @@ class balanceController extends Controller
     }
     public function indexinit(Request $request)
     {
+        ini_set('memory_limit', -1);
         $start = $request->input('start');
         $finish = $request->input('finish');
         $categorias = $request->input('categoria');
@@ -357,6 +358,7 @@ class balanceController extends Controller
     }
     public function indexadd(Request $request)
     {
+        ini_set('memory_limit', -1);
         $start = $request->input('start');
         $finish = $request->input('finish');
         $categorias = $request->input('categoria');
