@@ -270,6 +270,7 @@ class balanceController extends Controller
 
 
                     $listDates = $this->generateDateRange($start1,$finish1);
+                    print_r($listDates);
                     foreach ($listDates as $d){
                         $dataTmp[$d] = $this->filterData($data,$d);
                     }
