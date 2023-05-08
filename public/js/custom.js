@@ -141,7 +141,7 @@ $(function () {
                 ]
 		});
 		$('#summary').DataTable({
-				//"order":[[0,"desc"]],
+				"order":[[0,"desc"]],
                 "dom": "<'row'<'col-sm-10 'f><'col-sm-2  hidden-xs'B>>t<'bottom 'p>",
                 //"lengthChange": true,
                 "responsive": false,
