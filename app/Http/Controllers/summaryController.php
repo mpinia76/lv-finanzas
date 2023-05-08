@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 
+
 class summaryController extends Controller
 {
   
@@ -30,7 +31,7 @@ class summaryController extends Controller
     $permisos = $permisos->toArray();
     return $permisos[$act];
    }
-   
+
     public function index(Request $request)
    {    
         
@@ -69,38 +70,52 @@ class summaryController extends Controller
 
           if($tipo==1){
           $filter[] = array('categories_id','=',$tipo);
-          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
+          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
+
+;
 
           
           }else{
           $filter[] = array('type','=',$tipo);
-          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
+          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
+
+;
           }
         }
         if(isset($cuentas)) {
 
           $filter[] = array('account_id','=',$cuentas);
-          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
+          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
+
+;
 
         }
         if(isset($categorias)) {  
           $filter[] = array('categories_id','=',$categorias);
-          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
+          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
+
+;
         
         }
         if(isset($subcategorias)) {  
           $filter[] = array('id_attr','=',$subcategorias);
-          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
+          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
+
+;
         }
 
          if(isset($tf)) {  
           $filter[] = array('tours_id','=',$tf);
-          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
+          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
+
+;
          
         }
         /*if(isset($subcatetours)) {
           $filter[] = array('id_attr_tours','=',$subcatetours);
-          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->get();
+          $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
+
+;
          
         }*/
        
@@ -112,7 +127,9 @@ class summaryController extends Controller
           $finish = new Datetime($finish);
 
          
-          $summary = summary::whereBetween('created_at', [$start, $finish])->where($filter)->where('future','=',1)->get();
+          $summary = summary::whereBetween('created_at', [$start, $finish])->where($filter)->where('future','=',1)->paginate()
+
+;
 
         }elseif((isset($dias))){
 
@@ -129,20 +146,25 @@ class summaryController extends Controller
               $start=date('Y-m-d',strtotime('today'));
             }
 
-          $summary = summary::whereBetween('created_at', [$start, $hoy])->where($filter)->where('future','=',1)->get();
+          $summary = summary::whereBetween('created_at', [$start, $hoy])->where($filter)->where('future','=',1)->paginate()
+
+;
         }else{
 
             if($filter) {
-                $summary = summary::where('created_at','<=',$hoy)->where('future','=',1)->where($filter)->get();
+                $summary = summary::where('created_at','<=',$hoy)->where('future','=',1)->where($filter)->paginate()
+
+;
             }else {
-                $summary = summary::where('created_at','<=',$hoy)->where('future','=',1)->get();
+                $summary = summary::where('created_at','<=',$hoy)->where('future','=',1)->paginate()
+;
             }
 
 
 
         }
 
-
+          
         foreach ($summary as $s) {
           $name_account = account::find($s->account_id);
           $s->setAttribute('name_account',$name_account->name);
@@ -245,12 +267,276 @@ class summaryController extends Controller
         }
 
 
+
         return view('vendor.adminlte.summary.summary',['summary'=>$summary,'divisa'=>$divisa,'data'=>$account,'data2'=>$categories,'totalfinal'=>$totalfinal,'totalfinaliva'=>$totalfinaliva,'totalfinalivae'=>$totalfinalivae,'tours'=>$tours]);
 
       }else{
           return view('vendor.adminlte.permission',['summary'=>null]);
       }
-   }	
+   }
+
+    // Fetch records
+    public function getSummary(Request $request){
+        $r=$this->pass('movimientos');
+        if($r>0) {
+            ## Read value
+            $draw = $request->get('draw');
+            $start = $request->get("start");
+            $rowperpage = $request->get("length"); // Rows display per page
+
+            $columnIndex_arr = $request->get('order');
+            $columnName_arr = $request->get('columns');
+            $order_arr = $request->get('order');
+            //$search_arr = $request->get('search');
+
+            $columnIndex = $columnIndex_arr[0]['column']; // Column index
+            $columnName = $columnName_arr[$columnIndex]['data']; // Column name
+            $columnSortOrder = $order_arr[0]['dir']; // asc or desc
+            //$searchValue = $search_arr['value']; // Search value
+
+
+            // Total records
+            $totalRecords = summary::select('count(*) as allcount')->count();
+            $totalRecordswithFilter = summary::select('count(*) as allcount')->count();
+
+            //$hoy=date('Y-m-d',strtotime('today - 1 days'));
+            $hoy = new DateTime('now');
+
+            $summary = summary::where('created_at','<=',$hoy)->where('future','=',1)->get();
+            // $summary = summary::all();
+            $categories = categories::all();
+            $tours = tours::all();
+            $account = account::all();
+            $divisa = settings::where('name','divisa')->first();
+
+
+            $total=array();
+            $totaliva=array();
+            $totalivae=array();
+
+            $start = $request->input('start');
+            $finish = $request->input('finish');
+            $dias = $request->input('dias');
+            $tipo = $request->input('tipo');
+            $cuentas = $request->input('cuentas');
+            $categorias = $request->input('categoria');
+            $subcategorias = $request->input('id_attr');
+            $tf = $request->input('tf');
+            //$subcatetours = $request->input('id_attr_tours');
+
+            $filter=array();
+
+
+            if(isset($tipo)) {
+
+                if ($tipo == 1) {
+                    $filter[] = array('categories_id', '=', $tipo);
+                    $summary = summary::where($filter)->where('created_at', '=<', $hoy)->where('future', '=', 1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+                } else {
+                    $filter[] = array('type', '=', $tipo);
+                    $summary = summary::where($filter)->where('created_at', '=<', $hoy)->where('future', '=', 1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+                }
+            }
+            if(isset($cuentas)) {
+
+                $filter[] = array('account_id','=',$cuentas);
+                $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+
+            }
+            if(isset($categorias)) {
+                $filter[] = array('categories_id','=',$categorias);
+                $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+
+            }
+            if(isset($subcategorias)) {
+                $filter[] = array('id_attr','=',$subcategorias);
+                $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+            }
+
+            if(isset($tf)) {
+                $filter[] = array('tours_id','=',$tf);
+                $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+
+            }
+
+
+            if((isset($start)) and (isset($finish))){
+
+                $start = new Datetime($start);
+                $finish = new Datetime($finish);
+
+
+                $summary = summary::whereBetween('created_at', [$start, $finish])->where($filter)->where('future','=',1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+
+            }elseif((isset($dias))){
+
+                if($dias==30){
+                    $start=date('Y-m-d',strtotime('today - 30 days'));
+                }
+                if($dias==15){
+                    $start=date('Y-m-d',strtotime('today - 15 days'));
+                }
+                if($dias==7){
+                    $start=date('Y-m-d',strtotime('today - 7 days'));
+                }
+                if($dias==1){
+                    $start=date('Y-m-d',strtotime('today'));
+                }
+
+                $summary = summary::whereBetween('created_at', [$start, $hoy])->where($filter)->where('future','=',1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+            }else{
+
+                if($filter) {
+                    $summary = summary::where('created_at','<=',$hoy)->where('future','=',1)->where($filter)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+                }else {
+                    $summary = summary::where('created_at','<=',$hoy)->where('future','=',1)->skip($start)
+                        ->take($rowperpage)
+                        ->get();
+                }
+
+
+
+            }
+
+            // Fetch records
+            /*$records = summary::orderBy($columnName, $columnSortOrder)
+                ->select('summary.*')
+                ->skip($start)
+                ->take($rowperpage)
+                ->get();*/
+
+            $data_arr = array();
+
+            foreach ($summary as $record) {
+                $id = $record->id;
+                $datef = date_create($record->created_at);
+                $fecha = date_format($datef, 'Y-m-d ');
+                $created_at = $fecha;
+                $tipo='';
+                if($record->type=="add"){
+                    $tipo='Entrada<small class="label pull-right bg-primary">';
+                    if($record->id_transfer!=""){
+                        $tipo .='<i class="fa fa-exchange"></i>';
+                    }
+                    else{
+                        $tipo .='<i class="fa fa-sort-up"></i>';
+                    }
+                    $tipo .='</small>';
+                }
+                elseif($record->type=="out"){
+                    $tipo='Retiro<small class="label pull-right bg-red">';
+                    if($record->id_transfer!=""){
+                        $tipo .='<i class="fa fa-exchange"></i>';
+                    }
+                    else{
+                        $tipo .='<i class="fa fa-sort-desc"></i>';
+                    }
+                    $tipo .='</small>';
+                }
+                $type = $tipo;
+
+                $amount = $divisa->value.number_format($record->amount, 2, ',', '.');
+                $tax = number_format($record->tax, 2, ',', '.');
+
+                $name_account = account::find($record->account_id);
+               //$s->setAttribute('name_account',$name_account->name);
+
+                $name_categories = categories::find($record->categories_id);
+                //$s->setAttribute('name_categories',$name_categories->name);
+
+
+               /* $name_tours = tours::find($s->tours_id);
+                if($name_tours!=null){
+                    $s->setAttribute('name_tours',$name_tours->name);
+                }
+
+                if(attached::where('summary_id',$s->id)->exists()){
+                    $data_attached = attached::where('summary_id',$s->id)->first();
+                    $s->setAttribute('attached',$data_attached);
+                }else{
+                    $s->setAttribute('attached',null);
+                }
+
+                if(attributes::where('id_categorie',$s->account_id)->exists()){
+                    $data_attributes = attributes::where('id_categorie',$s->account_id)->first();
+                    $s->setAttribute('attributes',$data_attributes);
+                }else{
+                    $s->setAttribute('attributes',null);
+                }*/
+
+
+
+                if($record->id_transfer!=""){
+                    $elimina = "eliminart";
+                    $id = $record->id_transfer;
+                }
+                else{
+                    $elimina = "eliminar";
+                    $id = $record->id;
+                }
+                $acciones='<form role="form" action="'.url('/summary').'/'.$elimina.'/'. $id.'" method="post" enctype="multipart/form-data">'.method_field('DELETE').' '.csrf_field().'<a class="btn btn-sm btn-default" href="'.url('/detalle/detalle').'/'.$record->id.'"><i class="fa fa fa-eye"></i></a>';
+                if($record->attached){
+                    $acciones .='<a class="btn btn-sm btn-default" target="_blank" href="'.url('/download').'/'.$record->attached->id.'"><i class="fa fa-paperclip"></i></a>';
+                }
+                if($record->id_transfer!=""){
+                    $acciones .='<a class="btn btn-sm btn-default" href="'. url('/transfer/edit').'/'. $record->id_transfer.'"><i class="fa fa-edit"></i></a>';
+                }
+                else{
+                    $acciones .='<a class="btn btn-sm btn-default" href="'.url('/summary/edit').'/'. $record->id.'"><i class="fa fa-edit"></i></a>';
+                }
+                $acciones .='<button onclick=\'if(confirmDel() == false){return false;}\' class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash"></i></button></form>';
+                                                                    
+
+
+
+
+
+
+
+
+
+
+                $data_arr[] = array(
+                    "id" => $id,
+                    "created_at" => $created_at,
+                    "type" => $type,
+                    "amount" => $amount,
+                    "tax" => $tax,
+                    "concept" => $record->concept,
+                    "name_account" => $name_account->name,
+                    "name_categories" => $name_categories->name,
+                    "acciones" => $acciones
+                );
+            }
+
+            $response = array(
+                "draw" => intval($draw),
+                "iTotalRecords" => $totalRecords,
+                "iTotalDisplayRecords" => $totalRecordswithFilter,
+                "aaData" => $data_arr
+            );
+
+            return response()->json($response);
+        }
+    }
      
    public function crear(Request $request){
 

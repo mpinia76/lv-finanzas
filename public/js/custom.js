@@ -141,10 +141,24 @@ $(function () {
                 ]
 		});
 		$('#summary').DataTable({
-				"order":[[0,"desc"]],
+				//"order":[[0,"desc"]],
                 "dom": "<'row'<'col-sm-10 'f><'col-sm-2  hidden-xs'B>>t<'bottom 'p>",
                 //"lengthChange": true,
                 "responsive": false,
+			processing: true,
+			serverSide: true,
+			ajax: "getSummary",
+			columns: [
+				{ data: 'id' },
+				{ data: 'created_at' },
+				{ data: 'type' },
+				{ data: 'amount' },
+				{ data: 'tax' },
+				{ data: 'concept' },
+				{ data: 'name_account' },
+				{ data: 'name_categories' },
+				{ data: 'acciones' },
+			],
                 buttons: [
 					'pdfHtml5',
 					'csvHtml5',

@@ -102,6 +102,7 @@ Route::group(['middleware' => 'auth'], function () {
     																	//							
     //listar attached                                                 	/
     Route::get('summary/summary','summaryController@index');
+    Route::get('summary/getSummary','summaryController@getSummary');
     //agregar attached
     Route::get('summary/create','summaryController@crear');
  //    Route::get('summary/create', function ()    {
