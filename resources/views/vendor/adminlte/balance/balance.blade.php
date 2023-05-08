@@ -147,12 +147,14 @@
                                                                         {{--solo si tiene categoria--}}
                                                                         @if( $filter )
                                                                             @foreach ($timeline as $t=> $valor)
+
                                                                                 @if( $valor )
                                                                                     <td>
                                                                                         <?php $sum = 0; ?>
                                                                                         @foreach ($valor as  $datos)
+
                                                                                             @if($datos->amount)
-                                                                                                @if($datos->id_attr ==  $ss->id)
+                                                                                                @if($datos->categories_id ==  $ss->id)
                                                                                                  <?php $sum += $datos->amount;
                                                                                                  ?>
                                                                                                 @endif

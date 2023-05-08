@@ -50,6 +50,9 @@ class balanceController extends Controller
         $finish = $request->input('finish');
         $categorias = $request->input('categoria');
 
+
+
+
         $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
         if($year && !$start && !$finish && !$categorias){
 
@@ -162,6 +165,7 @@ class balanceController extends Controller
             $finish = $request->input('finish');
             $tipo = $request->input('tipo');
             $categorias = $request->input('categoria');
+
             if(!$tipo){
                 $tipo= 'out';
             }
@@ -188,8 +192,10 @@ class balanceController extends Controller
 
             $dataTmp = array();
             $r=(new summaryController)->pass($act='categoria');
+
             if($r>0){
                 $categories = categories::whereNotIn('id', [1])->get();
+
                 if( $categorias) {
                     $categoriaselet = categories::where('id','=',$categorias)->first();
 
@@ -235,10 +241,47 @@ class balanceController extends Controller
                             'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'start'=>$start,'finish'=>$finish,'yearSelected'=>$year]);
                 }
                 else {
+
+
+                    $data = DB::table('summary')
+                        ->join('categories','categories.id','=','summary.categories_id')
+                        ->select('summary.*', 'categories.name as categories_name', 'categories.id as categories_id'
+                            ,'categories.type as categories_type', 'categories.description as categories_description')
+                        ->where('categories.type','=',$tipo)
+                        ->whereNotIn('categories.id', [1])
+                        ->where('future','=',1)->get();
+
+                    $data = $data->map(function($item) {
+                        $summaryCreateAt = Carbon::parse($item->created_at);
+                        $numberOf = $summaryCreateAt->format('m-Y');
+                        if ($item->id_attr) {
+                            $lados = attributes::where('id','=',$item->id_attr)->first();
+//                    $lados = DB::table('attr_values')->where('id_categorie','=',$item->categories_id)->get();
+                            $item->subcats = $lados;
+                        }else {
+                            $item->subcats = null;
+                        }
+                        $item->numberOf = $numberOf;
+                        //$this->insideArray(null,['key'=>$numberOf,'value'=>$item]);
+                        return $item;
+                    });
+
+
+
+
+                    $listDates = $this->generateDateRange($start1,$finish1);
+                    print_r($listDates);
+                    foreach ($listDates as $d){
+                        $dataTmp[$d] = $this->filterData($data,$d);
+                    }
                     $summary = array();
-                    $attrs = array();
+                    $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+
                     $categoriaselet = array();
+                    $catesnull= categories::all();
                     $data = array();
+
+
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
                             'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'yearSelected'=>$year]);

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        /*DB::listen(function ($query) {
+            Log::debug("DB: " . $query->sql . "[".  implode(",",$query->bindings). "]");
+        });*/
     }
 
     /**
