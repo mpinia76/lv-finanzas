@@ -145,10 +145,14 @@ $(function () {
 		$('#summary').DataTable({
 				"order":[[0,"desc"]],
                 "dom": "<'row'<'col-sm-10 'f><'col-sm-2  hidden-xs'B>>t<'bottom 'p>",
-                "lengthChange": true,
-                "responsive": true,
+                "lengthChange": false,
+                "responsive": false,
+			"bFilter": false,
 			"processing": true,
 			"serverSide": true,
+			language: {
+				processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>'
+			},
 			"ajax": { "url" :"getSummary",
 				"type": "GET",
 				"data": {
