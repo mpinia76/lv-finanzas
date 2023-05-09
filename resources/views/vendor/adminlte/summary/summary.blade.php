@@ -4,6 +4,7 @@
 
 
     <?php
+    $dias='';
     if (isset($_GET['dias'])) {
 
         $dias = $_GET["dias"];
@@ -27,8 +28,8 @@
         $startf = '';
     }
 
-    if (isset($_GET['start'])) {
-        $startf = $_GET["start"];
+    if (isset($_GET['startf'])) {
+        $startf = $_GET["startf"];
     } else {
         $startf = "";
     }
@@ -55,11 +56,7 @@
     } else {
         $cuentasf = "";
     }
-    if (isset($_GET["tipo"])) {
-        $tipof = $_GET["tipo"];
-    } else {
-        $tipof = "";
-    }
+
 
     if (isset($_GET["categoria"])) {
         $categoriaf = $_GET["categoria"];
@@ -108,37 +105,37 @@
                                         <div class="col-sm-12 add_top_10">
 
                                             <div class="form-group col-sm-6">
-                                                <input type="date" name="start" placeholder="Fecha Inicio"
-                                                       class="form-control">
+                                                <input type="date" id="startf" name="startf" placeholder="Fecha Inicio"
+                                                       class="form-control" value="{{$startf}}">
                                             </div>
                                             <div class="form-group col-sm-6">
-                                                <input type="date" name="finish" placeholder="Fecha Final"
-                                                       class="form-control">
+                                                <input type="date" id="finish" name="finish" placeholder="Fecha Final"
+                                                       class="form-control" value="{{$finishf}}">
                                             </div>
                                         </div>
                                         <div class="col-sm-12 add_top_1">
                                             <div class="col-sm-2 add_top_1  ">
-                                                <select class="form-control" type="text" name="dias">
+                                                <select class="form-control" type="text" name="dias" id="dias">
                                                     <option value="">Filtrar Por dias</option>
-                                                    <option value="30">Ultimo mes</option>
-                                                    <option value="15">Ultimos 15 dias</option>
-                                                    <option value="7">Ultimos 7 dias</option>
-                                                    <option value="1">Hoy</option>
+                                                    <option value="30" {{($dias==30)? 'selected="selected"':''}}>Ultimo mes</option>
+                                                    <option value="15" {{($dias==15)? 'selected="selected"':''}}>Ultimos 15 dias</option>
+                                                    <option value="7" {{($dias==7)? 'selected="selected"':''}}>Ultimos 7 dias</option>
+                                                    <option value="1" {{($dias==1)? 'selected="selected"':''}}>Hoy</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-3 add_top_1">
-                                                <select class="form-control" type="text" name="tipo">
+                                                <select class="form-control" type="text" name="tipo" id="tipo">
                                                     <option value="">Tipo de movimiento</option>
-                                                    <option value="1">Transferencia</option>
-                                                    <option value="add">Entradas</option>
-                                                    <option value="out">Retiros</option>
+                                                    <option value="1" {{($tipof==1)? 'selected="selected"':''}}>Transferencia</option>
+                                                    <option value="add" {{($tipof=='add')? 'selected="selected"':''}}>Entradas</option>
+                                                    <option value="out" {{($tipof=='out')? 'selected="selected"':''}}>Retiros</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-2 add_top_1">
-                                                <select class="form-control js-example-basic-single" type="text" name="cuentas">
+                                                <select class="form-control js-example-basic-single" type="text" name="cuentas" id="cuentas">
                                                     <option value="">Cuentas</option>
                                                     @foreach ($data as $datas)
-                                                        <option value="{{ $datas->id }}">{{ $datas->name }}</option>
+                                                        <option value="{{ $datas->id }}" {{($cuentasf==$datas->id)? 'selected="selected"':''}}>{{ $datas->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -181,7 +178,7 @@
                                                     @foreach ($data2 as $datas2)
                                                         @if($datas2->name!="transferencia")
                                                             <option class="attr-{{$datas2->type}}"
-                                                                    value="{{ $datas2->id }}">
+                                                                    value="{{ $datas2->id }}" {{($categoriaf==$datas2->id)? 'selected="selected"':''}}>
                                                                 {{ $datas2->name }}
                                                             </option>
                                                         @endif

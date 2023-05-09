@@ -147,7 +147,17 @@ $(function () {
                 "responsive": false,
 			processing: true,
 			serverSide: true,
-			ajax: "getSummary",
+			ajax: { "url" :"getSummary",
+				"type": "GET",
+				"data": {
+					"startf": $('#startf').val(),
+					"finish": $('#finish').val(),
+					"dias": $('#dias').val(),
+					"tipo": $('#tipo').val(),
+					"cuentas": $('#cuentas').val(),
+					"categoria": $('#categorie_select').val(),
+				}
+			},
 			columns: [
 				{ data: 'id' },
 				{ data: 'created_at' },
