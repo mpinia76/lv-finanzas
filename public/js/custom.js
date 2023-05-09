@@ -1,7 +1,7 @@
 $(function () {
 
 
-
+	$('.dataTables_processing').css({"display": "block", "z-index": 10000 })
 
 		var myLineChart = null;
 		$('#type_movimiento').on('change',function(){
@@ -143,11 +143,11 @@ $(function () {
 		$('#summary').DataTable({
 				"order":[[0,"desc"]],
                 "dom": "<'row'<'col-sm-10 'f><'col-sm-2  hidden-xs'B>>t<'bottom 'p>",
-                //"lengthChange": true,
-                "responsive": false,
-			processing: true,
-			serverSide: true,
-			ajax: { "url" :"getSummary",
+                "lengthChange": true,
+                "responsive": true,
+			"processing": true,
+			"serverSide": true,
+			"ajax": { "url" :"getSummary",
 				"type": "GET",
 				"data": {
 					"startf": $('#startf').val(),
@@ -158,6 +158,7 @@ $(function () {
 					"categoria": $('#categorie_select').val(),
 				}
 			},
+
 			columns: [
 				{ data: 'id' },
 				{ data: 'created_at' },
@@ -170,10 +171,43 @@ $(function () {
 				{ data: 'acciones' },
 			],
                 buttons: [
-					'pdfHtml5',
-					'csvHtml5',
-                ]
+
+					{
+						extend: 'pdf',
+						text: 'PDF',
+						className: 'btn btn-danger btn-sm',
+						action: serverSideButtonAction
+					}
+
+                ],
+
 		});
+	function serverSideButtonAction(e, dt, node, config) {
+
+		var me = this;
+		var button = config.text.toLowerCase();
+		if (typeof $.fn.dataTable.ext.buttons[button] === "function") {
+			button = $.fn.dataTable.ext.buttons[button]();
+		}
+		var len = dt.page.len();
+		var start = dt.page();
+		dt.page(0);
+
+		// Assim que ela acabar de desenhar todas as linhas eu executo a função do botão.
+		// ssb de serversidebutton
+		dt.context[0].aoDrawCallback.push({
+			"sName": "ssb",
+			"fn": function () {
+				$.fn.dataTable.ext.buttons[button].action.call(me, e, dt, node, config);
+				dt.context[0].aoDrawCallback = dt.context[0].aoDrawCallback.filter(function (e) { return e.sName !== "ssb" });
+			}
+		});
+		dt.page.len(999999999).draw();
+		setTimeout(function () {
+			dt.page(start);
+			dt.page.len(len).draw();
+		}, 5000);
+	}
 		$('#futuro').DataTable({
 				"order":[[1,"asc"]],
                 "dom": "<'row'<'col-sm-10 'f><'col-sm-2  hidden-xs'B>>t<'bottom 'p>",
