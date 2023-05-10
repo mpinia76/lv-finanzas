@@ -47,6 +47,7 @@ class pdfController extends Controller
      public function index(Request $request)
    {
        set_time_limit(0);
+       ini_set("memory_limit","-1");
     $r=(new summaryController)->pass($act='pdf');
       if($r=8 || $r=1 || $r=2 || $r=3 || $r=4 || $r=5 || $r=6 || $r=7   ){
         //$hoy=date('Y-m-d',strtotime('today - 1 days'));
