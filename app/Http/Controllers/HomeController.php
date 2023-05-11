@@ -72,14 +72,14 @@ class HomeController extends Controller
 
           }
            
-          $summary = summary::where('created_at','<=',$hoy)->orderBy('id','desc')->limit(5)->get();
+          $summary = summary::where('created_at','<=',$hoy)->orderBy('id','desc')->limit(10)->get();
 
 
 
 
           $categories = categories::all();
           $divisa = settings::where('name','divisa')->first();
-          $account = account::orderBy('id','desc')->limit(5)->get();
+          $account = account::orderBy('id','desc')->limit(10)->get();
          
           $response =array();
           foreach ($account as $a) {
