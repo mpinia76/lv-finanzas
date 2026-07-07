@@ -37,7 +37,7 @@
 															    	<td>{{ $summarys->name }}</td>
 															    	<td>{{ $summarys->type}}</td>
 															    	<td>{{ $summarys->number }}</td>
-															    	<td><n class="n">{{$divisa->value}}{{ number_format($summarys->total, 2, ',', '.') }}</n>
+															    	<td><n class="n">@if(isset($summarys->currency) && $summarys->currency=='USD')USD {{ number_format($summarys->total, 2, ',', '.') }} <small>(&asymp; {{$divisa->value}}{{ number_format($summarys->total_ars, 2, ',', '.') }})</small>@else{{$divisa->value}}{{ number_format($summarys->total, 2, ',', '.') }}@endif</n>
 															    	 </td>
 															    	 <td><center><a class="btn btn-sm btn-default"  href="{{ url('/account/detalle')}}/{{ $summarys->id }}"><i class="fa fa fa-eye"></i></a></center></td>
 															    </tr>  

@@ -35,7 +35,15 @@
                 			Ahorro
                 		</option>
                 	</select>
-	                
+
+		        </div>
+                <div class="form-group">
+                	<label>Moneda</label>
+                	<select class="form-control" required name="currency">
+                		<option value="ARS">ARS - Pesos</option>
+                		<option value="USD">USD - Dólares</option>
+                		<option value="EUR">EUR - Euros</option>
+                	</select>
 		        </div>
               </div>
               <div class="box-footer">

@@ -10,6 +10,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Inicio</span></a></li>
             <li><a href="{{ url('montos/montos') }}"><i class='fa fa-credit-card'></i> <span>Saldo</span></a></li>
+            <li><a href="{{ url('config/cotizacion') }}"><i class='fa fa-usd'></i> <span>Cotización dólar</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-bar-chart'></i> <span>Movimientos</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

@@ -129,6 +129,13 @@ Route::group(['middleware' => 'auth'], function () {
     //agregar attached
 
     ///////////////////////////////
+    /////////Configuracion ////////////
+    ////////////////////////////////////////////////////////////////////////
+    // Cotizacion del dolar (editable desde la app)
+    Route::get('config/cotizacion','settingsController@cotizacion');
+    Route::post('config/cotizacion','settingsController@guardarCotizacion');
+
+    ///////////////////////////////
     /////////INICIO ////////////
     ////////////////////////////////////////////////////////////////////////
     																	///										  

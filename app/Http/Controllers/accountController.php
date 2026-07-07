@@ -41,6 +41,7 @@ class accountController extends Controller
         'name' => $request->name,
         'number' =>$request->number,
         'type'=>  $request->type,
+        'currency'=> $request->input('currency','ARS'),
         ]);    
 
       $bitacora =  new bitacora;
@@ -80,6 +81,7 @@ class accountController extends Controller
 	      $account->name = $request->name;
     		$account->number = $request->number;
     		$account->type = $request->type;
+    		$account->currency = $request->input('currency','ARS');
 				$account->save();
 
         $bitacora = new bitacora;
@@ -106,6 +108,7 @@ class accountController extends Controller
         $categories = categories::all();
         $account = account::all();
         $divisa = settings::where('name','divisa')->first();
+        $usd = settings::where('name','cotizacion_usd')->first();
 
          //total saldo
           $response =array();
@@ -163,7 +166,7 @@ class accountController extends Controller
 
           
          
-              return view('vendor.adminlte.account.detalle',['summary'=>$summary,'divisa'=>$divisa,'id'=>$id,'nombre'=>$nombre,'totalf'=>$totalf]);
+              return view('vendor.adminlte.account.detalle',['summary'=>$summary,'divisa'=>$divisa,'usd'=>$usd,'id'=>$id,'nombre'=>$nombre,'totalf'=>$totalf]);
       }
 
         $start = $request->input('start');
@@ -192,7 +195,7 @@ class accountController extends Controller
           }
         }
 
-        return view('vendor.adminlte.account.detalle',['summary'=>$summary,'divisa'=>$divisa,'id'=>null,'nombre'=>null,'totalf'=>null]);
+        return view('vendor.adminlte.account.detalle',['summary'=>$summary,'divisa'=>$divisa,'usd'=>$usd,'id'=>null,'nombre'=>null,'totalf'=>null]);
          }else{
         return view('vendor.adminlte.permission',['summary'=>null]);
       }

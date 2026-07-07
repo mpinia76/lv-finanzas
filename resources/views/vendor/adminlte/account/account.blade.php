@@ -31,6 +31,7 @@
 																	<th>Nombre</th>
 																	<th>Numero de cuenta</th>
 																	<th>Tipo</th>
+																	<th>Moneda</th>
 																	<th>Acción</th>
 												            </tr>
 												        </thead>
@@ -42,6 +43,7 @@
 															    	<td>{{ $accounts->name }}</td>
 															    	<td>{{ $accounts->number }}</td>
 															    	<td>{{ $accounts->type }}</td>
+															    	<td>{{ isset($accounts->currency) ? $accounts->currency : 'ARS' }}</td>
 															        <td>
 																	
 														            <form role="form" action = "{{ url('/account/eliminar')}}/{{ $accounts->id }}" method="post"  enctype="multipart/form-data">
@@ -70,10 +72,3 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	
-
-
-
-@endsection

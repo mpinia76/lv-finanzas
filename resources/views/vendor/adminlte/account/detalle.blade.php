@@ -70,7 +70,7 @@
 															    	@else
 															    	<td>Retiro <small class="label pull-right bg-red"><i class="fa fa-sort-desc"></i></small></td>
 															    	@endif
-															        <td>{{$divisa->value}}{{ number_format($summarys->amount, 2, ',', '.') }} </td>
+															        <td>@if(isset($nombre) && isset($nombre->currency) && $nombre->currency=='USD')USD @else{{$divisa->value}}@endif{{ number_format($summarys->amount, 2, ',', '.') }} </td>
 															        <td>{{ number_format($summarys->tax, 2, ',', '.') }} </td>
 															        <td>{{ $summarys->concept }}</td>
 															       
@@ -109,9 +109,9 @@
 
 									<div class="small-box box">
 							            <div class="inner">
-							              <h3>{{ number_format($totalf, 2, ',', '.') }}</h3>
+							              <?php $accCur = (isset($nombre) && isset($nombre->currency)) ? $nombre->currency : 'ARS'; $rate = (isset($usd) && $usd) ? floatval(str_replace(',', '.', $usd->value)) : 1; ?><h3>@if($accCur=='USD')USD {{ number_format($totalf, 2, ',', '.') }}@else{{ number_format($totalf, 2, ',', '.') }}@endif</h3>
 
-							              <p>{{$divisa->value}}</p>
+							              <p>@if($accCur=='USD')Dólares &nbsp; <small>(&asymp; {{$divisa->value}}{{ number_format($totalf*$rate, 2, ',', '.') }})</small>@else{{$divisa->value}}@endif</p>
 							            </div>
 							            <div class="icon">
 							              <i class="fa fa-money"></i>

@@ -46,21 +46,12 @@
                 			ahorro
                 			</option>
                 		@endif
-                			
-                		
-                		
-                		
+
                 	</select>
-	                
+
 		        </div>
-              </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Editar</button>
-              </div>
-            </form>
-        </div>
-												
-
-	
-
-@endsection
+                <div class="form-group">
+                	<label>Moneda</label>
+                	<?php $cur = isset($data->currency) ? $data->currency : 'ARS'; ?>
+                	<select required class="form-control" name="currency">
+                		<option value="ARS" @if($cur=='ARS') selected @endif>ARS - Pesos</option>

@@ -25,6 +25,8 @@ class totalController extends Controller
         $account = account::all();
         $account2 = account::all();
         $divisa = settings::where('name','divisa')->first();
+        $usd = settings::where('name','cotizacion_usd')->first();
+        $rate = $usd ? floatval(str_replace(',', '.', $usd->value)) : 1;
        
        	$response =array();
         $total =array();
@@ -40,13 +42,13 @@ class totalController extends Controller
         		}
         	}
     		$a->setAttribute('total',$total[$a->id]);
-
+    		$cur = isset($a->currency) ? $a->currency : 'ARS';
+    		$a->setAttribute('total_ars', ($cur=='USD') ? $total[$a->id]*$rate : $total[$a->id]);
         }
         
         $totalfinal=0;
-        foreach ($total as $b) {
-           
-           $totalfinal+=$b;
+        foreach ($account as $b) {
+           $totalfinal += $b->total_ars;
         }
 
            //total add
@@ -205,7 +207,7 @@ class totalController extends Controller
 
              
       
- return view('vendor.adminlte.montos.montos',['summary'=>$account,'divisa'=>$divisa,'totalfinal'=>$totalfinal,'futuro'=>$futuro,'liquidez'=>$account2]);
+ return view('vendor.adminlte.montos.montos',['summary'=>$account,'divisa'=>$divisa,'usd'=>$usd,'totalfinal'=>$totalfinal,'futuro'=>$futuro,'liquidez'=>$account2]);
 
     }else{
          return view('vendor.adminlte.permission',['summary'=>null]);
