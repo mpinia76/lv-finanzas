@@ -79,7 +79,9 @@ class HomeController extends Controller
 
           $categories = categories::all();
           $divisa = settings::where('name','divisa')->first();
-          $account = account::orderBy('id','desc')->limit(10)->get();
+          $usd = settings::where('name','cotizacion_usd')->first();
+          $rate = $usd ? floatval(str_replace(',', '.', $usd->value)) : 1;
+          $account = account::orderBy('id','desc')->get();
          
           $response =array();
           foreach ($account as $a) {
@@ -94,7 +96,18 @@ class HomeController extends Controller
                   }
               }
               $a->setAttribute('total',$total[$a->id]);
+              $cur = isset($a->currency) ? $a->currency : 'ARS';
+              $a->setAttribute('total_ars', ($cur=='USD') ? $total[$a->id]*$rate : $total[$a->id]);
           }
+
+          // Subtotales por moneda + patrimonio combinado
+          $totalArs = 0; $totalUsd = 0;
+          foreach ($account as $a) {
+              $cur = isset($a->currency) ? $a->currency : 'ARS';
+              if ($cur == 'USD') { $totalUsd += $a->total; } else { $totalArs += $a->total; }
+          }
+          $totalfinal    = $totalArs + $totalUsd * $rate;
+          $totalfinalUsd = ($rate > 0) ? $totalfinal / $rate : 0;
          
           //total de entradas y salidas
           $mes=date('Y-m-d',strtotime('today - 30 days'));
@@ -128,7 +141,7 @@ class HomeController extends Controller
             $name_categories = categories::find($a->categories_id);
             $a->setAttribute('name_categories',$name_categories->name);
           }
-          return view('vendor.adminlte.home',['summary'=>$account,'account'=>$summary,'add'=>$add,'out'=>$out,'divisa'=>$divisa,'alerta'=>$alerta]);
+          return view('vendor.adminlte.home',['summary'=>$account,'account'=>$summary,'add'=>$add,'out'=>$out,'divisa'=>$divisa,'usd'=>$usd,'rate'=>$rate,'totalArs'=>$totalArs,'totalUsd'=>$totalUsd,'totalfinal'=>$totalfinal,'totalfinalUsd'=>$totalfinalUsd,'alerta'=>$alerta]);
 
       }else{
          return view('vendor.adminlte.permission',['summary'=>null]);
