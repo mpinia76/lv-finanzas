@@ -51,6 +51,22 @@ class totalController extends Controller
            $totalfinal += $b->total_ars;
         }
 
+        // Subtotales reales por moneda + patrimonio combinado en ambas unidades
+        $totalArs = 0;   // suma de saldos de cuentas en pesos
+        $totalUsd = 0;   // suma de saldos de cuentas en dolares (nativo)
+        $curById  = array();
+        foreach ($account as $b) {
+            $cur = isset($b->currency) ? $b->currency : 'ARS';
+            $curById[$b->id] = $cur;
+            if ($cur == 'USD') {
+                $totalUsd += $b->total;
+            } else {
+                $totalArs += $b->total;
+            }
+        }
+        $totalfinalArs = $totalfinal;                            // todo convertido a pesos
+        $totalfinalUsd = ($rate > 0) ? $totalfinal / $rate : 0;  // ese mismo total en dolares
+
            //total add
         foreach ($account as $a) {
          $totale = 0;   
@@ -117,16 +133,17 @@ class totalController extends Controller
         $tmp = summary::where('created_at','<', $finish)->get();
          
             foreach ($tmp as $t) {
-
+                $f = (isset($curById[$t->account_id]) && $curById[$t->account_id]=='USD') ? $rate : 1;
                 if($t->type=='add'){
-                    $totalm1+= $t->amount;
+                    $totalm1+= $t->amount*$f;
                 }
                 if($t->type=='out'){
-                    $totalm1 -= $t->amount;
+                    $totalm1 -= $t->amount*$f;
                 }
 
             }
-               $c->setAttribute('totalm1',$totalm1);      
+               $c->setAttribute('totalm1',$totalm1);
+               $c->setAttribute('totalm1u', ($rate>0) ? $totalm1/$rate : 0);
         }    
 
           $logemail = Auth::user()->email;
@@ -148,16 +165,17 @@ class totalController extends Controller
         $tmp = summary::where('created_at','<',$finish)->get();
          
             foreach ($tmp as $t) {
-
+                $f = (isset($curById[$t->account_id]) && $curById[$t->account_id]=='USD') ? $rate : 1;
                 if($t->type=='add'){
-                    $totalm3+= $t->amount;
+                    $totalm3+= $t->amount*$f;
                 }
                 if($t->type=='out'){
-                    $totalm3 -= $t->amount;
+                    $totalm3 -= $t->amount*$f;
                 }
 
             }
-               $c->setAttribute('totalm3',$totalm3);      
+               $c->setAttribute('totalm3',$totalm3);
+               $c->setAttribute('totalm3u', ($rate>0) ? $totalm3/$rate : 0);
         }    
          if($totalm3<0){
             $para      = $logemail;
@@ -178,16 +196,17 @@ class totalController extends Controller
         $tmp = summary::where('created_at','<',$finish)->get();
          
             foreach ($tmp as $t) {
-
+                $f = (isset($curById[$t->account_id]) && $curById[$t->account_id]=='USD') ? $rate : 1;
                 if($t->type=='add'){
-                    $totalm6+= $t->amount;
+                    $totalm6+= $t->amount*$f;
                 }
                 if($t->type=='out'){
-                    $totalm6 -= $t->amount;
+                    $totalm6 -= $t->amount*$f;
                 }
 
             }
-               $c->setAttribute('totalm6',$totalm6);      
+               $c->setAttribute('totalm6',$totalm6);
+               $c->setAttribute('totalm6u', ($rate>0) ? $totalm6/$rate : 0);
         }    
         if($totalm6<0){
             $para      = $logemail;
@@ -207,7 +226,7 @@ class totalController extends Controller
 
              
       
- return view('vendor.adminlte.montos.montos',['summary'=>$account,'divisa'=>$divisa,'usd'=>$usd,'totalfinal'=>$totalfinal,'futuro'=>$futuro,'liquidez'=>$account2]);
+ return view('vendor.adminlte.montos.montos',['summary'=>$account,'divisa'=>$divisa,'usd'=>$usd,'rate'=>$rate,'totalfinal'=>$totalfinal,'totalArs'=>$totalArs,'totalUsd'=>$totalUsd,'totalfinalUsd'=>$totalfinalUsd,'futuro'=>$futuro,'liquidez'=>$account2]);
 
     }else{
          return view('vendor.adminlte.permission',['summary'=>null]);
