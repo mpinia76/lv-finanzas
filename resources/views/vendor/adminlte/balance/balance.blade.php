@@ -154,6 +154,18 @@
                                                         </thead>
                                                             <tbody>
                                                                 @foreach ($subcategorias as $ss)
+                                                                    <?php
+                                                                        $rowTotal = 0;
+                                                                        foreach($timeline as $tt => $vv){
+                                                                            if($vv){ foreach($vv as $dd){
+                                                                                if($dd->amount){
+                                                                                    $rmatch = (isset($filter) && $filter) ? ($dd->id_attr == $ss->id) : ($dd->categories_id == $ss->id);
+                                                                                    if($rmatch){ $rowTotal += $conv($dd); }
+                                                                                }
+                                                                            }}
+                                                                        }
+                                                                    ?>
+                                                                    @if(round($rowTotal,2) != 0)
                                                                     <tr>
                                                                         <td>
                                                                             {{$ss->name}}
@@ -256,6 +268,7 @@
                                                                                 {{--@endforeach--}}
                                                                             </td>
                                                                     </tr>
+                                                                    @endif
 
                                                                 @endforeach
                                                                 @if($timeline)
