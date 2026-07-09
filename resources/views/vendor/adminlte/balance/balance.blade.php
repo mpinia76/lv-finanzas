@@ -1,6 +1,21 @@
 @extends('adminlte::layouts.app')
 @inject('provider', 'App\Http\Controllers\balanceController')
 @section('main-content')
+<?php
+    // Conversion de monedas para el Balance (pesos + dolares)
+    $rate    = isset($rate) ? $rate : 1;
+    $curById = isset($curById) ? $curById : array();
+    // Convierte un movimiento a pesos segun la moneda de su cuenta
+    $conv = function($d) use ($curById, $rate) {
+        $c = (isset($d->account_id) && isset($curById[$d->account_id]) && $curById[$d->account_id]=='USD') ? $rate : 1;
+        return $d->amount * $c;
+    };
+    // Formatea un monto en pesos mostrando ademas su equivalente en USD
+    $fmt2 = function($ars) use ($rate) {
+        $usd = ($rate>0) ? $ars/$rate : 0;
+        return '$'.number_format($ars,2,',','.').'<br><small style="color:#888;">USD '.number_format($usd,2,',','.').'</small>';
+    };
+?>
     <div class="container-fluid spark-screen">
         <div class="row">
             <div class="col-md-12 ">
@@ -155,12 +170,12 @@
 
                                                                                             @if($datos->amount)
                                                                                                 @if($datos->categories_id ==  $ss->id)
-                                                                                                 <?php $sum += $datos->amount;
+                                                                                                 <?php $sum += $conv($datos);
                                                                                                  ?>
                                                                                                 @endif
                                                                                             @endif
                                                                                         @endforeach
-                                                                                        <?php echo number_format($sum, 2, ',', '.');?>
+                                                                                        <?php echo $fmt2($sum);?>
                                                                                     </td>
                                                                                 @else
                                                                                     <td>
@@ -181,12 +196,12 @@
                                                                                                     {{--{{$datos->amount}}--}}
                                                                                                     {{--{{$datos->categories_id}}--}}
                                                                                                 @if($datos->categories_id ==  $ss->id)
-                                                                                                    <?php $sum += $datos->amount;
+                                                                                                    <?php $sum += $conv($datos);
                                                                                                     ?>
                                                                                                 @endif
                                                                                             @endif
                                                                                         @endforeach
-                                                                                        <?php echo number_format($sum, 2, ',', '.');?>
+                                                                                        <?php echo $fmt2($sum);?>
                                                                                     </td>
                                                                                 @else
                                                                                     <td>
@@ -207,7 +222,7 @@
                                                                                             @foreach ($valor as  $datos)
                                                                                                 @if($datos->amount)
                                                                                                     @if($datos->id_attr ==  $ss->id)
-                                                                                                        <?php $sum += $datos->amount;
+                                                                                                        <?php $sum += $conv($datos);
                                                                                                         ?>
                                                                                                     @endif
                                                                                                 @endif
@@ -215,7 +230,7 @@
                                                                                             @endforeach
                                                                                         @endif
                                                                                     @endforeach
-                                                                                    <?php echo number_format($sum, 2, ',', '.');?>
+                                                                                    <?php echo $fmt2($sum);?>
                                                                                 @endif
 
 
@@ -228,13 +243,13 @@
                                                                                         @foreach ($valor as  $datos)
 
                                                                                                 @if($datos->categories_id ==  $ss->id)
-                                                                                                    <?php $sum += $datos->amount;
+                                                                                                    <?php $sum += $conv($datos);
                                                                                                     ?>
                                                                                                 @endif
                                                                                         @endforeach
                                                                                     @endif
                                                                                 @endforeach
-                                                                                 <?php echo number_format($sum, 2, ',', '.');?>
+                                                                                 <?php echo $fmt2($sum);?>
                                                                                 @endif
                                                                                 {{--@foreach ($timeline as  $valor)--}}
                                                                                     {{--{{$valor->id}}--}}
@@ -255,13 +270,13 @@
                                                                                     @if($datos->amount)
                                                                                         @if($datos->numberOf ==  $t)
                                                                                             <?php
-                                                                                                $sum += $datos->amount;
-                                                                                                $totall += $datos->amount;
+                                                                                                $sum += $conv($datos);
+                                                                                                $totall += $conv($datos);
                                                                                             ?>
                                                                                         @endif
                                                                                     @endif
                                                                                 @endforeach
-                                                                                <?php echo number_format($sum, 2, ',', '.') ;?>
+                                                                                <?php echo $fmt2($sum) ;?>
                                                                             </td>
                                                                         @else
                                                                             <td>
@@ -269,7 +284,7 @@
                                                                             </td>
                                                                         @endif
                                                                     @endforeach
-                                                                    <td>  <?php echo  number_format($totall, 2, ',', '.')  ?></td>
+                                                                    <td>  <?php echo  $fmt2($totall)  ?></td>
                                                                 </tr>
                                                                 @endif
                                                             </tbody>

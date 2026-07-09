@@ -44,6 +44,14 @@ class balanceController extends Controller
     {
         ini_set('memory_limit', -1);
 
+        // Cotizacion del dolar + mapa cuenta->moneda para convertir en el Balance
+        $usdSetting = \App\settings::where('name','cotizacion_usd')->first();
+        $rate = $usdSetting ? floatval(str_replace(',', '.', $usdSetting->value)) : 1;
+        $curById = array();
+        foreach (\App\account::all() as $accCur) {
+            $curById[$accCur->id] = isset($accCur->currency) ? $accCur->currency : 'ARS';
+        }
+
         $year = $request->input('year');
         $tipo = $request->input('tipo');
         $start = $request->input('start');
@@ -108,7 +116,7 @@ class balanceController extends Controller
 
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo,'yearSelected'=>$year]);
+                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo,'yearSelected'=>$year,'curById'=>$curById,'rate'=>$rate]);
                 }
                 else {
                     $data = DB::table('summary')
@@ -153,7 +161,7 @@ class balanceController extends Controller
 
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet, 'tipom'=>$tipo, 'filter'=>false,'yearSelected'=>$year]);
+                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet, 'tipom'=>$tipo, 'filter'=>false,'yearSelected'=>$year,'curById'=>$curById,'rate'=>$rate]);
                 }
             }else{
                 return view('vendor.adminlte.balance',['summary'=>null]);
@@ -238,7 +246,7 @@ class balanceController extends Controller
 
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'start'=>$start,'finish'=>$finish,'yearSelected'=>$year]);
+                            'subcategorias'=>$attrs, 'getAmount'=>$this->getAmount(), 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'start'=>$start,'finish'=>$finish,'yearSelected'=>$year,'curById'=>$curById,'rate'=>$rate]);
                 }
                 else {
 
@@ -284,7 +292,7 @@ class balanceController extends Controller
 
                     return view('vendor.adminlte.balance.balance',
                         ['categories'=>$categories, 'subcate'=>$summary, 'data'=>$data,'timeline'=>$dataTmp,
-                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'yearSelected'=>$year]);
+                            'subcategorias'=>$attrs, 'cateselet'=>$categoriaselet,'tipom'=>$tipo, 'filter'=> true,'yearSelected'=>$year,'curById'=>$curById,'rate'=>$rate]);
                 }
             }else{
                 return view('vendor.adminlte.balance',['summary'=>null]);

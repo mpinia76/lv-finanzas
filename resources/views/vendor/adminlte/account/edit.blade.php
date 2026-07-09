@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Número de cuenta</label>
-                  <input name="number" required maxlength="200" type="text" value="{{$data->number}}"  class="form-control"  placeholder="Numero de cuenta">
+                  <input name="number" required maxlength="200" type="number" value="{{$data->number}}"  class="form-control"  placeholder="Numero de cuenta">
                 </div>
                 <div class="form-group">
                 	<label  for="exampleInputPassword1">Tipo de Cuenta</label>
@@ -46,12 +46,30 @@
                 			ahorro
                 			</option>
                 		@endif
-
+                			
+                		
+                		
+                		
                 	</select>
-
+	                
 		        </div>
                 <div class="form-group">
                 	<label>Moneda</label>
                 	<?php $cur = isset($data->currency) ? $data->currency : 'ARS'; ?>
                 	<select required class="form-control" name="currency">
                 		<option value="ARS" @if($cur=='ARS') selected @endif>ARS - Pesos</option>
+                		<option value="USD" @if($cur=='USD') selected @endif>USD - D&oacute;lares</option>
+                		<option value="EUR" @if($cur=='EUR') selected @endif>EUR - Euros</option>
+                	</select>
+		        </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Editar</button>
+              </div>
+            </form>
+        </div>
+												
+
+	
+
+@endsection

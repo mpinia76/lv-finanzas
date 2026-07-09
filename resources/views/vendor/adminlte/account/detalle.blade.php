@@ -111,7 +111,7 @@
 							            <div class="inner">
 							              <?php $accCur = (isset($nombre) && isset($nombre->currency)) ? $nombre->currency : 'ARS'; $rate = (isset($usd) && $usd) ? floatval(str_replace(',', '.', $usd->value)) : 1; ?><h3>@if($accCur=='USD')USD {{ number_format($totalf, 2, ',', '.') }}@else{{ number_format($totalf, 2, ',', '.') }}@endif</h3>
 
-							              <p>@if($accCur=='USD')Dólares &nbsp; <small>(&asymp; {{$divisa->value}}{{ number_format($totalf*$rate, 2, ',', '.') }})</small>@else{{$divisa->value}}@endif</p>
+							              <p>@if($accCur=='USD')D&oacute;lares &nbsp; <small>(&asymp; {{$divisa->value}}{{ number_format($totalf*$rate, 2, ',', '.') }})</small>@else{{$divisa->value}}@endif</p>
 							            </div>
 							            <div class="icon">
 							              <i class="fa fa-money"></i>
