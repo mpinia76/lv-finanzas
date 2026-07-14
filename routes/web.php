@@ -135,6 +135,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('config/cotizacion','settingsController@cotizacion');
     Route::post('config/cotizacion','settingsController@guardarCotizacion');
 
+    // Balance de saldo (mensual + anual)
+    Route::get('balancesaldo/balancesaldo','balancesaldoController@index');
+
     ///////////////////////////////
     /////////INICIO ////////////
     ////////////////////////////////////////////////////////////////////////
