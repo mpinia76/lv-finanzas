@@ -2,14 +2,19 @@
 
 @section('main-content')
 <?php
-    // Formatea un monto en pesos mostrando debajo su equivalente en USD
-    $fmt = function ($ars) use ($rate) {
-        $usd = ($rate > 0) ? $ars / $rate : 0;
-        $color = ($ars < 0) ? '#c0392b' : '#111';
-        return '<span style="color:' . $color . '">$' . number_format($ars, 2, ',', '.')
-             . '<br><small style="color:#888;">USD ' . number_format($usd, 2, ',', '.') . '</small></span>';
+    // Formatea un importe con su simbolo; negativos en rojo
+    $f = function ($n, $sym) {
+        $color = ($n < 0) ? '#c0392b' : '#111';
+        return '<span style="color:' . $color . '">' . $sym . number_format($n, 2, ',', '.') . '</span>';
     };
 ?>
+
+<style>
+    .bs-table th, .bs-table td { text-align:right; white-space:nowrap; }
+    .bs-table th:first-child, .bs-table td:first-child { text-align:left; }
+    .bs-usd { background-color:#f0f8f2; }
+    .bs-acum { background-color:#f4f8fb; }
+</style>
 
 <div class="container-fluid spark-screen">
 
@@ -30,34 +35,48 @@
         </div>
 
         <div class="box-body responsive-table">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered bs-table">
                 <thead>
                     <tr style="background-color:#c6e0ec;">
-                        <th>Mes</th>
-                        <th style="text-align:right;">Ingresos</th>
-                        <th style="text-align:right;">Egresos</th>
-                        <th style="text-align:right;">Resultado</th>
-                        <th style="text-align:right;">Saldo acumulado</th>
+                        <th rowspan="2">Mes</th>
+                        <th colspan="2">Ingresos</th>
+                        <th colspan="2">Egresos</th>
+                        <th colspan="2">Resultado</th>
+                        <th colspan="2">Saldo acumulado</th>
+                    </tr>
+                    <tr style="background-color:#dceaf1;">
+                        <th>Pesos</th><th class="bs-usd">USD</th>
+                        <th>Pesos</th><th class="bs-usd">USD</th>
+                        <th>Pesos</th><th class="bs-usd">USD</th>
+                        <th>Pesos</th><th class="bs-usd">USD</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($monthly as $row)
                     <tr>
                         <td>{{ $row['mes'] }}</td>
-                        <td style="text-align:right;">{!! $fmt($row['ingresos']) !!}</td>
-                        <td style="text-align:right;">{!! $fmt($row['egresos']) !!}</td>
-                        <td style="text-align:right;">{!! $fmt($row['resultado']) !!}</td>
-                        <td style="text-align:right; background-color:#f4f8fb;">{!! $fmt($row['acumulado']) !!}</td>
+                        <td>{!! $f($row['ingA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($row['ingU'], 'USD ') !!}</td>
+                        <td>{!! $f($row['egrA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($row['egrU'], 'USD ') !!}</td>
+                        <td>{!! $f($row['resA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($row['resU'], 'USD ') !!}</td>
+                        <td class="bs-acum">{!! $f($row['acumA'], '$') !!}</td>
+                        <td class="bs-acum">{!! $f($row['acumU'], 'USD ') !!}</td>
                     </tr>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr style="background-color:#c6e0ec; font-weight:bold;">
                         <td>Total {{ $yearSelected }}</td>
-                        <td style="text-align:right;">{!! $fmt($yearTotal['ingresos']) !!}</td>
-                        <td style="text-align:right;">{!! $fmt($yearTotal['egresos']) !!}</td>
-                        <td style="text-align:right;">{!! $fmt($yearTotal['resultado']) !!}</td>
-                        <td style="text-align:right;">{!! $fmt($yearTotal['acumulado']) !!}</td>
+                        <td>{!! $f($yearTotal['ingA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($yearTotal['ingU'], 'USD ') !!}</td>
+                        <td>{!! $f($yearTotal['egrA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($yearTotal['egrU'], 'USD ') !!}</td>
+                        <td>{!! $f($yearTotal['resA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($yearTotal['resU'], 'USD ') !!}</td>
+                        <td>{!! $f($yearTotal['acumA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($yearTotal['acumU'], 'USD ') !!}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -71,24 +90,34 @@
             <h3 class="box-title">Resumen anual</h3>
         </div>
         <div class="box-body responsive-table">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered bs-table">
                 <thead>
                     <tr style="background-color:#c6e0ec;">
-                        <th>Año</th>
-                        <th style="text-align:right;">Ingresos</th>
-                        <th style="text-align:right;">Egresos</th>
-                        <th style="text-align:right;">Resultado</th>
-                        <th style="text-align:right;">Saldo acumulado</th>
+                        <th rowspan="2">Año</th>
+                        <th colspan="2">Ingresos</th>
+                        <th colspan="2">Egresos</th>
+                        <th colspan="2">Resultado</th>
+                        <th colspan="2">Saldo acumulado</th>
+                    </tr>
+                    <tr style="background-color:#dceaf1;">
+                        <th>Pesos</th><th class="bs-usd">USD</th>
+                        <th>Pesos</th><th class="bs-usd">USD</th>
+                        <th>Pesos</th><th class="bs-usd">USD</th>
+                        <th>Pesos</th><th class="bs-usd">USD</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($annual as $row)
                     <tr>
                         <td>{{ $row['year'] }}</td>
-                        <td style="text-align:right;">{!! $fmt($row['ingresos']) !!}</td>
-                        <td style="text-align:right;">{!! $fmt($row['egresos']) !!}</td>
-                        <td style="text-align:right;">{!! $fmt($row['resultado']) !!}</td>
-                        <td style="text-align:right; background-color:#f4f8fb;">{!! $fmt($row['acumulado']) !!}</td>
+                        <td>{!! $f($row['ingA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($row['ingU'], 'USD ') !!}</td>
+                        <td>{!! $f($row['egrA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($row['egrU'], 'USD ') !!}</td>
+                        <td>{!! $f($row['resA'], '$') !!}</td>
+                        <td class="bs-usd">{!! $f($row['resU'], 'USD ') !!}</td>
+                        <td class="bs-acum">{!! $f($row['acumA'], '$') !!}</td>
+                        <td class="bs-acum">{!! $f($row['acumU'], 'USD ') !!}</td>
                     </tr>
                     @endforeach
                 </tbody>
