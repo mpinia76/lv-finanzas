@@ -28,6 +28,8 @@ class balancesaldoController extends Controller
             $yearsSet = array();
             foreach ($movs as $m) {
                 if (!$m->created_at) continue;
+                // Excluir transferencias entre cuentas propias (no son ingreso ni egreso real)
+                if (!empty($m->id_transfer) || $m->type == 'transfer') continue;
                 $ts = strtotime($m->created_at);
                 $ym = date('Y-m', $ts);
                 $y  = date('Y', $ts);
