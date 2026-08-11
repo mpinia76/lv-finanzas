@@ -92,6 +92,7 @@
 									<th>Tipo</th>
 									<th>Moneda</th>
 									<th>Saldo</th>
+									<th>Movimientos</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -109,6 +110,7 @@
 											{{$divisa->value}}{{ number_format($summarys->total, 2, ',', '.') }}
 										@endif
 									</td>
+									<td><center><a class="btn btn-sm btn-default" href="{{ url('/summary/summary') }}?cuentas={{ $summarys->id }}"><i class="fa fa fa-eye"></i></a></center></td>
 								</tr>
 								@endforeach
 							</tbody>
