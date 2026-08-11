@@ -162,6 +162,7 @@ $(function () {
 					"tipo": $('#tipo').val(),
 					"cuentas": $('#cuentas').val(),
 					"categoria": $('#categorie_select').val(),
+					"concepto": $('#concepto').val(),
 				}
 			},
 

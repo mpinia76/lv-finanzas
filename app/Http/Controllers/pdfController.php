@@ -72,10 +72,15 @@ class pdfController extends Controller
         $tipo = $request->input('tipo');
         $cuentas = $request->input('cuentas');
         $categorias = $request->input('categoria');
+        $concepto = $request->input('concepto');
         $subcategorias = $request->input('id_attr');
         $tf = $request->input('tf');
         $subcatetours = $request->input('id_attr_tours');
         $filter=array();
+        if(isset($concepto) && $concepto!=='') {
+          $filter[] = array('concept','like','%'.$concepto.'%');
+          $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
+        }
         if(isset($tipo)) {
 
           if($tipo==1){

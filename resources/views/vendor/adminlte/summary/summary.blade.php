@@ -57,6 +57,12 @@
         $cuentasf = "";
     }
 
+    if (isset($_GET["concepto"])) {
+        $conceptof = $_GET["concepto"];
+    } else {
+        $conceptof = "";
+    }
+
 
     if (isset($_GET["categoria"])) {
         $categoriaf = $_GET["categoria"];
@@ -83,7 +89,7 @@
         $id_attr_tours = '';
     }
 
-    $url = "?start=" . $startf . "&finish=" . $finishf . "&dias=" . $diasf . "&tipo=" . $tipof . "&cuentas=" . $cuentasf . "&categoria=" . $categoriaf . "&id_attr=" . $id_attrf . "&id_attr_tours=" . $id_attr_tours . "&tf=" . $id_tf . "";
+    $url = "?start=" . $startf . "&finish=" . $finishf . "&dias=" . $diasf . "&tipo=" . $tipof . "&cuentas=" . $cuentasf . "&categoria=" . $categoriaf . "&concepto=" . $conceptof . "&id_attr=" . $id_attrf . "&id_attr_tours=" . $id_attr_tours . "&tf=" . $id_tf . "";
 
     ?>
     <div class="container-fluid spark-screen">
@@ -111,6 +117,13 @@
                                             <div class="form-group col-sm-6">
                                                 <input type="date" id="finish" name="finish" placeholder="Fecha Final"
                                                        class="form-control" value="{{$finishf}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 add_top_1">
+                                            <div class="form-group col-sm-12">
+                                                <input type="text" id="concepto" name="concepto"
+                                                       placeholder="Buscar por concepto / motivo"
+                                                       class="form-control" value="{{$conceptof}}">
                                             </div>
                                         </div>
                                         <div class="col-sm-12 add_top_1">

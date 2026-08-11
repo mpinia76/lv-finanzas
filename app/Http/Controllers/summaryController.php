@@ -59,12 +59,17 @@ class summaryController extends Controller
         $tipo = $request->input('tipo');
         $cuentas = $request->input('cuentas');
         $categorias = $request->input('categoria');
+        $concepto = $request->input('concepto');
         $subcategorias = $request->input('id_attr');
         $tf = $request->input('tf');
         //$subcatetours = $request->input('id_attr_tours');
 
-        $filter=array();      
+        $filter=array();
         $sqlwhere='';
+
+        if(isset($concepto) && $concepto!=='') {
+            $filter[] = array('concept','like','%'.$concepto.'%');
+        }
 
         if(isset($tipo)) {
 
@@ -209,6 +214,15 @@ class summaryController extends Controller
       
         $totalfinal=0;*/
 
+            if(isset($concepto) && $concepto!=='') {
+                $conceptoSql = addslashes($concepto);
+                if(strpos($sqlwhere,'WHERE')!==false){
+                    $sqlwhere .= ' AND concept LIKE \'%'.$conceptoSql.'%\'';
+                }else{
+                    $sqlwhere = ' WHERE concept LIKE \'%'.$conceptoSql.'%\' AND future=1';
+                }
+            }
+
             $sql="SELECT sum(CASE summary.`type` when 'add' then summary.amount ELSE summary.amount*(-1) END) total
 FROM summary".$sqlwhere;
 
@@ -322,12 +336,16 @@ FROM summary".$sqlwhere;
             $tipo = $request->get('tipo');
             $cuentas = $request->get('cuentas');
             $categorias = $request->get('categoria');
+            $concepto = $request->get('concepto');
             $subcategorias = $request->input('id_attr');
             $tf = $request->input('tf');
             //$subcatetours = $request->input('id_attr_tours');
 
             $filter=array();
 
+            if(isset($concepto) && $concepto!=='') {
+                $filter[] = array('concept','like','%'.$concepto.'%');
+            }
 
             if(isset($tipo)) {
 
