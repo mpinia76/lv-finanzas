@@ -16,7 +16,7 @@
 <script src="{{asset('/js/jquery-ui.min.js') }}" type="text/javascript"></script>
 
 
-<script src="{{asset('/js/custom.js') }}" type="text/javascript"></script>
+<script src="{{asset('/js/custom.js') }}?v=20260811" type="text/javascript"></script>
 
 
 <!-- Script -->

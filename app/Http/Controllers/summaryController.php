@@ -71,7 +71,7 @@ class summaryController extends Controller
             $filter[] = array('concept','like','%'.$concepto.'%');
         }
 
-        if(isset($tipo)) {
+        if(isset($tipo) && $tipo!=='') {
 
           if($tipo==1){
           $filter[] = array('categories_id','=',$tipo);
@@ -85,7 +85,7 @@ class summaryController extends Controller
 
           }
         }
-        if(isset($cuentas)) {
+        if(isset($cuentas) && $cuentas!=='') {
 
           $filter[] = array('account_id','=',$cuentas);
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate();
@@ -93,24 +93,24 @@ class summaryController extends Controller
 
 
         }
-        if(isset($categorias)) {  
+        if(isset($categorias) && $categorias!=='') {
           $filter[] = array('categories_id','=',$categorias);
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate();
           $sqlwhere=' WHERE categories_id = \''.$categorias.'\' AND created_at <=\''.$hoy->format('Y-m-d').'\' AND future=1';
         }
-        if(isset($subcategorias)) {  
+        if(isset($subcategorias) && $subcategorias!=='') {
           $filter[] = array('id_attr','=',$subcategorias);
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
 
 ;
         }
 
-         if(isset($tf)) {  
+         if(isset($tf) && $tf!=='') {
           $filter[] = array('tours_id','=',$tf);
           $summary = summary::where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->paginate()
 
 ;
-         
+
         }
         /*if(isset($subcatetours)) {
           $filter[] = array('id_attr_tours','=',$subcatetours);
@@ -122,16 +122,16 @@ class summaryController extends Controller
        
       //print_r($filter);
 
-        if((isset($startf)) and (isset($finish))){
+        if((isset($startf) && $startf!=='') and (isset($finish) && $finish!=='')){
 
           $startf = new Datetime($startf);
           $finish = new Datetime($finish);
 
-         
+
           $summary = summary::whereBetween('created_at', [$startf, $finish])->where($filter)->where('future','=',1)->paginate();
             $sqlwhere=' WHERE created_at BETWEEN \''.$startf->format('Y-m-d').'\' AND \''.$finish->format('Y-m-d').'\' AND future=1';
 
-        }elseif((isset($dias))){
+        }elseif((isset($dias) && $dias!=='')){
 
             if($dias==30){
               $startf=date('Y-m-d',strtotime('today - 30 days'));
@@ -347,7 +347,7 @@ FROM summary".$sqlwhere;
                 $filter[] = array('concept','like','%'.$concepto.'%');
             }
 
-            if(isset($tipo)) {
+            if(isset($tipo) && $tipo!=='') {
 
                 if ($tipo == 1) {
                     $filter[] = array('categories_id', '=', $tipo);
@@ -361,7 +361,7 @@ FROM summary".$sqlwhere;
                     ->take($rowperpage)
                     ->get();
             }
-            if(isset($cuentas)) {
+            if(isset($cuentas) && $cuentas!=='') {
 
                 $filter[] = array('account_id','=',$cuentas);
                 $totalRecordswithFilter = summary::select('count(*) as allcount')->where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->count();
@@ -370,7 +370,7 @@ FROM summary".$sqlwhere;
                         ->get();
 
             }
-            if(isset($categorias)) {
+            if(isset($categorias) && $categorias!=='') {
                 $filter[] = array('categories_id','=',$categorias);
                 $totalRecordswithFilter = summary::select('count(*) as allcount')->where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->count();
                 $summary = summary::orderBy($columnName, $columnSortOrder)->where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->skip($start)
@@ -378,14 +378,14 @@ FROM summary".$sqlwhere;
                         ->get();
 
             }
-            if(isset($subcategorias)) {
+            if(isset($subcategorias) && $subcategorias!=='') {
                 $filter[] = array('id_attr','=',$subcategorias);
                 $summary = summary::orderBy($columnName, $columnSortOrder)->where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->skip($start)
                         ->take($rowperpage)
                         ->get();
             }
 
-            if(isset($tf)) {
+            if(isset($tf) && $tf!=='') {
                 $filter[] = array('tours_id','=',$tf);
                 $summary = summary::orderBy($columnName, $columnSortOrder)->where($filter)->where('created_at','=<',$hoy)->where('future','=',1)->skip($start)
                         ->take($rowperpage)
@@ -394,7 +394,7 @@ FROM summary".$sqlwhere;
             }
 
 
-            if((isset($startf)) and (isset($finish))){
+            if((isset($startf) && $startf!=='') and (isset($finish) && $finish!=='')){
 
                 $startf = new Datetime($startf);
                 $finish = new Datetime($finish);
@@ -404,7 +404,7 @@ FROM summary".$sqlwhere;
                         ->take($rowperpage)
                         ->get();
 
-            }elseif((isset($dias))){
+            }elseif((isset($dias) && $dias!=='')){
 
                 if($dias==30){
                     $startf=date('Y-m-d',strtotime('today - 30 days'));

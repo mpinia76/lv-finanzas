@@ -81,7 +81,7 @@ class pdfController extends Controller
           $filter[] = array('concept','like','%'.$concepto.'%');
           $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
         }
-        if(isset($tipo)) {
+        if(isset($tipo) && $tipo!=='') {
 
           if($tipo==1){
           $filter[] = array('categories_id','=',$tipo);
@@ -93,42 +93,42 @@ class pdfController extends Controller
           $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
           }
         }
-        if(isset($cuentas)) {
+        if(isset($cuentas) && $cuentas!=='') {
 
           $filter[] = array('account_id','=',$cuentas);
           $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
 
         }
-        if(isset($categorias)) {
+        if(isset($categorias) && $categorias!=='') {
           $filter[] = array('categories_id','=',$categorias);
           $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
 
         }
-        if(isset($subcategorias)) {
+        if(isset($subcategorias) && $subcategorias!=='') {
           $filter[] = array('id_attr','=',$subcategorias);
           $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
         }
 
-        if(isset($tf)) {
+        if(isset($tf) && $tf!=='') {
           $filter[] = array('tours_id','=',$tf);
           $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
 
         }
-        if(isset($subcatetours)) {
+        if(isset($subcatetours) && $subcatetours!=='') {
           $filter[] = array('id_attr_tours','=',$subcatetours);
           $summary = summary::where($filter)->where('created_at','<=',$hoy)->where('future','=',1)->get();
 
         }
 
 
-        if((isset($start)) and (isset($finish))){
+        if((isset($start) && $start!=='') and (isset($finish) && $finish!=='')){
 
           $start = new Datetime($start);
           $finish = new Datetime($finish);
 
 
           $summary = summary::whereBetween('created_at', [$start, $finish])->where($filter)->where('future','=',1)->get();
-        }elseif((isset($dias))){
+        }elseif((isset($dias) && $dias!=='')){
 
             if($dias==30){
               $start=date('Y-m-d',strtotime('today - 30 days'));

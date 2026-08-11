@@ -155,14 +155,14 @@ $(function () {
 			},
 			"ajax": { "url" :"getSummary",
 				"type": "GET",
-				"data": {
-					"startf": $('#startf').val(),
-					"finish": $('#finish').val(),
-					"dias": $('#dias').val(),
-					"tipo": $('#tipo').val(),
-					"cuentas": $('#cuentas').val(),
-					"categoria": $('#categorie_select').val(),
-					"concepto": $('#concepto').val(),
+				"data": function ( d ) {
+					d.startf = $('#startf').val();
+					d.finish = $('#finish').val();
+					d.dias = $('#dias').val();
+					d.tipo = $('#tipo').val();
+					d.cuentas = $('#cuentas').val();
+					d.categoria = $('#categorie_select').val();
+					d.concepto = $('#concepto').val();
 				}
 			},
 
