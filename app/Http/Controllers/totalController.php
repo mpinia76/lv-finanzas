@@ -22,8 +22,8 @@ class totalController extends Controller
         $hoy=date('Y-m-d',strtotime('today'));
         $summary = summary::where('created_at','<=',$hoy)->orderBy('id','desc')->get();
         $categories = categories::all();
-        $account = account::all();
-        $account2 = account::all();
+        $account = account::activas()->get();
+        $account2 = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
         $usd = settings::where('name','cotizacion_usd')->first();
         $rate = $usd ? floatval(str_replace(',', '.', $usd->value)) : 1;

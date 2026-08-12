@@ -291,7 +291,7 @@ class toursController extends Controller
         // $summary = summary::all();
         $categories = categories::all();
         $tours = tours::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
 
         $movimientosa = attributestours::where('id',$id)->get();

@@ -16,7 +16,7 @@ class balancesaldoController extends Controller
 
             // Mapa cuenta -> moneda (USD o ARS)
             $curById = array();
-            foreach (account::all() as $a) {
+            foreach (account::activas()->get() as $a) {
                 $curById[$a->id] = (isset($a->currency) && $a->currency == 'USD') ? 'USD' : 'ARS';
             }
 

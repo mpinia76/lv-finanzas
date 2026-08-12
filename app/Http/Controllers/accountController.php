@@ -21,7 +21,9 @@ class accountController extends Controller
       $r=(new summaryController)->pass($act='cuentas');
       if($r>0){
 
-        $account = account::all();
+        // En la gestión de cuentas se muestran todas (activas e inactivas),
+        // con las inactivas al final, para poder reactivarlas.
+        $account = account::orderBy('active','desc')->orderBy('id','asc')->get();
         return view('vendor.adminlte.account.account',['account'=>$account]);
       }else{
         return view('vendor.adminlte.permission',['summary'=>null]);
@@ -106,7 +108,7 @@ class accountController extends Controller
       $hoy = new DateTime('now');
      // $hoy=date('Y-m-d',strtotime('today + 1 day'));
         $categories = categories::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
         $usd = settings::where('name','cotizacion_usd')->first();
 
@@ -235,6 +237,40 @@ class accountController extends Controller
         return view('vendor.adminlte.permission',['summary'=>null]);
       }
 
+    }
+
+
+    /**
+     * Da de baja (desactiva) o reactiva una cuenta.
+     * Una cuenta inactiva deja de aparecer en los listados/desplegables,
+     * pero se conserva el historial de movimientos.
+     */
+    public function toggle($id)
+    {
+        $r=(new summaryController)->pass($act='cuentas');
+        if($r==1 || $r==2 || $r==4 || $r==7){
+
+            $account = account::find($id);
+
+            if(!is_null($account)){
+                $account->active = $account->active ? 0 : 1;
+                $account->save();
+
+                $hoy=date('Y-m-d H:m:s',strtotime('today'));
+                $log = Auth::id();
+                $bitacora = new bitacora;
+                $bitacora->created_date = $hoy;
+                $bitacora->type = $account->active ? "activate" : "deactivate";
+                $bitacora->id_activity=$id;
+                $bitacora->activity="cuentas";
+                $bitacora->id_user=$log;
+                $bitacora->save();
+            }
+
+            return redirect('account/account');
+        }else{
+            return view('vendor.adminlte.permission',['summary'=>null]);
+        }
     }
 
 }

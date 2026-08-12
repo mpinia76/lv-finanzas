@@ -30,7 +30,7 @@ class futuroController extends Controller
             // $summary = summary::all();
             $categories = categories::all();
             $tours = tours::all();
-            $account = account::all();
+            $account = account::activas()->get();
             $divisa = settings::where('name', 'divisa')->first();
 
             $total = array();
@@ -250,7 +250,7 @@ class futuroController extends Controller
         if ($r == 1 || $r == 2 || $r == 4 || $r == 7) {
 
             $categories = categories::all();
-            $account = account::all();
+            $account = account::activas()->get();
             $data = summary::where('id', $id)->first();
 
             if ($attached = attached::where('summary_id', $id)->exists()) {

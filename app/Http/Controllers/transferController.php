@@ -26,7 +26,7 @@ class transferController extends Controller
         $total =array();
         // $summary = summary::all();
         $categories = categories::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
        
         $response =array();
@@ -64,7 +64,7 @@ class transferController extends Controller
        if($r>0 ){  
         $hoy=date('Y-m-d',strtotime('today + 1 days'));
   
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
       
         foreach ($account as $a) {
@@ -100,7 +100,7 @@ class transferController extends Controller
 
    		  $summary = summary::all();
         $categories = categories::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
 
     
@@ -209,7 +209,7 @@ class transferController extends Controller
             $b=$t->id_out;
         }
 
-    $account = account::all();
+    $account = account::activas()->get();
     $out = summary::where('id',$a)->first();
     $add = summary::where('id',$b)->first();
 

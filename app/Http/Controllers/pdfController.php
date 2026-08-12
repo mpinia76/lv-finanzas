@@ -39,7 +39,7 @@ class pdfController extends Controller
         $data = summary::where('created_at','<=',$hoy)->get();
         // $summary = summary::all();
         $categories = categories::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
 
         return $data;
@@ -59,7 +59,7 @@ class pdfController extends Controller
         $atributos = attributes::all();
         $atributostours = attributestours::all();
         $tours = tours::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
 
         $total=array();
@@ -276,7 +276,7 @@ class pdfController extends Controller
         $atributos = attributes::all();
         $atributostours = attributestours::all();
         $tours = tours::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
 
         $total=array();

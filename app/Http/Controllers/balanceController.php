@@ -48,7 +48,7 @@ class balanceController extends Controller
         $usdSetting = \App\settings::where('name','cotizacion_usd')->first();
         $rate = $usdSetting ? floatval(str_replace(',', '.', $usdSetting->value)) : 1;
         $curById = array();
-        foreach (\App\account::all() as $accCur) {
+        foreach (\App\account::activas()->get() as $accCur) {
             $curById[$accCur->id] = isset($accCur->currency) ? $accCur->currency : 'ARS';
         }
 

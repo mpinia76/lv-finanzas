@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('account/editar/{id}','accountController@update');
 	//eliminar account
 	Route::delete('account/eliminar/{id}','accountController@destroy');
+	//activar / desactivar account (baja logica)
+	Route::get('account/toggle/{id}','accountController@toggle');
     //detalle
     Route::get('account/detalle/{id}','accountController@detalle');
 

@@ -45,7 +45,7 @@ class summaryController extends Controller
         // $summary = summary::all();
         $categories = categories::all();
         $tours = tours::all();
-        $account = account::all();
+        $account = account::activas()->get();
         $divisa = settings::where('name','divisa')->first();
 
 
@@ -322,7 +322,7 @@ FROM summary".$sqlwhere;
             // $summary = summary::all();
             $categories = categories::all();
             $tours = tours::all();
-            $account = account::all();
+            $account = account::activas()->get();
             $divisa = settings::where('name','divisa')->first();
 
 
@@ -568,7 +568,7 @@ FROM summary".$sqlwhere;
         if($r==1 || $r==2 || $r==3  || $r==6 ){
 
       $type = $request->input('type');
-      $data = account::all();
+      $data = account::activas()->get();
       $data2 = categories::all();
       $tours = tours::all();
    
@@ -650,7 +650,7 @@ FROM summary".$sqlwhere;
     if($r==1 || $r==2  || $r==4  || $r==7){
 
           $categories = categories::all();
-          $account = account::all();
+          $account = account::activas()->get();
           $data = summary::where('id',$id)->first();
           $tours = tours::all();
 
