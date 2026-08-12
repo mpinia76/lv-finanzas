@@ -81,7 +81,7 @@ class HomeController extends Controller
           $divisa = settings::where('name','divisa')->first();
           $usd = settings::where('name','cotizacion_usd')->first();
           $rate = $usd ? floatval(str_replace(',', '.', $usd->value)) : 1;
-          $account = account::orderBy('id','desc')->get();
+          $account = account::activas()->orderBy('id','desc')->get();
          
           $response =array();
           foreach ($account as $a) {
