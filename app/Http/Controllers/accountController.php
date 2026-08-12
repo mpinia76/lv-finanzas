@@ -260,7 +260,7 @@ class accountController extends Controller
                 $log = Auth::id();
                 $bitacora = new bitacora;
                 $bitacora->created_date = $hoy;
-                $bitacora->type = $account->active ? "activate" : "deactivate";
+                $bitacora->type = "update";
                 $bitacora->id_activity=$id;
                 $bitacora->activity="cuentas";
                 $bitacora->id_user=$log;
