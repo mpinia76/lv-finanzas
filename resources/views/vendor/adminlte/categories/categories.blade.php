@@ -12,10 +12,19 @@
                 <div class="box box-admin-border">
                   <div class="box-header with-border">
                      <i class="fa fa-code-fork"></i><h3 class="box-title"><b>Categorias</b></h3>
-                    
-                    <a class="btn btn-primary " style="float: right;" href="{{ url('/categories/create')}}"> <i class="fa fa-plus"></i>Nuevo</a>
+
+                    <a class="btn btn-primary " style="float: right;" href="{{ url('/categories/create')}}{{ isset($ownerSelected) && $ownerSelected ? '?owner='.$ownerSelected : '' }}"> <i class="fa fa-plus"></i>Nuevo</a>
                   </div>
-                  
+
+                  <div class="box-body" style="padding-bottom:0;">
+                    <div class="btn-group" role="group">
+                      <a class="btn {{ empty($ownerSelected) ? 'btn-primary' : 'btn-default' }}" href="{{ url('/categories/categories') }}">Todas</a>
+                      @foreach((isset($owners) ? $owners : \App\categories::owners()) as $ownerKey => $ownerLabel)
+                        <a class="btn {{ (isset($ownerSelected) && $ownerSelected == $ownerKey) ? 'btn-primary' : 'btn-default' }}" href="{{ url('/categories/categories') }}?owner={{ $ownerKey }}">{{ $ownerLabel }}</a>
+                      @endforeach
+                    </div>
+                  </div>
+
                   <div class="box-body responsive-table">
 
                     <div id="lista_item_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -28,6 +37,7 @@
                                       <th>Nombre</th>
                                       <th>Descripción</th>
                                       <th>Tipo</th>
+                                      <th>Dueño</th>
                                       <th>Acción</th>
                                     </tr>
                                 </thead>
@@ -42,8 +52,15 @@
                                     @else
                                         <td>Categoria de Retiro</td>
                                     @endif
-                                   
-                                  
+
+                                    <td>
+                                      @if($categoriess->owner == 'mama')
+                                        <span class="label label-warning">De mamá</span>
+                                      @else
+                                        <span class="label label-info">Mías</span>
+                                      @endif
+                                    </td>
+
                                       <td>
                                      
                                     

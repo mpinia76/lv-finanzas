@@ -25,6 +25,14 @@
                     <option value="out" >Categoria de Retiro</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label>¿De quién es esta categoría?</label>
+                  <select name="owner" class="form-control">
+                    @foreach(\App\categories::owners() as $ownerKey => $ownerLabel)
+                      <option value="{{ $ownerKey }}" {{ (request('owner') == $ownerKey) ? 'selected' : '' }}>{{ $ownerLabel }}</option>
+                    @endforeach
+                  </select>
+                </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Guardar</button>

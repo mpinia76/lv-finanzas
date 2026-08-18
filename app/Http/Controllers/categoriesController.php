@@ -11,13 +11,23 @@ use Auth;
 
 class categoriesController extends Controller
 {
-   public function index()
-   {	
+   public function index(Request $request)
+   {
    		$r=(new summaryController)->pass($act='categoria');
         if($r>0){
 
-	        $categories = categories::all();
-	        return view('vendor.adminlte.categories.categories',['categories'=>$categories]);
+            // Filtro por duenio: ?owner=yo | ?owner=mama | vacio = todas
+            $owner = $request->input('owner');
+            if (!array_key_exists($owner, categories::owners())) {
+                $owner = null;
+            }
+
+	        $categories = categories::deOwner($owner)->orderBy('name')->get();
+	        return view('vendor.adminlte.categories.categories',[
+	            'categories'    => $categories,
+	            'ownerSelected' => $owner,
+	            'owners'        => categories::owners(),
+	        ]);
 
     	}else{
     		 return view('vendor.adminlte.permission',['summary'=>null]);
@@ -35,6 +45,7 @@ class categoriesController extends Controller
 	    	'name' => $request->name,
 	    	'description' => $request->description,
 	    	'type' => $request->type,
+	    	'owner' => categories::normalizeOwner($request->owner),
 	    	);
 	   	$id=categories::insertGetId($valores);
 
@@ -99,6 +110,7 @@ class categoriesController extends Controller
         $categories->name = $request->name;
 		$categories->description = $request->description;
 		$categories->type = $request->type;
+		$categories->owner = categories::normalizeOwner($request->owner);
 		$categories->save();
 
 		$bitacora = new bitacora;

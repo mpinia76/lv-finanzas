@@ -41,7 +41,15 @@
                   @endif
                   </select>
                 </div>
-            
+                <div class="form-group">
+                  <label>¿De quién es esta categoría?</label>
+                  <select name="owner" class="form-control">
+                    @foreach(\App\categories::owners() as $ownerKey => $ownerLabel)
+                      <option value="{{ $ownerKey }}" {{ ($data->owner == $ownerKey) ? 'selected' : '' }}>{{ $ownerLabel }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
             @foreach ($data1 as $data1s)
              <div class="col-md-6">  
               <label for="exampleInputPassword1">Nombre  </label>

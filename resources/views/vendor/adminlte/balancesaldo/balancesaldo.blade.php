@@ -7,6 +7,11 @@
         $color = ($n < 0) ? '#c0392b' : '#111';
         return '<span style="color:' . $color . '">' . $sym . number_format($n, 2, ',', '.') . '</span>';
     };
+    // Etiqueta del duenio seleccionado para los titulos
+    $ownerTitle = 'Todo';
+    if (!empty($ownerSelected) && isset($owners[$ownerSelected])) {
+        $ownerTitle = $owners[$ownerSelected];
+    }
 ?>
 
 <style>
@@ -22,9 +27,19 @@
     <div class="box box-primary">
         <div class="box-header with-border">
             <i class="fa fa-calendar"></i>
-            <h3 class="box-title">Balance de Saldo — {{ $yearSelected }}</h3>
+            <h3 class="box-title">Balance de Saldo — {{ $yearSelected }} · {{ $ownerTitle }}</h3>
 
             <form method="get" action="{{ url('/balancesaldo/balancesaldo') }}" class="pull-right form-inline">
+                @if(!empty($hasOwner))
+                <label>Categorías de&nbsp;</label>
+                <select name="owner" class="form-control input-sm" onchange="this.form.submit()">
+                    <option value="">Todo junto</option>
+                    @foreach ($owners as $ownerKey => $ownerLabel)
+                        <option value="{{ $ownerKey }}" @if($ownerSelected == $ownerKey) selected @endif>{{ $ownerLabel }}</option>
+                    @endforeach
+                </select>
+                &nbsp;&nbsp;
+                @endif
                 <label>Año&nbsp;</label>
                 <select name="year" class="form-control input-sm" onchange="this.form.submit()">
                     @foreach (array_reverse($years) as $y)
@@ -87,7 +102,7 @@
     <div class="box box-info">
         <div class="box-header with-border">
             <i class="fa fa-bar-chart"></i>
-            <h3 class="box-title">Resumen anual</h3>
+            <h3 class="box-title">Resumen anual — {{ $ownerTitle }}</h3>
         </div>
         <div class="box-body responsive-table">
             <table class="table table-striped table-bordered bs-table">

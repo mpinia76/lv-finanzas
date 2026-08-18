@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\summary;
 use App\account;
+use App\categories;
 use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class balancesaldoController extends Controller
 {
@@ -20,9 +23,33 @@ class balancesaldoController extends Controller
                 $curById[$a->id] = (isset($a->currency) && $a->currency == 'USD') ? 'USD' : 'ARS';
             }
 
+            // Filtro por duenio de la categoria: 'yo' | 'mama' | vacio = todo junto
+            // Si todavia no se corrio la migracion, la pantalla sigue funcionando sin separar.
+            $hasOwner = Schema::hasColumn('categories', 'owner');
+            $ownerSelected = $request->input('owner');
+            if (!$hasOwner || !$ownerSelected || !array_key_exists($ownerSelected, categories::owners())) {
+                $ownerSelected = null;
+            }
+
             // Agrupar movimientos realizados por anio-mes y por anio, separando por moneda.
             // Claves: aA=ingresos ARS, oA=egresos ARS, aU=ingresos USD, oU=egresos USD
-            $movs = summary::where('future', '=', 1)->get();
+            // Se trae el duenio desde la categoria del movimiento.
+            $movsQuery = DB::table('summary')
+                ->leftJoin('categories', 'categories.id', '=', 'summary.categories_id')
+                ->where('summary.future', '=', 1);
+
+            if ($hasOwner) {
+                $movsQuery->select('summary.created_at', 'summary.type', 'summary.amount',
+                                   'summary.account_id', 'summary.id_transfer',
+                                   'categories.owner as cat_owner');
+            } else {
+                $movsQuery->select('summary.created_at', 'summary.type', 'summary.amount',
+                                   'summary.account_id', 'summary.id_transfer',
+                                   DB::raw("'yo' as cat_owner"));
+            }
+
+            $movs = $movsQuery->get();
+
             $byYM = array();
             $byY  = array();
             $yearsSet = array();
@@ -30,6 +57,9 @@ class balancesaldoController extends Controller
                 if (!$m->created_at) continue;
                 // Excluir transferencias entre cuentas propias (no son ingreso ni egreso real)
                 if (!empty($m->id_transfer) || $m->type == 'transfer') continue;
+                // Los movimientos sin categoria valida se cuentan como propios
+                $movOwner = !empty($m->cat_owner) ? $m->cat_owner : 'yo';
+                if ($ownerSelected && $movOwner != $ownerSelected) continue;
                 $ts = strtotime($m->created_at);
                 $ym = date('Y-m', $ts);
                 $y  = date('Y', $ts);
@@ -113,6 +143,9 @@ class balancesaldoController extends Controller
                 'annual'       => $annual,
                 'yearSelected' => $yearSelected,
                 'years'        => range($minYear, $maxYear),
+                'ownerSelected'=> $ownerSelected,
+                'owners'       => categories::owners(),
+                'hasOwner'     => $hasOwner,
             ]);
 
         } else {
