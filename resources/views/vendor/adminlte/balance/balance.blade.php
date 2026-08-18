@@ -15,6 +15,11 @@
         $usd = ($rate>0) ? $ars/$rate : 0;
         return '$'.number_format($ars,2,',','.').'<br><small style="color:#888;">USD '.number_format($usd,2,',','.').'</small>';
     };
+    // Duenio seleccionado (viene por querystring) y su etiqueta para el titulo
+    $ownerSel   = request('owner');
+    $ownerNames = \App\categories::owners();
+    if (!$ownerSel || !isset($ownerNames[$ownerSel])) { $ownerSel = ''; }
+    $ownerTitle = $ownerSel ? $ownerNames[$ownerSel] : 'Todo';
 ?>
     <div class="container-fluid spark-screen">
         <div class="row">
@@ -25,7 +30,7 @@
                             <div class="col-md-12">
                                 <div class="box box-admin-border">
                                     <div class="box-header with-border">
-                                        <i class="fa fa-code-fork"></i><h3 class="box-title"><b>Balance global Categorias</b></h3>
+                                        <i class="fa fa-code-fork"></i><h3 class="box-title"><b>Balance global Categorias</b> @if(\App\categories::hasOwnerColumn())<small>&nbsp;·&nbsp;{{ $ownerTitle }}</small>@endif</h3>
 
                                         {{--<a class="btn btn-primary " style="float: right;" href="/categories/create"> <i class="fa fa-plus"></i>Nuevo</a>--}}
                                     </div>
@@ -53,6 +58,16 @@
                                                         <option <?php echo ($tipom=='add')?'SELECTED':'';?> value="add">Ingresos</option>
                                                     </select>
                                                 </div>
+                                                @if(\App\categories::hasOwnerColumn())
+                                                <div class="form-group col-sm-3">
+                                                    <select class="form-control" type="text" name="owner">
+                                                        <option value="">Todo junto</option>
+                                                        @foreach (\App\categories::owners() as $ownerKey => $ownerLabel)
+                                                            <option value="{{ $ownerKey }}" <?php echo ($ownerSel==$ownerKey)?'SELECTED':'';?>>{{ $ownerLabel }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="col-sm-4 ">
                                                 <h5>Categorias Anuales</h5>

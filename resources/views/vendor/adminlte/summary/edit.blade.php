@@ -100,7 +100,13 @@
 
 
 
-                  <input type="text"  step="any" required maxlength="200"  data-mask-reverse="true"  data-mask="000.000.000.000.000,00" name="amount"  value="<?php echo $data->amount ?>" class="form-control" placeholder="Monto del Movimiento">
+                  <?php
+                    // La mascara es reversa (000.000.000.000.000,00): toma los ultimos dos
+                    // digitos como decimales. Hay que darle el monto ya formateado, si no
+                    // "150000" se muestra como 1.500,00 y al guardar se pierden dos ceros.
+                    $amountFmt = number_format((float)$data->amount, 2, ',', '.');
+                  ?>
+                  <input type="text"  step="any" required maxlength="200"  data-mask-reverse="true"  data-mask="000.000.000.000.000,00" name="amount"  value="<?php echo $amountFmt ?>" class="form-control" placeholder="Monto del Movimiento">
 
                 </div>
                 <div class="form-group">
@@ -108,7 +114,11 @@
                   
                   
                  
-                  <input type="text" maxlength="200" name="tax" value="<?php echo $data->tax ?>"      data-mask-reverse="true" data-mask="000.000.000.000.000,00" class="form-control" placeholder="Impuesto">
+                  <?php
+                    // Mismo criterio que el monto; si no hay impuesto se deja vacio.
+                    $taxFmt = ($data->tax === null || $data->tax === '') ? '' : number_format((float)$data->tax, 2, ',', '.');
+                  ?>
+                  <input type="text" maxlength="200" name="tax" value="<?php echo $taxFmt ?>"      data-mask-reverse="true" data-mask="000.000.000.000.000,00" class="form-control" placeholder="Impuesto">
                 
                   
                 </div>

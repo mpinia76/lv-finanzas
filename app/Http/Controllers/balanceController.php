@@ -40,9 +40,28 @@ class balanceController extends Controller
         return $d->all();
     }
 
+    /**
+     * Devuelve el fragmento SQL para filtrar por duenio de la categoria.
+     * '1=1' cuando no hay filtro (o cuando todavia no se corrio la migracion).
+     * El valor sale de una lista blanca, no viene crudo del request.
+     */
+    private function ownerSql($owner)
+    {
+        if (!categories::hasOwnerColumn()) return '1=1';
+        if (!$owner || !array_key_exists($owner, categories::owners())) return '1=1';
+        return "categories.owner = '" . $owner . "'";
+    }
+
     public function index(Request $request)
     {
         ini_set('memory_limit', -1);
+
+        // Filtro por duenio de la categoria: 'yo' | 'mama' | vacio = todo junto
+        $ownerSelected = $request->input('owner');
+        if (!$ownerSelected || !array_key_exists($ownerSelected, categories::owners())) {
+            $ownerSelected = null;
+        }
+        $ownerSql = $this->ownerSql($ownerSelected);
 
         // Cotizacion del dolar + mapa cuenta->moneda para convertir en el Balance
         $usdSetting = \App\settings::where('name','cotizacion_usd')->first();
@@ -61,7 +80,7 @@ class balanceController extends Controller
 
 
 
-        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->whereRaw($ownerSql)->orderBy('name')->get();
         if($year && !$start && !$finish && !$categorias){
 
 
@@ -74,7 +93,7 @@ class balanceController extends Controller
             $dataTmp = array();
             $r=(new summaryController)->pass($act='categoria');
             if($r>0){
-                //$categories = categories::whereNotIn('id', [1])->get();
+                //$categories = categories::whereNotIn('id', [1])->whereRaw($ownerSql)->get();
                 if( $categorias) {
                     $categoriaselet = categories::where('id','=',$categorias)->first();
 
@@ -89,6 +108,7 @@ class balanceController extends Controller
                             ->where('categories_id','=',$categoriaselet->id)
                             ->where('categories.type','=',$tipo)
                             ->whereNotIn('categories.id', [1])
+                            ->whereRaw($ownerSql)
                             ->where('future','=',1)->get();
 
                         $data = $data->map(function($item) {
@@ -125,6 +145,7 @@ class balanceController extends Controller
                             ,'categories.type as categories_type', 'categories.description as categories_description')
                         ->where('categories.type','=',$tipo)
                         ->whereNotIn('categories.id', [1])
+                        ->whereRaw($ownerSql)
                         ->where('future','=',1)->get();
 
                     $data = $data->map(function($item) {
@@ -153,7 +174,7 @@ class balanceController extends Controller
                         $dataTmp[$d] = $this->filterData($data,$d);
                     }
                     $summary = array();
-                    $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+                    $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->whereRaw($ownerSql)->orderBy('name')->get();
 
                     $categoriaselet = array();
                     $catesnull= categories::all();
@@ -202,7 +223,7 @@ class balanceController extends Controller
             $r=(new summaryController)->pass($act='categoria');
 
             if($r>0){
-                $categories = categories::whereNotIn('id', [1])->get();
+                $categories = categories::whereNotIn('id', [1])->whereRaw($ownerSql)->get();
 
                 if( $categorias) {
                     $categoriaselet = categories::where('id','=',$categorias)->first();
@@ -218,6 +239,7 @@ class balanceController extends Controller
                             ->where('categories_id','=',$categoriaselet->id)
                             ->where('categories.type','=',$tipo)
                             ->whereNotIn('categories.id', [1])
+                            ->whereRaw($ownerSql)
                             ->where('future','=',1)->get();
 
                         $data = $data->map(function($item) {
@@ -257,6 +279,7 @@ class balanceController extends Controller
                             ,'categories.type as categories_type', 'categories.description as categories_description')
                         ->where('categories.type','=',$tipo)
                         ->whereNotIn('categories.id', [1])
+                        ->whereRaw($ownerSql)
                         ->where('future','=',1)->get();
 
                     $data = $data->map(function($item) {
@@ -283,7 +306,7 @@ class balanceController extends Controller
                         $dataTmp[$d] = $this->filterData($data,$d);
                     }
                     $summary = array();
-                    $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+                    $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->whereRaw($ownerSql)->orderBy('name')->get();
 
                     $categoriaselet = array();
                     $catesnull= categories::all();
@@ -303,19 +326,26 @@ class balanceController extends Controller
     public function indexinit(Request $request)
     {
         ini_set('memory_limit', -1);
+
+        // Filtro por duenio de la categoria: 'yo' | 'mama' | vacio = todo junto
+        $ownerSelected = $request->input('owner');
+        if (!$ownerSelected || !array_key_exists($ownerSelected, categories::owners())) {
+            $ownerSelected = null;
+        }
+        $ownerSql = $this->ownerSql($ownerSelected);
         $start = $request->input('start');
         $finish = $request->input('finish');
         $categorias = $request->input('categoria');
         $tipo= 'out';
 
-        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->whereRaw($ownerSql)->orderBy('name')->get();
         $start = Carbon::parse($start);
         $finish =Carbon::parse($finish);
 
         $dataTmp = array();
         $r=(new summaryController)->pass($act='categoria');
         if($r>0){
-            //$categories = categories::whereNotIn('id', [1])->get();
+            //$categories = categories::whereNotIn('id', [1])->whereRaw($ownerSql)->get();
             if( $categorias) {
                 $categoriaselet = categories::where('id','=',$categorias)->first();
 
@@ -330,6 +360,7 @@ class balanceController extends Controller
                         ->where('categories_id','=',$categoriaselet->id)
                         ->where('categories.type','=',$tipo)
                         ->whereNotIn('categories.id', [1])
+                        ->whereRaw($ownerSql)
                         ->where('future','=',1)->get();
 
                     $data = $data->map(function($item) {
@@ -366,6 +397,7 @@ class balanceController extends Controller
                         ,'categories.type as categories_type', 'categories.description as categories_description')
                     ->where('categories.type','=',$tipo)
                     ->whereNotIn('categories.id', [1])
+                    ->whereRaw($ownerSql)
                     ->where('future','=',1)->get();
 
                 $data = $data->map(function($item) {
@@ -394,7 +426,7 @@ class balanceController extends Controller
                     $dataTmp[$d] = $this->filterData($data,$d);
                 }
                 $summary = array();
-                $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+                $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->whereRaw($ownerSql)->orderBy('name')->get();
                 $categoriaselet = array();
                 $catesnull= categories::all();
                 $data = array();
@@ -410,12 +442,19 @@ class balanceController extends Controller
     public function indexadd(Request $request)
     {
         ini_set('memory_limit', -1);
+
+        // Filtro por duenio de la categoria: 'yo' | 'mama' | vacio = todo junto
+        $ownerSelected = $request->input('owner');
+        if (!$ownerSelected || !array_key_exists($ownerSelected, categories::owners())) {
+            $ownerSelected = null;
+        }
+        $ownerSql = $this->ownerSql($ownerSelected);
         $start = $request->input('start');
         $finish = $request->input('finish');
         $categorias = $request->input('categoria');
         $tipo= 'add';
 
-        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+        $categories = categories::whereNotIn('id', [1])->where('type','=',$tipo)->whereRaw($ownerSql)->orderBy('name')->get();
         $start = Carbon::parse($start);
         $finish =Carbon::parse($finish);
 
@@ -439,6 +478,7 @@ class balanceController extends Controller
                         ->where('categories_id','=',$categoriaselet->id)
                         ->where('categories.type','=',$tipo)
                         ->whereNotIn('categories.id', [1])
+                        ->whereRaw($ownerSql)
                         ->where('future','=',1)->get();
 
                     $data = $data->map(function($item) {
@@ -475,6 +515,7 @@ class balanceController extends Controller
                         ,'categories.type as categories_type', 'categories.description as categories_description')
                     ->where('categories.type','=',$tipo)
                     ->whereNotIn('categories.id', [1])
+                    ->whereRaw($ownerSql)
                     ->where('future','=',1)->get();
 
                 $data = $data->map(function($item) {
@@ -503,7 +544,7 @@ class balanceController extends Controller
                     $dataTmp[$d] = $this->filterData($data,$d);
                 }
                 $summary = array();
-                $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->orderBy('name')->get();
+                $attrs = categories::whereNotIn('id', [1])->where('type','=',$tipo)->whereRaw($ownerSql)->orderBy('name')->get();
                 $categoriaselet = array();
                 $catesnull= categories::all();
                 $data = array();

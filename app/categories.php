@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class categories extends Model
 {
@@ -19,6 +20,19 @@ class categories extends Model
             'yo'   => 'Mías',
             'mama' => 'De mamá',
         );
+    }
+
+    /**
+     * Indica si la columna `owner` ya existe en la base.
+     * Permite que las pantallas sigan funcionando si todavia no se corrio la migracion.
+     */
+    public static function hasOwnerColumn()
+    {
+        static $has = null;
+        if ($has === null) {
+            $has = Schema::hasColumn('categories', 'owner');
+        }
+        return $has;
     }
 
     /**
